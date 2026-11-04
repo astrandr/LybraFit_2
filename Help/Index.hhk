@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Inverse transform">
+		<param name="Local" value="InverseTransform.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Inversing data">
+		<param name="Local" value="InverseTransform.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Transform">
+		<param name="Local" value="TransformData.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Import">
+		<param name="Name" value="ImportData">
+		<param name="Local" value="ImportData.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Sample">
+		<param name="Local" value="SampleTutorial.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Beginning">
+		<param name="Local" value="SampleTutorial.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Report in text">
+		<param name="Local" value="AnalysisReport.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Report graphical">
+		<param name="Local" value="GraphicalReport.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Fit">
+		<param name="Local" value="InitializeParametersAndSolve.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Delimiters">
+		<param name="Local" value="ExportData.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Derived values">
+		<param name="Local" value="DerivedValues.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Entering data">
+		<param name="Name" value="EnteringData">
+		<param name="Local" value="EnteringData.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Autoincrement argument">
+		<param name="Local" value="EnteringData.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Tabulate a function">
+		<param name="Local" value="EnteringData.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Standard error">
+		<param name="Local" value="EnteringData.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Data errors">
+		<param name="Local" value="EnteringData.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Scaling data">
+		<param name="Local" value="TransformData.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Modify data">
+		<param name="Local" value="TransformData.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Regression">
+		<param name="Local" value="RegressionAnalysis.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Custom functions">
+		<param name="Local" value="AddingModel.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Save data">
+		<param name="Local" value="ExportData.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Export data">
+		<param name="Local" value="ExportData.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Paste">
+		<param name="Local" value="ImportData.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Clipboard">
+		<param name="Local" value="PasteDataFromClipboard.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Log">
+		<param name="Local" value="ResultsLog.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Results log">
+		<param name="Local" value="ResultsLog.htm">
+		</OBJECT>
+</UL>
+</BODY></HTML>

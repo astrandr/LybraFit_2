@@ -1,0 +1,20 @@
+﻿//Designed and Implemented by Andrey Borissov Batchvarov 2018
+//Copyright © Andrey Borissov Batchvarov. No copy and reproduction is allowed without provided license agreement
+
+namespace LybraFit.Common
+{
+    public class ImportSettings
+    {
+        public string LastFile = "";
+        public int HeaderLinesCount = 0;
+        public int Column1Index = 0;
+        public string Column1Name = "X";
+        public int Column2Index = 1;
+        public string Column2Name = "Y";
+        public int Column3Index = 2;
+        public string Column3Name = "Err";
+        public bool HasErrColumn = false;
+        public bool UseStandardDelimiters = true;
+        public bool SkipLinesWithError = false;
+    }
+}

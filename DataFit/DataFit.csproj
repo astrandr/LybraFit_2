@@ -1,0 +1,475 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1F7B82B2-AEEA-4E50-A566-21739FC46675}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataFit</RootNamespace>
+    <AssemblyName>LybraFit</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>lybrafitlogo_0PB_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <OutputPath>..\Test\bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Demo|AnyCPU'">
+    <OutputPath>..\bin\Demo\</OutputPath>
+    <DefineConstants>DEMO</DefineConstants>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>LybraFitDemoSign.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Serialization" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Adapter.cs" />
+    <Compile Include="BaseFunction.cs" />
+    <Compile Include="BeatingWave.cs" />
+    <Compile Include="Common\ColumnSettings.cs" />
+    <Compile Include="Common\Command.cs" />
+    <Compile Include="Common\Configuration.cs" />
+    <Compile Include="Common\Constants.cs" />
+    <Compile Include="Common\DataFilterInfo.cs" />
+    <Compile Include="Common\DerivedValueInfo.cs" />
+    <Compile Include="Common\GraphSettings.cs" />
+    <Compile Include="Common\ImportSettings.cs" />
+    <Compile Include="Common\InverseTransformSettings.cs" />
+    <Compile Include="Common\LogRecord.cs" />
+    <Compile Include="Common\ModelFitInfo.cs" />
+    <Compile Include="Common\ModelLog.cs" />
+    <Compile Include="Common\NewDataSettings.cs" />
+    <Compile Include="Common\UndoDeleteCommand.cs" />
+    <Compile Include="Common\UndoInsertCommand.cs" />
+    <Compile Include="Common\UndoInverseTransformCommand.cs" />
+    <Compile Include="Common\UndoTransformCommand.cs" />
+    <Compile Include="Common\ViewFilterMessage.cs" />
+    <Compile Include="Complex.cs" />
+    <Compile Include="Coordinates.cs" />
+    <Compile Include="Cos.cs" />
+    <Compile Include="Cubic.cs" />
+    <Compile Include="CubicFit.cs" />
+    <Compile Include="DampingOscillations.cs" />
+    <Compile Include="DataFitController.cs" />
+    <Compile Include="DataSmooth.cs" />
+    <Compile Include="DMatrix.cs" />
+    <Compile Include="Exponent.cs" />
+    <Compile Include="ExponentialDecline.cs" />
+    <Compile Include="FitFunction.cs" />
+    <Compile Include="Forms\AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DerviedValuesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DerviedValuesDialog.Designer.cs">
+      <DependentUpon>DerviedValuesDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ExportDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ExportDialog.Designer.cs">
+      <DependentUpon>ExportDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FilterDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FilterDialog.Designer.cs">
+      <DependentUpon>FilterDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GraphicalReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GraphicalReport.Designer.cs">
+      <DependentUpon>GraphicalReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InfoBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InfoBox.Designer.cs">
+      <DependentUpon>InfoBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InverseTransformDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InverseTransformDialog.Designer.cs">
+      <DependentUpon>InverseTransformDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LogDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LogDialog.Designer.cs">
+      <DependentUpon>LogDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LogNameDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LogNameDialog.Designer.cs">
+      <DependentUpon>LogNameDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MathModelDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MathModelDialog.Designer.cs">
+      <DependentUpon>MathModelDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MessageDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MessageDialog.Designer.cs">
+      <DependentUpon>MessageDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PlotExportDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PlotExportDialog.Designer.cs">
+      <DependentUpon>PlotExportDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Registration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Registration.Designer.cs">
+      <DependentUpon>Registration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\StartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\StartForm.Designer.cs">
+      <DependentUpon>StartForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TransformDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TransformDialog.Designer.cs">
+      <DependentUpon>TransformDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ImportDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ImportDialog.Designer.cs">
+      <DependentUpon>ImportDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Adapters\ModelsGridAdapter.cs" />
+    <Compile Include="Adapters\DataGridAdapter.cs" />
+    <Compile Include="Common\Document.cs" />
+    <Compile Include="Forms\ColumnSettingsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ColumnSettingsDialog.Designer.cs">
+      <DependentUpon>ColumnSettingsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GraphPropertiesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GraphPropertiesDialog.Designer.cs">
+      <DependentUpon>GraphPropertiesDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ModelsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ModelsDialog.Designer.cs">
+      <DependentUpon>ModelsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GenerateDataDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GenerateDataDialog.Designer.cs">
+      <DependentUpon>GenerateDataDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Adapters\PlotAdapter.cs" />
+    <Compile Include="FourierTransform.cs" />
+    <Compile Include="FourieTransform.cs" />
+    <Compile Include="GraphControl1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GraphControl.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PseudoVoigt.cs" />
+    <Compile Include="Gaussian.cs" />
+    <Compile Include="Geometric.cs" />
+    <Compile Include="GraphControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GraphControl.Designer.cs" />
+    <Compile Include="GraphControl.Public.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HarmonicDecline1.cs" />
+    <Compile Include="HarmonicDecline2.cs" />
+    <Compile Include="Histogram.cs" />
+    <Compile Include="Hoerl.cs" />
+    <Compile Include="HyperbolicDecline.cs" />
+    <Compile Include="InvalidDataForInitializationError.cs" />
+    <Compile Include="InverseTransform.cs" />
+    <Compile Include="LeastSquare.cs" />
+    <Compile Include="LimitFormatter.cs" />
+    <Compile Include="Linear.cs" />
+    <Compile Include="LinearFit.cs" />
+    <Compile Include="LogarithmicFunction.cs" />
+    <Compile Include="Logistic.cs" />
+    <Compile Include="Lorentzian.cs" />
+    <Compile Include="MathControl.cs" />
+    <Compile Include="MathParser.cs" />
+    <Compile Include="Matrix.cs" />
+    <Compile Include="ModifiedExponential.cs" />
+    <Compile Include="ModifiedHoerl.cs" />
+    <Compile Include="ModifiedPower.cs" />
+    <Compile Include="NumberFormatter.cs" />
+    <Compile Include="Operations\AdditionNode.cs" />
+    <Compile Include="Operations\BinaryOperation.cs" />
+    <Compile Include="Operations\BracketNode.cs" />
+    <Compile Include="Operations\DivisionNode.cs" />
+    <Compile Include="Operations\ExponentNode.cs" />
+    <Compile Include="Operations\FunctionNode.cs" />
+    <Compile Include="Operations\MultiplicationNode.cs" />
+    <Compile Include="Operations\Node.cs" />
+    <Compile Include="Operations\OperationNode.cs" />
+    <Compile Include="Operations\PowerNode.cs" />
+    <Compile Include="Operations\SquareRootNode.cs" />
+    <Compile Include="Operations\SubtractionNode.cs" />
+    <Compile Include="Operations\SymbolNode.cs" />
+    <Compile Include="Parabolic.cs" />
+    <Compile Include="Parser.cs" />
+    <Compile Include="PlotData.cs" />
+    <Compile Include="Polynomial4.cs" />
+    <Compile Include="Polynomial5.cs" />
+    <Compile Include="Polynomial6.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Common\Project.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RangeLabelsInfo.cs" />
+    <Compile Include="RatkowskyModel.cs" />
+    <Compile Include="Reciprocal.cs" />
+    <Compile Include="ReciprocalLogarithm.cs" />
+    <Compile Include="ReciprocalParabolic.cs" />
+    <Compile Include="ReciprocalYield.cs" />
+    <Compile Include="Root.cs" />
+    <Compile Include="SelectionEventArgs.cs" />
+    <Compile Include="ShiftedPower.cs" />
+    <Compile Include="Sin.cs" />
+    <Compile Include="SinFrequency.cs" />
+    <Compile Include="SinPeriod.cs" />
+    <Compile Include="Stat.cs" />
+    <Compile Include="UpdateMessage.cs" />
+    <Compile Include="UserFunction.cs" />
+    <Compile Include="ViewController.cs" />
+    <Compile Include="Waves2.cs" />
+    <EmbeddedResource Include="Forms\AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ColumnSettingsDialog.resx">
+      <DependentUpon>ColumnSettingsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DerviedValuesDialog.resx">
+      <DependentUpon>DerviedValuesDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ExportDialog.resx">
+      <DependentUpon>ExportDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FilterDialog.resx">
+      <DependentUpon>FilterDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GraphicalReport.resx">
+      <DependentUpon>GraphicalReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GraphPropertiesDialog.resx">
+      <DependentUpon>GraphPropertiesDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InfoBox.resx">
+      <DependentUpon>InfoBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InverseTransformDialog.resx">
+      <DependentUpon>InverseTransformDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LogDialog.resx">
+      <DependentUpon>LogDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LogNameDialog.resx">
+      <DependentUpon>LogNameDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MathModelDialog.resx">
+      <DependentUpon>MathModelDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MessageDialog.resx">
+      <DependentUpon>MessageDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ModelsDialog.resx">
+      <DependentUpon>ModelsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GenerateDataDialog.resx">
+      <DependentUpon>GenerateDataDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PlotExportDialog.resx">
+      <DependentUpon>PlotExportDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Registration.resx">
+      <DependentUpon>Registration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\StartForm.resx">
+      <DependentUpon>StartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TransformDialog.resx">
+      <DependentUpon>TransformDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ImportDialog.resx">
+      <DependentUpon>ImportDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GraphControl.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GraphControl1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Forms\ReportDialog.resx">
+      <DependentUpon>ReportDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="LybraFitDemoSign.snk" />
+    <None Include="LybraFitHelp.chm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="LybraFitSign.snk" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Forms\ReportDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ReportDialog.Designer.cs">
+      <DependentUpon>ReportDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\StylishButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\Utility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="lybrafitlogo_0PB_icon.ico" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /y "$(ProjectDir)LybraFitHelp.chm"  "$(ProjectDir)$(OutDir)"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

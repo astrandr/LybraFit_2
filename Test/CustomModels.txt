@@ -1,0 +1,3 @@
+CustomFunction5_2	A*Sqrt(x)*Sin(B*x+c)/(d*x)
+CustomFunction6	A*Sqrt(x)*Cos(B*x+c)
+my linear	A*x+B+3*c

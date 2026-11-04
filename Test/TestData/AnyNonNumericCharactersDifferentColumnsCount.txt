@@ -1,0 +1,4 @@
+Any non numeric characters
+X	Y
+a23b78.4E-5
+a23b78.4E-5,101

@@ -1,0 +1,343 @@
+﻿//Designed and Implemented by Andrey Batchvarov 2018
+using System;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+
+using UIBase;
+using GraphControlLib;
+using DataFit.Common;
+
+namespace DataFit
+{
+    public class PlotAdapter : Adapter
+    {
+        PlotData plotData;
+        PlotData plotFit;
+
+        public PlotAdapter(Control control, ViewController controller) : base(control, controller) { }
+
+        private void UpdateGraphSettings(Document doc)
+        {
+            GraphControl graph = (GraphControl)this.control;
+
+            float min = 0, max = 0, minFit = 0, maxFit = 0, step = 0;
+            int pow = 0, minPow = 2, count = 10;
+
+            pow = minPow;
+
+            if (Configuration.GraphSettings.XLimitAuto && doc.X.Length > 0)
+            {
+                Utility.GetArrayLimits(doc.X, ref min, ref max);
+                Utility.GetRoundedLimits2(ref min, ref max, ref count, ref step, ref pow);
+                Configuration.GraphSettings.XMin = min;
+                Configuration.GraphSettings.XMax = max;
+                Configuration.GraphSettings.XStep = step;
+                Configuration.GraphSettings.XPow = pow;
+            }
+            graph.XAxisLabelsFont = Configuration.GraphSettings.TickLabelsFont;
+            graph.XAxisLabelsMin = Configuration.GraphSettings.XMin;
+            graph.XAxisLabelsMax = Configuration.GraphSettings.XMax;
+            graph.XAxisLabelsStep = Configuration.GraphSettings.XStep;
+            graph.XAxisLabelsDigits = minPow;
+            graph.XAxisLabelsPow = Configuration.GraphSettings.XPow;
+
+            if (Configuration.GraphSettings.YLimitAuto && doc.Y.Length > 0)
+            {
+                Utility.GetArrayLimits(doc.Y, ref min, ref max);
+                if (doc.FitDataY != null)
+                {
+                    Utility.GetArrayLimits(doc.FitDataY, ref minFit, ref maxFit);
+                    min = min < minFit ? min : minFit;
+                    max = max > maxFit ? max : maxFit;
+                }
+                Utility.GetRoundedLimits2(ref min, ref max, ref count, ref step, ref pow);
+                Configuration.GraphSettings.YMin = min;
+                Configuration.GraphSettings.YMax = max;
+                Configuration.GraphSettings.YStep = step;
+                Configuration.GraphSettings.YPow = pow;
+            }
+            graph.YAxisLabelsFont = Configuration.GraphSettings.TickLabelsFont;
+            graph.YAxisLabelsMin = Configuration.GraphSettings.YMin;
+            graph.YAxisLabelsMax = Configuration.GraphSettings.YMax;
+            graph.YAxisLabelsStep = Configuration.GraphSettings.YStep;
+            graph.YAxisLabelsDigits = minPow;
+            graph.YAxisLabelsPow = Configuration.GraphSettings.YPow;
+
+
+            graph.BackColor = Configuration.GraphSettings.BackgroundColor;
+            graph.PlotBkColor = Configuration.GraphSettings.PlotAreaColor;
+            graph.FrameColor = Configuration.GraphSettings.AxisColor;
+
+            graph.FrameThickness = Configuration.GraphSettings.AxisThickness;
+            graph.GridLines = Configuration.GraphSettings.ShowGridLines;
+            graph.GridThickness = Configuration.GraphSettings.GridThickness;
+            graph.GridDashStyle = Configuration.GraphSettings.GridStyle;
+            graph.GridColor = Configuration.GraphSettings.GridColor;
+
+            graph.AxisTitlesColor = Configuration.GraphSettings.AxisLabelsColor;
+            graph.AxisTitlesFont = Configuration.GraphSettings.AxisLabelsFont;
+
+            graph.AxisLabelsColor = Configuration.GraphSettings.TickLabelsColor;
+            graph.XAxisLabelsFont = Configuration.GraphSettings.TickLabelsFont;
+            graph.YAxisLabelsFont = Configuration.GraphSettings.TickLabelsFont;
+
+            if (plotData != null)
+            {
+                plotData.Color = Configuration.GraphSettings.DataColor;
+                plotData.LineStyle = Configuration.GraphSettings.DataLineStyle;
+                plotData.Width = Configuration.GraphSettings.DataLineWidth;
+                plotData.DrawLine = Configuration.GraphSettings.ConnectDataPoints;
+                plotData.PointType = Configuration.GraphSettings.DataPointType;
+                plotData.PointSize = (int)Configuration.GraphSettings.DataPointSize;
+            }
+
+            if (plotFit != null)
+            {
+                plotFit.Color = Configuration.GraphSettings.FitLineColor;
+                plotFit.LineStyle = Configuration.GraphSettings.FitLineStyle;
+                plotFit.Width = Configuration.GraphSettings.FitLineWidth;
+            }
+
+            UpdateTitle(doc);
+        }
+
+        private void UpdateAxisLables(Document doc)
+        {
+            GraphControl graph = (GraphControl)this.control;
+            graph.XAxisText = doc.GridColumnSettings[0].Name;
+            graph.YAxisText = doc.GridColumnSettings[1].Name;
+            graph.Refresh();
+        }
+
+        private void UpdateTitle(Document doc)
+        {
+            GraphControl graph = (GraphControl)this.control;
+            graph.ShowTitle = Configuration.GraphSettings.ShowTitle;
+            if (Configuration.GraphSettings.ShowTitle)
+            {
+                string title = Configuration.GraphSettings.Title;
+                if (Configuration.GraphSettings.ShowModel && doc.CurrentModel != null)
+                {
+                    title += ", model:" + doc.CurrentModel.ModelName;
+                    if (Configuration.GraphSettings.ShowRegressionResult && doc.CurrentModel != null)
+                    {
+                        title += ", Std.Err:" + doc.CurrentModel.FitResultStdError;
+                    }
+                }
+                graph.Title = title;
+                graph.TitleFont = Configuration.GraphSettings.TitleFont;
+            }
+        }
+
+        /// <summary>
+        /// NewDataFile - processes loading new data file in the document. Adjust graph limits to fit the data and removes any previous fit plot
+        /// </summary>
+        /// <param name="doc"></param>
+        private void NewData(Document doc)
+        {
+            GraphControl graph = (GraphControl)this.control;
+
+            plotData = new PlotData(doc.X, doc.Y, Configuration.GraphSettings.DataColor, Configuration.GraphSettings.DataLineStyle, (int)Configuration.GraphSettings.DataPointSize, (uint)Configuration.GraphSettings.DataLineWidth, PlotDataPointType.Point);
+
+            UpdateGraphSettings(doc);
+
+            graph.RemovePlotData("Fit");
+            graph.RemovePlotData("FitLo");
+            graph.RemovePlotData("FitHi");
+
+            graph.SetPlotData("Data", plotData);
+
+            if (doc.HasErrorY)
+            {
+                graph.SetPlotDataError("Data", doc.ErrY);
+            }
+            else
+            {
+                graph.RemovePlotDataError("Data");
+            }
+
+            graph.XAxisText = doc.ColumnNames[0];
+            graph.YAxisText = doc.ColumnNames[1];
+
+            UpdateTitle(doc);
+
+            graph.Refresh();
+        }
+
+        /// <summary>
+        /// NewFilter - changes plot on new data limits
+        /// </summary>
+        /// <param name="doc"></param>
+        private void NewFilter(Document doc)
+        {
+            GraphControl graph = (GraphControl)this.control;
+
+            plotData = new PlotData(doc.X, doc.Y, Configuration.GraphSettings.DataColor, Configuration.GraphSettings.DataLineStyle, (int)Configuration.GraphSettings.DataPointSize, (uint)Configuration.GraphSettings.DataLineWidth, PlotDataPointType.Point);
+            graph.SetPlotData("Data", plotData);
+            if (doc.HasErrorY)
+            {
+                graph.SetPlotDataError("Data", doc.ErrY);
+            }
+
+            UpdateGraphSettings(doc);
+
+            if (doc.CurrentModel != null)
+            {
+                try
+                {
+                    graph.RemovePlotData("Fit");
+                    //graph.RemovePlotData("FitLo");
+                    //graph.RemovePlotData("FitHi");
+                    plotFit = new PlotData(doc.FitDataX, doc.FitDataY, Configuration.GraphSettings.FitLineColor, Configuration.GraphSettings.FitLineStyle, 0, (uint)Configuration.GraphSettings.FitLineWidth, PlotDataPointType.FilledSquare);
+                    graph.SetPlotData("Fit", plotFit);
+                    if (doc.CurrentModel.SigmaY != null)
+                    {
+                        float[] yLo = new float[doc.FitDataY.Length], yHi = new float[doc.FitDataY.Length];
+                        for (int i = 0; i < yLo.Length; i++)
+                        {
+                            yLo[i] = doc.FitDataY[i] - doc.CurrentModel.SigmaY[i];
+                            yHi[i] = doc.FitDataY[i] + doc.CurrentModel.SigmaY[i];
+                        }
+
+                        //PlotData plotFitLo = new PlotData(doc.FitDataX, yLo, Configuration.GraphSettings.FitLineColor, DashStyle.Dash, 0, (uint)Configuration.GraphSettings.FitLineWidth, PlotDataPointType.FilledSquare);
+                        //graph.SetPlotData("FitLo", plotFitLo);
+
+                        //PlotData plotFitHi = new PlotData(doc.FitDataX, yHi, Configuration.GraphSettings.FitLineColor, DashStyle.Dash, 0, (uint)Configuration.GraphSettings.FitLineWidth, PlotDataPointType.FilledSquare);
+                        //graph.SetPlotData("FitHi", plotFitHi);
+
+                    }
+                }
+                catch (Exception)
+                {
+                    //Add logging here
+                    MessageBox.Show("Out of limits error");
+                }
+            }
+            else
+            {
+                graph.RemovePlotData("Fit");
+                //graph.RemovePlotData("FitLo");
+                //graph.RemovePlotData("FitHi");
+            }
+
+            graph.Refresh();
+
+        }
+
+        private void NewViewFilter(ViewFilterMessage filterMessage)
+        {
+            GraphControl graph = (GraphControl)this.control;
+            if (filterMessage.FilterItems == null || filterMessage.FilterItems.Length == 0)
+            {
+                //Restore the graph settings
+                UpdateGraphSettings(filterMessage.Document);
+                graph.Refresh();
+                return;
+            }
+
+            float min = filterMessage.FilterItems[0].Min;
+            float max = filterMessage.FilterItems[0].Max;
+
+            float step = 0;
+            int pow = 0, minPow = 2, count = 10;
+
+            pow = minPow;
+
+            Utility.GetRoundedLimits2(ref min, ref max, ref count, ref step, ref pow);
+            graph.XAxisLabelsMin = min;
+            graph.XAxisLabelsMax = max;
+            graph.XAxisLabelsStep = step;
+            graph.XAxisLabelsDigits = minPow;
+            graph.XAxisLabelsPow = pow;
+
+            if (filterMessage.FilterItems.Length > 1)
+            {
+                min = filterMessage.FilterItems[1].Min;
+                max = filterMessage.FilterItems[1].Max;
+                Utility.GetRoundedLimits2(ref min, ref max, ref count, ref step, ref pow);
+
+                graph.YAxisLabelsMin = min;
+                graph.YAxisLabelsMax = max;
+                graph.YAxisLabelsStep = step;
+                graph.YAxisLabelsDigits = minPow;
+                graph.YAxisLabelsPow = pow;
+            }
+
+            graph.Refresh();
+
+        }
+
+        /// <summary>
+        /// NewFit processes new fit curve. Adjusts the graph limits and sets new fit plot. 
+        /// </summary>
+        /// <param name="doc"></param>
+        private void NewFit(Document doc)
+        {
+            GraphControl graph = (GraphControl)this.control;
+            UpdateGraphSettings(doc);
+            if (doc.CurrentModel != null)
+            {
+                try
+                {
+                    //TODO: Investigate loFit, hiFit, at this time they don't seem to be meeningfull and correct
+                    graph.RemovePlotData("Fit");
+                    //graph.RemovePlotData("FitLo");
+                    //graph.RemovePlotData("FitHi");
+                    plotFit = new PlotData(doc.FitDataX, doc.FitDataY, Configuration.GraphSettings.FitLineColor, Configuration.GraphSettings.FitLineStyle, 0, (uint)Configuration.GraphSettings.FitLineWidth, PlotDataPointType.FilledSquare);
+                    graph.SetPlotData("Fit", plotFit);
+                    if (doc.CurrentModel.SigmaY != null)
+                    {
+                        float[] yLo = new float[doc.FitDataY.Length], yHi = new float[doc.FitDataY.Length];
+                        for (int i = 0; i < yLo.Length; i++)
+                        {
+                            yLo[i] = doc.FitDataY[i] - doc.CurrentModel.SigmaY[i];
+                            yHi[i] = doc.FitDataY[i] + doc.CurrentModel.SigmaY[i];
+                        }
+
+                        //PlotData plotFitLo = new PlotData(doc.FitDataX, yLo, Configuration.GraphSettings.FitLineColor, DashStyle.Dash, 0, (uint)Configuration.GraphSettings.FitLineWidth, PlotDataPointType.FilledSquare);
+                        //graph.SetPlotData("FitLo", plotFitLo);
+
+                        //PlotData plotFitHi = new PlotData(doc.FitDataX, yHi, Configuration.GraphSettings.FitLineColor, DashStyle.Dash, 0, (uint)Configuration.GraphSettings.FitLineWidth, PlotDataPointType.FilledSquare);
+                        //graph.SetPlotData("FitHi", plotFitHi);
+
+                    }
+                }
+                catch (Exception)
+                {
+                    //Add logging here
+                    MessageBox.Show("Out of limits error");
+                }
+            }
+            else
+            {
+                graph.RemovePlotData("Fit");
+                //graph.RemovePlotData("FitLo");
+                //graph.RemovePlotData("FitHi");
+            }
+
+            UpdateTitle(doc);
+
+            graph.Refresh();
+        }
+
+        /// <summary>
+        /// Calle dby UIBase framewark where other components sents and update message via controller
+        /// </summary>
+        /// <param name="update"></param>
+        protected override void SynchronizeWithDocument(UpdateMessage update)
+        {
+            switch (update.Type)
+            {
+                case UpdateMessages.NEW_DATA: NewData((Document)update.Content); break;
+                case UpdateMessages.DATA_CHANGED:
+                case UpdateMessages.DATA_FILTERED: NewFilter((Document)update.Content); break;
+                case UpdateMessages.NEW_FIT:
+                case UpdateMessages.MODELS_CHANGE: NewFit((Document)update.Content); break;
+                case UpdateMessages.GRAPH_SETTINGS_CHANGED: UpdateGraphSettings((Document)update.Content); ((GraphControl)control).Refresh(); break;
+                case UpdateMessages.COLUMN_SETTINGS_CHANGED: UpdateAxisLables((Document)update.Content); break;
+                case UpdateMessages.VIEW_FILTERED: NewViewFilter((ViewFilterMessage)update.Content); break;
+            }
+        }
+    }
+}

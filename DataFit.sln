@@ -1,0 +1,98 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4F44D9EC-5AC0-4DE1-880F-2B5F2804662C}"
+	ProjectSection(SolutionItems) = preProject
+		DataFit.vsmdi = DataFit.vsmdi
+		DataFit1.vsmdi = DataFit1.vsmdi
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataFit", "DataFit\DataFit.csproj", "{1F7B82B2-AEEA-4E50-A566-21739FC46675}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{5BDB3A4C-0222-40B7-8724-4F06EB89A92A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1F7B82B2-AEEA-4E50-A566-21739FC46675} = {1F7B82B2-AEEA-4E50-A566-21739FC46675}
+	EndProjectSection
+EndProject
+Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "LybraFit_Installer", "LybraFit_Installer\LybraFit_Installer.isproj", "{6542C503-7F2E-48E5-9599-E32CF2BB2B2F}"
+EndProject
+Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "LybraFitDemo_Installer", "LybraFitDemoInstaller\LybraFitDemo_Installer.isproj", "{99A9C188-DF66-465B-B7CC-AFC115DB4F6D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CD_ROM|Any CPU = CD_ROM|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Demo|Any CPU = Demo|Any CPU
+		DVD-5|Any CPU = DVD-5|Any CPU
+		Release|Any CPU = Release|Any CPU
+		SingleImage|Any CPU = SingleImage|Any CPU
+		Test|Any CPU = Test|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1F7B82B2-AEEA-4E50-A566-21739FC46675}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{1F7B82B2-AEEA-4E50-A566-21739FC46675}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{1F7B82B2-AEEA-4E50-A566-21739FC46675}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F7B82B2-AEEA-4E50-A566-21739FC46675}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F7B82B2-AEEA-4E50-A566-21739FC46675}.Demo|Any CPU.ActiveCfg = Demo|Any CPU
+		{1F7B82B2-AEEA-4E50-A566-21739FC46675}.Demo|Any CPU.Build.0 = Demo|Any CPU
+		{1F7B82B2-AEEA-4E50-A566-21739FC46675}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F7B82B2-AEEA-4E50-A566-21739FC46675}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{1F7B82B2-AEEA-4E50-A566-21739FC46675}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F7B82B2-AEEA-4E50-A566-21739FC46675}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F7B82B2-AEEA-4E50-A566-21739FC46675}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{1F7B82B2-AEEA-4E50-A566-21739FC46675}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{1F7B82B2-AEEA-4E50-A566-21739FC46675}.Test|Any CPU.ActiveCfg = Test|Any CPU
+		{1F7B82B2-AEEA-4E50-A566-21739FC46675}.Test|Any CPU.Build.0 = Test|Any CPU
+		{5BDB3A4C-0222-40B7-8724-4F06EB89A92A}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{5BDB3A4C-0222-40B7-8724-4F06EB89A92A}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{5BDB3A4C-0222-40B7-8724-4F06EB89A92A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BDB3A4C-0222-40B7-8724-4F06EB89A92A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BDB3A4C-0222-40B7-8724-4F06EB89A92A}.Demo|Any CPU.ActiveCfg = Demo|Any CPU
+		{5BDB3A4C-0222-40B7-8724-4F06EB89A92A}.Demo|Any CPU.Build.0 = Demo|Any CPU
+		{5BDB3A4C-0222-40B7-8724-4F06EB89A92A}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BDB3A4C-0222-40B7-8724-4F06EB89A92A}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{5BDB3A4C-0222-40B7-8724-4F06EB89A92A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BDB3A4C-0222-40B7-8724-4F06EB89A92A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BDB3A4C-0222-40B7-8724-4F06EB89A92A}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{5BDB3A4C-0222-40B7-8724-4F06EB89A92A}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{5BDB3A4C-0222-40B7-8724-4F06EB89A92A}.Test|Any CPU.ActiveCfg = Test|Any CPU
+		{5BDB3A4C-0222-40B7-8724-4F06EB89A92A}.Test|Any CPU.Build.0 = Test|Any CPU
+		{6542C503-7F2E-48E5-9599-E32CF2BB2B2F}.CD_ROM|Any CPU.ActiveCfg = CD_ROM
+		{6542C503-7F2E-48E5-9599-E32CF2BB2B2F}.CD_ROM|Any CPU.Build.0 = CD_ROM
+		{6542C503-7F2E-48E5-9599-E32CF2BB2B2F}.Debug|Any CPU.ActiveCfg = DVD-5
+		{6542C503-7F2E-48E5-9599-E32CF2BB2B2F}.Debug|Any CPU.Build.0 = DVD-5
+		{6542C503-7F2E-48E5-9599-E32CF2BB2B2F}.Demo|Any CPU.ActiveCfg = SingleImage
+		{6542C503-7F2E-48E5-9599-E32CF2BB2B2F}.Demo|Any CPU.Build.0 = SingleImage
+		{6542C503-7F2E-48E5-9599-E32CF2BB2B2F}.DVD-5|Any CPU.ActiveCfg = DVD-5
+		{6542C503-7F2E-48E5-9599-E32CF2BB2B2F}.DVD-5|Any CPU.Build.0 = DVD-5
+		{6542C503-7F2E-48E5-9599-E32CF2BB2B2F}.Release|Any CPU.ActiveCfg = SingleImage
+		{6542C503-7F2E-48E5-9599-E32CF2BB2B2F}.Release|Any CPU.Build.0 = SingleImage
+		{6542C503-7F2E-48E5-9599-E32CF2BB2B2F}.SingleImage|Any CPU.ActiveCfg = SingleImage
+		{6542C503-7F2E-48E5-9599-E32CF2BB2B2F}.SingleImage|Any CPU.Build.0 = SingleImage
+		{6542C503-7F2E-48E5-9599-E32CF2BB2B2F}.Test|Any CPU.ActiveCfg = SingleImage
+		{6542C503-7F2E-48E5-9599-E32CF2BB2B2F}.Test|Any CPU.Build.0 = SingleImage
+		{99A9C188-DF66-465B-B7CC-AFC115DB4F6D}.CD_ROM|Any CPU.ActiveCfg = CD_ROM
+		{99A9C188-DF66-465B-B7CC-AFC115DB4F6D}.CD_ROM|Any CPU.Build.0 = CD_ROM
+		{99A9C188-DF66-465B-B7CC-AFC115DB4F6D}.Debug|Any CPU.ActiveCfg = DVD-5
+		{99A9C188-DF66-465B-B7CC-AFC115DB4F6D}.Debug|Any CPU.Build.0 = DVD-5
+		{99A9C188-DF66-465B-B7CC-AFC115DB4F6D}.Demo|Any CPU.ActiveCfg = DVD-5
+		{99A9C188-DF66-465B-B7CC-AFC115DB4F6D}.Demo|Any CPU.Build.0 = DVD-5
+		{99A9C188-DF66-465B-B7CC-AFC115DB4F6D}.DVD-5|Any CPU.ActiveCfg = DVD-5
+		{99A9C188-DF66-465B-B7CC-AFC115DB4F6D}.DVD-5|Any CPU.Build.0 = DVD-5
+		{99A9C188-DF66-465B-B7CC-AFC115DB4F6D}.Release|Any CPU.ActiveCfg = SingleImage
+		{99A9C188-DF66-465B-B7CC-AFC115DB4F6D}.Release|Any CPU.Build.0 = SingleImage
+		{99A9C188-DF66-465B-B7CC-AFC115DB4F6D}.SingleImage|Any CPU.ActiveCfg = SingleImage
+		{99A9C188-DF66-465B-B7CC-AFC115DB4F6D}.SingleImage|Any CPU.Build.0 = SingleImage
+		{99A9C188-DF66-465B-B7CC-AFC115DB4F6D}.Test|Any CPU.ActiveCfg = SingleImage
+		{99A9C188-DF66-465B-B7CC-AFC115DB4F6D}.Test|Any CPU.Build.0 = SingleImage
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = DataFit1.vsmdi
+	EndGlobalSection
+EndGlobal

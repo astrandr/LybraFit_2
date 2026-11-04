@@ -1,0 +1,4 @@
+Log record identifier	a	b	Ratio
+Initial values	3	2	1.5
+Manual values 1	2	1	2
+Manual values 2	1	1	1

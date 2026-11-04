@@ -1,0 +1,78 @@
+﻿//Designed and Implemented by Andrey Batchvarov 2018
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FuncLib
+{
+    [Serializable]
+    public class Geometric : FitFunction
+    {
+        public Geometric()
+        {
+            this.canInitParameters = true;
+            this.name = "Geometric";
+            this.description = "a*X^(b*X)";
+            this.parameters = new string[] { "a", "b" };
+        }
+
+        public override void CalcProcedure(float[] X, float[] P, ref float[] Y)
+        {
+            for (int i = 0; i < X.Length; i++)
+            {
+                Y[i] = P[0] * (float)Math.Pow(X[i], P[1] * X[i]);
+            }
+        }
+
+        public override float[] InitParameters(float[] X, float[] Y)
+        {
+            CheckNumberOfPointsForInitialization(X);
+
+            float[] P = new float[2];
+
+            float[] lny = new float[X.Length];
+
+            if (X.Length > 2)
+            {
+                //Select only positive values
+                List<float> ys = new List<float>();
+                List<float> xs = new List<float>();
+                for (int i = 0; i < X.Length; i++)
+                {
+                    if (Y[i] > 0 && X[i] > 0)
+                    {
+                        ys.Add(Y[i]); xs.Add(X[i]);
+                    }
+                }
+                for (int i = 0; i < xs.Count; i++)
+                {
+                    lny[i] = (float)Math.Log(ys[i]);
+                }
+
+                float b = 0;
+                for (int i = 1; i < xs.Count - 1; i++)
+                {
+                    float dlny = ((lny[i] - lny[i - 1]) / (xs[i] - xs[i - 1]) + (lny[i + 1] - lny[i]) / (xs[i + 1] - xs[i])) / 2;
+                    b += dlny / (1 + (float)Math.Log(xs[i]));
+                }
+                b /= (xs.Count - 2);
+
+                float a = 0;
+                for (int i = 0; i < xs.Count - 1; i++)
+                {
+                    a += ys[i] / ((float)Math.Pow(xs[i], b * xs[i]));
+                }
+                a /= (xs.Count - 1);
+
+
+                P[0] = a;
+                P[1] = b;
+
+            }
+
+            return P;
+        }
+    }
+}

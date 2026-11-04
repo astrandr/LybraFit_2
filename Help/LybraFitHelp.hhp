@@ -1,0 +1,18 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=LybraFitHelp.chm
+Contents file=Table of Contents.hhc
+Default topic=GettingStarted.htm
+Display compile progress=No
+Index file=Index.hhk
+Language=0x409 English (United States)
+
+[FILES]
+*.jpg
+Images\DataTable.jpg
+Images\ModelsFilter.jpg
+Images\LogResultDialog.jpg
+Images\LogResultTable.jpg
+
+[INFOTYPES]
+

@@ -1,0 +1,3 @@
+﻿New Data Test
+	1. Verify row ordering. Creation, delete row(s), insert row(s), unde delete, undo insert
+	2. Verify column names are as provided in new data dialog

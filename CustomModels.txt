@@ -1,0 +1,2 @@
+Shifted Parabolic	a+b*(x-s)+c*(x-s)^2+b
+simple	A*x^2+c-b*x

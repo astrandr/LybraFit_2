@@ -1,0 +1,2 @@
+N	Date		Description						
+1	7/16/2018	Exception when inserting data

@@ -1,0 +1,85 @@
+Initially developed in WA, USA probably 2010 or so.
+Continued work in Bulgaria November 2017.
+
+2017
+001	19 Nov	Fix editing data in the grid.
+002	19 Nov	Fix bug: When loading TestDataExp.txt and fitting with Exp Y labels come with unnecessary 3 zeros after decimal.
+003	8 Dec	Add formatting of numbers in the column
+004	8 Dec	Increase the width of function and parameters so that it is easier to read the function and to enter paramters. Eventually make it with splitter.
+005	8 Dec	Change default font of the graph numbers. 
+006	8 Dec	Add settings dialog for the graph formatting. Including font, size, number format.
+007	8 Dec	Add revert to last  parameters and last parameters, so that if next plot fails it can be reverted
+008	8 Dec	Add better estiomation of the fit than just the sum of errors
+009	8 Dec	The paramters values table shell be with fixed number of raws and no other raw is to be shown
+010	8 Dec	Add labels to graphs axis showing which column the axis corresponds to.
+011	8 Dec	Move the data table eventually as a tab next to fit function and parameters. Name them "Data" and "Model". Make option for the user to swap the places with the plot.
+012	8 Dec	When form is resized and graph accordingly, automatically recalculate the numbers and formatting of the graph.
+013	10 Dec	Fix the file filter for datafile open dialog.
+014	10 Dec	Fix autoformatig of the graph markers not to be longer than 4-6 simbols (or this must be in the settings).
+015	10 Dec	Add context menu on the parameters grid which includes copy/paste
+016	10 Dec	Add context menu on the parameters grid whichi includes formatting the columns
+017	10 Dec	increase the width of parameters columns, names and values
+018	14 Dec	keep file filter for open data file dialog
+019	17 Dec	Add file name to the title of the form
+020	24 Dec	Add new data/document functionality
+021	24 Dec	In the new data functionality set an option to provide names for the data columns
+
+2018
+022	14 Jan	Add autocalculation option for error when loading data
+023	14 Jan	Verify the code is protected with try catch block every where and error handling is properly implemented
+024	14 Jan	Implement paste all from clipboard and paste insert from clipboard. This must be added to main and context menu of the grid.
+025	14 Jan	Implement copy all and copy selected from grid to clipboard. This must be added to main and context menu of the grid.
+026	14 Jan	Implement copy selected fit function, its parameters and vaof fit goodness to clip board.
+027	15 Jan	Implement copy to clipborad for a row, selection, column and all.
+028	15 Jan	Implement copy to clipboard of fit function, parameters and fit goodness.
+029	21 Jan	Add recent files option to File menu
+030	26 Jan	Save custom function - serialize them with some program file.
+031	28 Jan	Handle unsorted data input
+032	04 Feb	Add option for orientation of Y label on the graph and title of the graph
+033	04 Feb	Implement column transform
+034	04 Feb	Implement erf
+035	04 Feb	Implement Gamma function
+036	17 Feb	Test each library function initialization on data with stray away points and try to improve it
+037	18 Feb	Move all the data processing from the main form to some Service class
+038	18 Feb	Change names of all menu and button handlers to some common pattern
+039 25 Feb	Refactor image export settings to use a class GraphicsExportSettings
+040	25 Feb	Fix the bug with replacing of parameters value in the expression for the graphical report. The bug is that perameter E replaces E in Exp math function. This needs parsing part from UserFunction.
+041	04 Mar	The generate graphic report dialog must reserve its settings and not be initialized each time. Make those part of configuration settings.
+042	17 Mar	Sort the results from regression in the grid
+043	30 Mar	Move all project specific data like the title to Project class, which is serialized.
+044	02 Apr	Implement test for initialization of all functions with different level of noise. Experiment with fitting the data first with polynomials and calculate derivatives from this fit.
+045	06 Apr	When saving project set the file name to be initialized to Title. After first save keep the last name. Same with export data.
+046	06 Apr	Implement Ctrl+Z for undo insert delete.
+047	06 Apr	Error columns check box shell be disabled if columns count in original file is less than three.
+048	06 Apr	Add undo to menu under data and hot key Ctrl+Z.
+049	06 Apr	Add option to set default delimiters in data export. (tab, ;, :,...)
+050	06 Apr	Add undo transform command
+051	06 Apr	If data is autocalculated the Y columns is to be updated when X is changed as well as Error column if it enabled and autocalculated
+052	06 Apr  Implement default Ok key or combination of keys for every dialog and cancel key.
+053	06 Apr	Initialize new data dialog title with current title
+054 06 Apr	Fix restore defaults in column format. It must be disabled if there is default formatting is not set.
+055	06 Apr	Clicking on the graph makes plot disappear
+056	07 Apr	BUG: When adding custom model and it is selected the Initialized parameters is not disabled.
+057	07 Apr	Implement copy parameters in columns and in rows for the context menu of models parameters table.
+058	07 Apr	After running initialization the sigma of parameters is to be calculated too.
+059	07 Apr	Provide option to specify th eseparators used in the exported data.
+060	07 Apr	Provide auto-format of numbers in the data tablewhich is to be used by default when importing data.
+061	07 Apr	Review, test and fix all library functions that use Ln in parameters initializations
+062	08 Apr	Application crashes when pressing Ctrl+Z while enetring data in the table. Test different keys at different UI states of the application
+063	21 Apr	Verify the visualization of all math function
+064	21 Apr	Add custom function description like Ln for Log and custom functions
+065	21 Apr	Increase nested levels of font for Exponent if its argument is growing
+066	22 Apr	Try and test all library functions if they really compute what they say
+067	22 Apr	Try and test all library functions if they initialize with data produced by the function itseld without data errors
+068	22 Apr	Try and test all library functions if they initialize with data produced by the function itseld with data errors
+069	22 Apr	Try and test all library functions if they initialize with data produced by each of others library function itseld with and without data errors
+070	15 May	Consider preserving parameters for custom models from the last fit, including storing them in custom models file.
+071	19 Jul	Add copy menu in the pop-menu for data table
+072	20 Jul	Add the rest of the Greek alphabet including capitals
+073	27 Jul	Try to improve the fitting, one possible function to use is A*Sqrt(X+B)/(X+C), A:1, B:-5, C:5
+074	02 Aug	Add generated/autocalculated data to project and its serialization. Source file too. Add undo for edit operations. Source file and/or calculated data is to be excluded if data was edited, i.e. there are pending/present undo operations.
+075	02 Aug	Add log of operations to application and to the project
+076	02 Aug	Add menu operations for removing models from the modles grid and removing all of them. Also speed buttons to pop-up menu.
+077	23 Aug	Consider multiline title in the graphics report
+078	23 Aug	Consider replacing Y and X with actual column names in the graphical report
+079	24 Aug	Go over all the forms code and placed public methods, event handlers and private methods into separate regions
