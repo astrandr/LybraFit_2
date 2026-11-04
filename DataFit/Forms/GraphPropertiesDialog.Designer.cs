@@ -32,6 +32,7 @@ namespace LybraFit.Forms
             this.components = new System.ComponentModel.Container();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageAxis = new System.Windows.Forms.TabPage();
+            this.chkYAxisVerticalTitle = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnAxisLabelsColor = new LybraFit.StylishButton();
             this.btnAxisLabelsFont = new LybraFit.StylishButton();
@@ -118,7 +119,6 @@ namespace LybraFit.Forms
             this.btnRestoreDefaults = new LybraFit.StylishButton();
             this.btnCancel = new LybraFit.StylishButton();
             this.btnOk = new LybraFit.StylishButton();
-            this.chkYAxisVerticalTitle = new System.Windows.Forms.CheckBox();
             this.tabControl.SuspendLayout();
             this.tabPageAxis.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -167,11 +167,23 @@ namespace LybraFit.Forms
             this.tabPageAxis.TabIndex = 0;
             this.tabPageAxis.Text = "Axises";
             // 
+            // chkYAxisVerticalTitle
+            // 
+            this.chkYAxisVerticalTitle.AutoSize = true;
+            this.chkYAxisVerticalTitle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkYAxisVerticalTitle.Location = new System.Drawing.Point(223, 272);
+            this.chkYAxisVerticalTitle.Name = "chkYAxisVerticalTitle";
+            this.chkYAxisVerticalTitle.Size = new System.Drawing.Size(139, 19);
+            this.chkYAxisVerticalTitle.TabIndex = 24;
+            this.chkYAxisVerticalTitle.Text = "Vertical title on Y Axis";
+            this.chkYAxisVerticalTitle.UseVisualStyleBackColor = true;
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btnAxisLabelsColor);
             this.groupBox2.Controls.Add(this.btnAxisLabelsFont);
             this.groupBox2.Controls.Add(this.lblAxisLabelsExample);
+            this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(215, 180);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(190, 83);
@@ -204,7 +216,7 @@ namespace LybraFit.Forms
             this.lblAxisLabelsExample.AutoSize = true;
             this.lblAxisLabelsExample.Location = new System.Drawing.Point(82, 53);
             this.lblAxisLabelsExample.Name = "lblAxisLabelsExample";
-            this.lblAxisLabelsExample.Size = new System.Drawing.Size(40, 13);
+            this.lblAxisLabelsExample.Size = new System.Drawing.Size(40, 15);
             this.lblAxisLabelsExample.TabIndex = 23;
             this.lblAxisLabelsExample.Text = "1.2304";
             // 
@@ -213,6 +225,7 @@ namespace LybraFit.Forms
             this.groupBox1.Controls.Add(this.btnTickLabelsColor);
             this.groupBox1.Controls.Add(this.lblTickLabelsExample);
             this.groupBox1.Controls.Add(this.btnTickLabelsFont);
+            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(9, 180);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(190, 83);
@@ -235,7 +248,7 @@ namespace LybraFit.Forms
             this.lblTickLabelsExample.AutoSize = true;
             this.lblTickLabelsExample.Location = new System.Drawing.Point(81, 53);
             this.lblTickLabelsExample.Name = "lblTickLabelsExample";
-            this.lblTickLabelsExample.Size = new System.Drawing.Size(40, 13);
+            this.lblTickLabelsExample.Size = new System.Drawing.Size(40, 15);
             this.lblTickLabelsExample.TabIndex = 21;
             this.lblTickLabelsExample.Text = "1.2304";
             // 
@@ -260,6 +273,7 @@ namespace LybraFit.Forms
             this.grpYAxis.Controls.Add(this.label9);
             this.grpYAxis.Controls.Add(this.txtYMin);
             this.grpYAxis.Controls.Add(this.label10);
+            this.grpYAxis.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpYAxis.Location = new System.Drawing.Point(215, 10);
             this.grpYAxis.Name = "grpYAxis";
             this.grpYAxis.Size = new System.Drawing.Size(190, 164);
@@ -272,9 +286,10 @@ namespace LybraFit.Forms
             this.chkYAxisAuto.AutoSize = true;
             this.chkYAxisAuto.Checked = true;
             this.chkYAxisAuto.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkYAxisAuto.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkYAxisAuto.Location = new System.Drawing.Point(52, 24);
             this.chkYAxisAuto.Name = "chkYAxisAuto";
-            this.chkYAxisAuto.Size = new System.Drawing.Size(48, 17);
+            this.chkYAxisAuto.Size = new System.Drawing.Size(52, 19);
             this.chkYAxisAuto.TabIndex = 5;
             this.chkYAxisAuto.Text = "Auto";
             this.chkYAxisAuto.UseVisualStyleBackColor = true;
@@ -285,16 +300,17 @@ namespace LybraFit.Forms
             this.txtYPow.Enabled = false;
             this.txtYPow.Location = new System.Drawing.Point(52, 130);
             this.txtYPow.Name = "txtYPow";
-            this.txtYPow.Size = new System.Drawing.Size(100, 20);
+            this.txtYPow.Size = new System.Drawing.Size(100, 23);
             this.txtYPow.TabIndex = 9;
             this.txtYPow.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(15, 133);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(31, 13);
+            this.label7.Size = new System.Drawing.Size(33, 15);
             this.label7.TabIndex = 6;
             this.label7.Text = "Pow:";
             // 
@@ -303,16 +319,17 @@ namespace LybraFit.Forms
             this.txtYStep.Enabled = false;
             this.txtYStep.Location = new System.Drawing.Point(52, 105);
             this.txtYStep.Name = "txtYStep";
-            this.txtYStep.Size = new System.Drawing.Size(100, 20);
+            this.txtYStep.Size = new System.Drawing.Size(100, 23);
             this.txtYStep.TabIndex = 8;
             this.txtYStep.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(14, 108);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(32, 13);
+            this.label8.Size = new System.Drawing.Size(33, 15);
             this.label8.TabIndex = 4;
             this.label8.Text = "Step:";
             // 
@@ -321,16 +338,17 @@ namespace LybraFit.Forms
             this.txtYMax.Enabled = false;
             this.txtYMax.Location = new System.Drawing.Point(52, 80);
             this.txtYMax.Name = "txtYMax";
-            this.txtYMax.Size = new System.Drawing.Size(100, 20);
+            this.txtYMax.Size = new System.Drawing.Size(100, 23);
             this.txtYMax.TabIndex = 7;
             this.txtYMax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(16, 83);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(30, 13);
+            this.label9.Size = new System.Drawing.Size(33, 15);
             this.label9.TabIndex = 2;
             this.label9.Text = "Max:";
             // 
@@ -339,16 +357,17 @@ namespace LybraFit.Forms
             this.txtYMin.Enabled = false;
             this.txtYMin.Location = new System.Drawing.Point(52, 55);
             this.txtYMin.Name = "txtYMin";
-            this.txtYMin.Size = new System.Drawing.Size(100, 20);
+            this.txtYMin.Size = new System.Drawing.Size(100, 23);
             this.txtYMin.TabIndex = 6;
             this.txtYMin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(19, 58);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(27, 13);
+            this.label10.Size = new System.Drawing.Size(31, 15);
             this.label10.TabIndex = 0;
             this.label10.Text = "Min:";
             // 
@@ -363,6 +382,7 @@ namespace LybraFit.Forms
             this.grpXAxis.Controls.Add(this.label2);
             this.grpXAxis.Controls.Add(this.txtXMin);
             this.grpXAxis.Controls.Add(this.label1);
+            this.grpXAxis.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpXAxis.Location = new System.Drawing.Point(9, 10);
             this.grpXAxis.Name = "grpXAxis";
             this.grpXAxis.Size = new System.Drawing.Size(190, 164);
@@ -375,9 +395,10 @@ namespace LybraFit.Forms
             this.chkXAxisAuto.AutoSize = true;
             this.chkXAxisAuto.Checked = true;
             this.chkXAxisAuto.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkXAxisAuto.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkXAxisAuto.Location = new System.Drawing.Point(52, 24);
             this.chkXAxisAuto.Name = "chkXAxisAuto";
-            this.chkXAxisAuto.Size = new System.Drawing.Size(48, 17);
+            this.chkXAxisAuto.Size = new System.Drawing.Size(52, 19);
             this.chkXAxisAuto.TabIndex = 0;
             this.chkXAxisAuto.Text = "Auto";
             this.chkXAxisAuto.UseVisualStyleBackColor = true;
@@ -388,16 +409,17 @@ namespace LybraFit.Forms
             this.txtXPow.Enabled = false;
             this.txtXPow.Location = new System.Drawing.Point(52, 130);
             this.txtXPow.Name = "txtXPow";
-            this.txtXPow.Size = new System.Drawing.Size(100, 20);
+            this.txtXPow.Size = new System.Drawing.Size(100, 23);
             this.txtXPow.TabIndex = 4;
             this.txtXPow.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(15, 133);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(31, 13);
+            this.label4.Size = new System.Drawing.Size(33, 15);
             this.label4.TabIndex = 6;
             this.label4.Text = "Pow:";
             // 
@@ -406,16 +428,17 @@ namespace LybraFit.Forms
             this.txtXStep.Enabled = false;
             this.txtXStep.Location = new System.Drawing.Point(52, 105);
             this.txtXStep.Name = "txtXStep";
-            this.txtXStep.Size = new System.Drawing.Size(100, 20);
+            this.txtXStep.Size = new System.Drawing.Size(100, 23);
             this.txtXStep.TabIndex = 3;
             this.txtXStep.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(14, 108);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(32, 13);
+            this.label3.Size = new System.Drawing.Size(33, 15);
             this.label3.TabIndex = 4;
             this.label3.Text = "Step:";
             // 
@@ -424,16 +447,17 @@ namespace LybraFit.Forms
             this.txtXMax.Enabled = false;
             this.txtXMax.Location = new System.Drawing.Point(52, 80);
             this.txtXMax.Name = "txtXMax";
-            this.txtXMax.Size = new System.Drawing.Size(100, 20);
+            this.txtXMax.Size = new System.Drawing.Size(100, 23);
             this.txtXMax.TabIndex = 2;
             this.txtXMax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(16, 83);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(30, 13);
+            this.label2.Size = new System.Drawing.Size(33, 15);
             this.label2.TabIndex = 2;
             this.label2.Text = "Max:";
             // 
@@ -442,16 +466,17 @@ namespace LybraFit.Forms
             this.txtXMin.Enabled = false;
             this.txtXMin.Location = new System.Drawing.Point(52, 55);
             this.txtXMin.Name = "txtXMin";
-            this.txtXMin.Size = new System.Drawing.Size(100, 20);
+            this.txtXMin.Size = new System.Drawing.Size(100, 23);
             this.txtXMin.TabIndex = 1;
             this.txtXMin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(19, 58);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 13);
+            this.label1.Size = new System.Drawing.Size(31, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "Min:";
             // 
@@ -464,7 +489,7 @@ namespace LybraFit.Forms
             this.tabPageData.Location = new System.Drawing.Point(4, 22);
             this.tabPageData.Name = "tabPageData";
             this.tabPageData.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageData.Size = new System.Drawing.Size(416, 284);
+            this.tabPageData.Size = new System.Drawing.Size(416, 303);
             this.tabPageData.TabIndex = 1;
             this.tabPageData.Text = "Data";
             // 
@@ -476,6 +501,7 @@ namespace LybraFit.Forms
             this.grpTitle.Controls.Add(this.chkShowModel);
             this.grpTitle.Controls.Add(this.txtTitle);
             this.grpTitle.Controls.Add(this.label17);
+            this.grpTitle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpTitle.Location = new System.Drawing.Point(3, 198);
             this.grpTitle.Name = "grpTitle";
             this.grpTitle.Size = new System.Drawing.Size(410, 80);
@@ -497,9 +523,10 @@ namespace LybraFit.Forms
             // chkTitle
             // 
             this.chkTitle.AutoSize = true;
+            this.chkTitle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkTitle.Location = new System.Drawing.Point(42, 19);
             this.chkTitle.Name = "chkTitle";
-            this.chkTitle.Size = new System.Drawing.Size(46, 17);
+            this.chkTitle.Size = new System.Drawing.Size(48, 19);
             this.chkTitle.TabIndex = 13;
             this.chkTitle.Text = "Title";
             this.chkTitle.UseVisualStyleBackColor = true;
@@ -509,9 +536,10 @@ namespace LybraFit.Forms
             // 
             this.chkResults.AutoSize = true;
             this.chkResults.Enabled = false;
-            this.chkResults.Location = new System.Drawing.Point(288, 19);
+            this.chkResults.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkResults.Location = new System.Drawing.Point(274, 19);
             this.chkResults.Name = "chkResults";
-            this.chkResults.Size = new System.Drawing.Size(112, 17);
+            this.chkResults.Size = new System.Drawing.Size(120, 19);
             this.chkResults.TabIndex = 15;
             this.chkResults.Text = "Regression results";
             this.chkResults.UseVisualStyleBackColor = true;
@@ -520,9 +548,10 @@ namespace LybraFit.Forms
             // 
             this.chkShowModel.AutoSize = true;
             this.chkShowModel.Enabled = false;
+            this.chkShowModel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkShowModel.Location = new System.Drawing.Point(147, 19);
             this.chkShowModel.Name = "chkShowModel";
-            this.chkShowModel.Size = new System.Drawing.Size(84, 17);
+            this.chkShowModel.Size = new System.Drawing.Size(93, 19);
             this.chkShowModel.TabIndex = 14;
             this.chkShowModel.Text = "Model name";
             this.chkShowModel.UseVisualStyleBackColor = true;
@@ -533,15 +562,16 @@ namespace LybraFit.Forms
             this.txtTitle.Enabled = false;
             this.txtTitle.Location = new System.Drawing.Point(42, 44);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(288, 20);
+            this.txtTitle.Size = new System.Drawing.Size(288, 23);
             this.txtTitle.TabIndex = 16;
             // 
             // label17
             // 
             this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.Location = new System.Drawing.Point(6, 45);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(30, 13);
+            this.label17.Size = new System.Drawing.Size(32, 15);
             this.label17.TabIndex = 0;
             this.label17.Text = "Title:";
             // 
@@ -554,6 +584,7 @@ namespace LybraFit.Forms
             this.groupBox4.Controls.Add(this.pnlFitColor);
             this.groupBox4.Controls.Add(this.btnFitLineColor);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(3, 113);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(410, 78);
@@ -564,24 +595,26 @@ namespace LybraFit.Forms
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(39, 34);
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(39, 30);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(30, 13);
+            this.label14.Size = new System.Drawing.Size(32, 15);
             this.label14.TabIndex = 9;
             this.label14.Text = "Line:";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(258, 36);
+            this.label15.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(258, 31);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(35, 13);
+            this.label15.Size = new System.Drawing.Size(40, 15);
             this.label15.TabIndex = 14;
             this.label15.Text = "width:";
             // 
             // nmrFitLineWidth
             // 
-            this.nmrFitLineWidth.Location = new System.Drawing.Point(295, 28);
+            this.nmrFitLineWidth.Location = new System.Drawing.Point(300, 28);
             this.nmrFitLineWidth.Maximum = new decimal(new int[] {
             6,
             0,
@@ -593,7 +626,7 @@ namespace LybraFit.Forms
             0,
             0});
             this.nmrFitLineWidth.Name = "nmrFitLineWidth";
-            this.nmrFitLineWidth.Size = new System.Drawing.Size(35, 20);
+            this.nmrFitLineWidth.Size = new System.Drawing.Size(35, 23);
             this.nmrFitLineWidth.TabIndex = 12;
             this.nmrFitLineWidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nmrFitLineWidth.Value = new decimal(new int[] {
@@ -614,7 +647,7 @@ namespace LybraFit.Forms
             "DashDotDot"});
             this.cboFitLineStyle.Location = new System.Drawing.Point(75, 27);
             this.cboFitLineStyle.Name = "cboFitLineStyle";
-            this.cboFitLineStyle.Size = new System.Drawing.Size(95, 21);
+            this.cboFitLineStyle.Size = new System.Drawing.Size(95, 23);
             this.cboFitLineStyle.TabIndex = 10;
             // 
             // pnlFitColor
@@ -654,6 +687,7 @@ namespace LybraFit.Forms
             this.groupBox3.Controls.Add(this.pnlPoint);
             this.groupBox3.Controls.Add(this.rdoPoint);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(3, 3);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(410, 110);
@@ -664,31 +698,33 @@ namespace LybraFit.Forms
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(6, 26);
+            this.label16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(4, 22);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(66, 13);
+            this.label16.Size = new System.Drawing.Size(73, 15);
             this.label16.TabIndex = 17;
             this.label16.Text = "Marker type:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(336, 25);
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(336, 22);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(30, 13);
+            this.label6.Size = new System.Drawing.Size(30, 15);
             this.label6.TabIndex = 4;
             this.label6.Text = "Size:";
             // 
             // nmrDataPointSize
             // 
-            this.nmrDataPointSize.Location = new System.Drawing.Point(366, 20);
+            this.nmrDataPointSize.Location = new System.Drawing.Point(366, 19);
             this.nmrDataPointSize.Maximum = new decimal(new int[] {
             20,
             0,
             0,
             0});
             this.nmrDataPointSize.Name = "nmrDataPointSize";
-            this.nmrDataPointSize.Size = new System.Drawing.Size(35, 20);
+            this.nmrDataPointSize.Size = new System.Drawing.Size(35, 23);
             this.nmrDataPointSize.TabIndex = 5;
             this.nmrDataPointSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nmrDataPointSize.Value = new decimal(new int[] {
@@ -700,16 +736,17 @@ namespace LybraFit.Forms
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(235, 69);
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(235, 67);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.Size = new System.Drawing.Size(40, 15);
             this.label5.TabIndex = 14;
             this.label5.Text = "width:";
             // 
             // nmrDataLineWidth
             // 
             this.nmrDataLineWidth.Enabled = false;
-            this.nmrDataLineWidth.Location = new System.Drawing.Point(276, 64);
+            this.nmrDataLineWidth.Location = new System.Drawing.Point(281, 64);
             this.nmrDataLineWidth.Maximum = new decimal(new int[] {
             6,
             0,
@@ -721,7 +758,7 @@ namespace LybraFit.Forms
             0,
             0});
             this.nmrDataLineWidth.Name = "nmrDataLineWidth";
-            this.nmrDataLineWidth.Size = new System.Drawing.Size(35, 20);
+            this.nmrDataLineWidth.Size = new System.Drawing.Size(35, 23);
             this.nmrDataLineWidth.TabIndex = 8;
             this.nmrDataLineWidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nmrDataLineWidth.Value = new decimal(new int[] {
@@ -743,15 +780,16 @@ namespace LybraFit.Forms
             "DashDotDot"});
             this.cboDataLineStyle.Location = new System.Drawing.Point(132, 64);
             this.cboDataLineStyle.Name = "cboDataLineStyle";
-            this.cboDataLineStyle.Size = new System.Drawing.Size(95, 21);
+            this.cboDataLineStyle.Size = new System.Drawing.Size(95, 23);
             this.cboDataLineStyle.TabIndex = 7;
             // 
             // chkConnectDataPoints
             // 
             this.chkConnectDataPoints.AutoSize = true;
+            this.chkConnectDataPoints.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkConnectDataPoints.Location = new System.Drawing.Point(80, 68);
             this.chkConnectDataPoints.Name = "chkConnectDataPoints";
-            this.chkConnectDataPoints.Size = new System.Drawing.Size(46, 17);
+            this.chkConnectDataPoints.Size = new System.Drawing.Size(48, 19);
             this.chkConnectDataPoints.TabIndex = 6;
             this.chkConnectDataPoints.Text = "Line";
             this.chkConnectDataPoints.UseVisualStyleBackColor = true;
@@ -759,14 +797,14 @@ namespace LybraFit.Forms
             // 
             // pnlMarkerColor
             // 
-            this.pnlMarkerColor.Location = new System.Drawing.Point(307, 18);
+            this.pnlMarkerColor.Location = new System.Drawing.Point(307, 20);
             this.pnlMarkerColor.Name = "pnlMarkerColor";
             this.pnlMarkerColor.Size = new System.Drawing.Size(20, 20);
             this.pnlMarkerColor.TabIndex = 9;
             // 
             // btnMarkerColor
             // 
-            this.btnMarkerColor.Location = new System.Drawing.Point(258, 16);
+            this.btnMarkerColor.Location = new System.Drawing.Point(258, 18);
             this.btnMarkerColor.Name = "btnMarkerColor";
             this.btnMarkerColor.Size = new System.Drawing.Size(45, 23);
             this.btnMarkerColor.TabIndex = 4;
@@ -785,7 +823,7 @@ namespace LybraFit.Forms
             // rdoSquare
             // 
             this.rdoSquare.AutoSize = true;
-            this.rdoSquare.Location = new System.Drawing.Point(217, 24);
+            this.rdoSquare.Location = new System.Drawing.Point(217, 23);
             this.rdoSquare.Name = "rdoSquare";
             this.rdoSquare.Size = new System.Drawing.Size(14, 13);
             this.rdoSquare.TabIndex = 3;
@@ -803,7 +841,7 @@ namespace LybraFit.Forms
             // rdoFilledSquare
             // 
             this.rdoFilledSquare.AutoSize = true;
-            this.rdoFilledSquare.Location = new System.Drawing.Point(171, 24);
+            this.rdoFilledSquare.Location = new System.Drawing.Point(171, 23);
             this.rdoFilledSquare.Name = "rdoFilledSquare";
             this.rdoFilledSquare.Size = new System.Drawing.Size(14, 13);
             this.rdoFilledSquare.TabIndex = 2;
@@ -821,7 +859,7 @@ namespace LybraFit.Forms
             // rdoCircle
             // 
             this.rdoCircle.AutoSize = true;
-            this.rdoCircle.Location = new System.Drawing.Point(125, 24);
+            this.rdoCircle.Location = new System.Drawing.Point(125, 23);
             this.rdoCircle.Name = "rdoCircle";
             this.rdoCircle.Size = new System.Drawing.Size(14, 13);
             this.rdoCircle.TabIndex = 1;
@@ -839,7 +877,7 @@ namespace LybraFit.Forms
             // rdoPoint
             // 
             this.rdoPoint.AutoSize = true;
-            this.rdoPoint.Location = new System.Drawing.Point(78, 24);
+            this.rdoPoint.Location = new System.Drawing.Point(78, 23);
             this.rdoPoint.Name = "rdoPoint";
             this.rdoPoint.Size = new System.Drawing.Size(14, 13);
             this.rdoPoint.TabIndex = 0;
@@ -853,7 +891,7 @@ namespace LybraFit.Forms
             this.tabPagePlotArea.Controls.Add(this.grpColors);
             this.tabPagePlotArea.Location = new System.Drawing.Point(4, 22);
             this.tabPagePlotArea.Name = "tabPagePlotArea";
-            this.tabPagePlotArea.Size = new System.Drawing.Size(416, 284);
+            this.tabPagePlotArea.Size = new System.Drawing.Size(416, 303);
             this.tabPagePlotArea.TabIndex = 2;
             this.tabPagePlotArea.Text = "Graph Area";
             // 
@@ -868,6 +906,7 @@ namespace LybraFit.Forms
             this.grpLines.Controls.Add(this.label11);
             this.grpLines.Controls.Add(this.nmrAxisThickness);
             this.grpLines.Controls.Add(this.chkGridLines);
+            this.grpLines.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpLines.Location = new System.Drawing.Point(218, 16);
             this.grpLines.Name = "grpLines";
             this.grpLines.Size = new System.Drawing.Size(200, 230);
@@ -898,7 +937,7 @@ namespace LybraFit.Forms
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(17, 154);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(53, 13);
+            this.label13.Size = new System.Drawing.Size(59, 15);
             this.label13.TabIndex = 12;
             this.label13.Text = "Grid style:";
             // 
@@ -913,9 +952,9 @@ namespace LybraFit.Forms
             "Dash",
             "DashDot",
             "DashDotDot"});
-            this.cboGridStyle.Location = new System.Drawing.Point(76, 151);
+            this.cboGridStyle.Location = new System.Drawing.Point(82, 151);
             this.cboGridStyle.Name = "cboGridStyle";
-            this.cboGridStyle.Size = new System.Drawing.Size(95, 21);
+            this.cboGridStyle.Size = new System.Drawing.Size(95, 23);
             this.cboGridStyle.TabIndex = 6;
             // 
             // label12
@@ -923,14 +962,14 @@ namespace LybraFit.Forms
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(17, 114);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(77, 13);
+            this.label12.Size = new System.Drawing.Size(84, 15);
             this.label12.TabIndex = 10;
             this.label12.Text = "Grid thickness:";
             // 
             // nmrGridThickness
             // 
             this.nmrGridThickness.Enabled = false;
-            this.nmrGridThickness.Location = new System.Drawing.Point(97, 110);
+            this.nmrGridThickness.Location = new System.Drawing.Point(103, 110);
             this.nmrGridThickness.Maximum = new decimal(new int[] {
             6,
             0,
@@ -942,7 +981,7 @@ namespace LybraFit.Forms
             0,
             0});
             this.nmrGridThickness.Name = "nmrGridThickness";
-            this.nmrGridThickness.Size = new System.Drawing.Size(35, 20);
+            this.nmrGridThickness.Size = new System.Drawing.Size(35, 23);
             this.nmrGridThickness.TabIndex = 5;
             this.nmrGridThickness.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nmrGridThickness.Value = new decimal(new int[] {
@@ -956,13 +995,13 @@ namespace LybraFit.Forms
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(17, 39);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(77, 13);
+            this.label11.Size = new System.Drawing.Size(84, 15);
             this.label11.TabIndex = 7;
             this.label11.Text = "Axis thickness:";
             // 
             // nmrAxisThickness
             // 
-            this.nmrAxisThickness.Location = new System.Drawing.Point(97, 35);
+            this.nmrAxisThickness.Location = new System.Drawing.Point(103, 35);
             this.nmrAxisThickness.Maximum = new decimal(new int[] {
             6,
             0,
@@ -974,7 +1013,7 @@ namespace LybraFit.Forms
             0,
             0});
             this.nmrAxisThickness.Name = "nmrAxisThickness";
-            this.nmrAxisThickness.Size = new System.Drawing.Size(35, 20);
+            this.nmrAxisThickness.Size = new System.Drawing.Size(35, 23);
             this.nmrAxisThickness.TabIndex = 3;
             this.nmrAxisThickness.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nmrAxisThickness.Value = new decimal(new int[] {
@@ -988,7 +1027,7 @@ namespace LybraFit.Forms
             this.chkGridLines.AutoSize = true;
             this.chkGridLines.Location = new System.Drawing.Point(20, 75);
             this.chkGridLines.Name = "chkGridLines";
-            this.chkGridLines.Size = new System.Drawing.Size(69, 17);
+            this.chkGridLines.Size = new System.Drawing.Size(75, 19);
             this.chkGridLines.TabIndex = 4;
             this.chkGridLines.Text = "Grid lines";
             this.chkGridLines.UseVisualStyleBackColor = true;
@@ -1002,6 +1041,7 @@ namespace LybraFit.Forms
             this.grpColors.Controls.Add(this.pnlBackColor);
             this.grpColors.Controls.Add(this.pnlGraphColor);
             this.grpColors.Controls.Add(this.pnlAxisColor);
+            this.grpColors.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpColors.Location = new System.Drawing.Point(17, 16);
             this.grpColors.Name = "grpColors";
             this.grpColors.Size = new System.Drawing.Size(182, 230);
@@ -1015,7 +1055,7 @@ namespace LybraFit.Forms
             this.btnBackColor.Name = "btnBackColor";
             this.btnBackColor.Size = new System.Drawing.Size(105, 23);
             this.btnBackColor.TabIndex = 0;
-            this.btnBackColor.Text = "Background Color";
+            this.btnBackColor.Text = "Background";
             this.btnBackColor.UseVisualStyleBackColor = true;
             this.btnBackColor.Click += new System.EventHandler(this.btnBackColor_Click);
             // 
@@ -1025,7 +1065,7 @@ namespace LybraFit.Forms
             this.btnGraphColor.Name = "btnGraphColor";
             this.btnGraphColor.Size = new System.Drawing.Size(105, 23);
             this.btnGraphColor.TabIndex = 1;
-            this.btnGraphColor.Text = "Graph color";
+            this.btnGraphColor.Text = "Graph";
             this.btnGraphColor.UseVisualStyleBackColor = true;
             this.btnGraphColor.Click += new System.EventHandler(this.btnGraphColor_Click);
             // 
@@ -1035,7 +1075,7 @@ namespace LybraFit.Forms
             this.btnAxisColor.Name = "btnAxisColor";
             this.btnAxisColor.Size = new System.Drawing.Size(105, 23);
             this.btnAxisColor.TabIndex = 2;
-            this.btnAxisColor.Text = "Axis Color";
+            this.btnAxisColor.Text = "Axis";
             this.btnAxisColor.UseVisualStyleBackColor = true;
             this.btnAxisColor.Click += new System.EventHandler(this.btnAxisColor_Click);
             // 
@@ -1108,16 +1148,6 @@ namespace LybraFit.Forms
             this.btnOk.TabIndex = 17;
             this.btnOk.Text = "OK";
             this.btnOk.UseVisualStyleBackColor = true;
-            // 
-            // chkYAxisVerticalTitle
-            // 
-            this.chkYAxisVerticalTitle.AutoSize = true;
-            this.chkYAxisVerticalTitle.Location = new System.Drawing.Point(223, 272);
-            this.chkYAxisVerticalTitle.Name = "chkYAxisVerticalTitle";
-            this.chkYAxisVerticalTitle.Size = new System.Drawing.Size(127, 17);
-            this.chkYAxisVerticalTitle.TabIndex = 24;
-            this.chkYAxisVerticalTitle.Text = "Vertical title on Y Axis";
-            this.chkYAxisVerticalTitle.UseVisualStyleBackColor = true;
             // 
             // GraphPropertiesDialog
             // 

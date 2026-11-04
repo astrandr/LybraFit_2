@@ -96,22 +96,27 @@ namespace LybraFit
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonOpenProject = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonSaveProject = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonNewData = new System.Windows.Forms.ToolStripButton();
+            this.toolStripProjectSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonImport = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonExport = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonCopy = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonNewData = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonPasteAll = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonCopy = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonPaste = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonDeleteRows = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonUndo = new System.Windows.Forms.ToolStripButton();
+            this.toolStripDataSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonColumnSettings = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonGraphSettings = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonAddModels = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSettingsSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonAddModel = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonAddAllModels = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonPlot = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonFit = new System.Windows.Forms.ToolStripButton();
+            this.toolStripModelSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonZoomOut = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonFitAll = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonReport = new System.Windows.Forms.ToolStripButton();
+            this.toolStripHelpSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonHelp = new System.Windows.Forms.ToolStripButton();
             this.panelMain = new System.Windows.Forms.Panel();
             this.tabMain = new System.Windows.Forms.TabControl();
@@ -221,7 +226,7 @@ namespace LybraFit
             this.openToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripMenuItem.Image")));
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -230,7 +235,7 @@ namespace LybraFit
             this.importASCIIToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("importASCIIToolStripMenuItem.Image")));
             this.importASCIIToolStripMenuItem.Name = "importASCIIToolStripMenuItem";
             this.importASCIIToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
-            this.importASCIIToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.importASCIIToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.importASCIIToolStripMenuItem.Tag = "K0";
             this.importASCIIToolStripMenuItem.Text = "&Import ASCII";
             this.importASCIIToolStripMenuItem.Click += new System.EventHandler(this.importASCIIToolStripMenuItem_Click);
@@ -240,7 +245,7 @@ namespace LybraFit
             this.exportASCIIToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("exportASCIIToolStripMenuItem.Image")));
             this.exportASCIIToolStripMenuItem.Name = "exportASCIIToolStripMenuItem";
             this.exportASCIIToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
-            this.exportASCIIToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.exportASCIIToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.exportASCIIToolStripMenuItem.Tag = "K2";
             this.exportASCIIToolStripMenuItem.Text = "Export ASCII";
             this.exportASCIIToolStripMenuItem.Click += new System.EventHandler(this.toolStripButtonExport_Click);
@@ -250,7 +255,7 @@ namespace LybraFit
             this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.saveToolStripMenuItem.Tag = "K2";
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
@@ -259,7 +264,7 @@ namespace LybraFit
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
             this.saveAsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.saveAsToolStripMenuItem.Tag = "K2";
             this.saveAsToolStripMenuItem.Text = "Save &As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
@@ -267,30 +272,30 @@ namespace LybraFit
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(175, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(176, 6);
             // 
             // toolStripMenuRecentFiles
             // 
             this.toolStripMenuRecentFiles.Name = "toolStripMenuRecentFiles";
-            this.toolStripMenuRecentFiles.Size = new System.Drawing.Size(178, 22);
+            this.toolStripMenuRecentFiles.Size = new System.Drawing.Size(179, 22);
             this.toolStripMenuRecentFiles.Text = "Recent Files";
             // 
             // toolStripMenuItemRecentProjects
             // 
             this.toolStripMenuItemRecentProjects.Name = "toolStripMenuItemRecentProjects";
-            this.toolStripMenuItemRecentProjects.Size = new System.Drawing.Size(178, 22);
+            this.toolStripMenuItemRecentProjects.Size = new System.Drawing.Size(179, 22);
             this.toolStripMenuItemRecentProjects.Text = "Recent projects";
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(175, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(176, 6);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(178, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(179, 22);
             this.toolStripMenuItem2.Text = "&Exit";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
@@ -560,7 +565,7 @@ namespace LybraFit
             this.toolStripMenuTextReport.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuTextReport.Image")));
             this.toolStripMenuTextReport.Name = "toolStripMenuTextReport";
             this.toolStripMenuTextReport.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.T)));
-            this.toolStripMenuTextReport.Size = new System.Drawing.Size(220, 22);
+            this.toolStripMenuTextReport.Size = new System.Drawing.Size(219, 22);
             this.toolStripMenuTextReport.Tag = "K5";
             this.toolStripMenuTextReport.Text = "Generate &Text Report";
             this.toolStripMenuTextReport.Click += new System.EventHandler(this.toolStripButtonReport_Click);
@@ -570,7 +575,7 @@ namespace LybraFit
             this.toolStripMenuGraphicalReport.Enabled = false;
             this.toolStripMenuGraphicalReport.Name = "toolStripMenuGraphicalReport";
             this.toolStripMenuGraphicalReport.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.G)));
-            this.toolStripMenuGraphicalReport.Size = new System.Drawing.Size(220, 22);
+            this.toolStripMenuGraphicalReport.Size = new System.Drawing.Size(219, 22);
             this.toolStripMenuGraphicalReport.Tag = "K5";
             this.toolStripMenuGraphicalReport.Text = "&Graphical Report";
             this.toolStripMenuGraphicalReport.Click += new System.EventHandler(this.graphicalReportToolStripMenuItem_Click);
@@ -580,7 +585,7 @@ namespace LybraFit
             this.toolStripMenuLogReport.Enabled = false;
             this.toolStripMenuLogReport.Name = "toolStripMenuLogReport";
             this.toolStripMenuLogReport.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
-            this.toolStripMenuLogReport.Size = new System.Drawing.Size(220, 22);
+            this.toolStripMenuLogReport.Size = new System.Drawing.Size(219, 22);
             this.toolStripMenuLogReport.Tag = "K5";
             this.toolStripMenuLogReport.Text = "Fit &Log Report";
             this.toolStripMenuLogReport.Click += new System.EventHandler(this.toolStripMenuFitLogsReport_Click);
@@ -600,7 +605,7 @@ namespace LybraFit
             this.formatPlotToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("formatPlotToolStripMenuItem.Image")));
             this.formatPlotToolStripMenuItem.Name = "formatPlotToolStripMenuItem";
             this.formatPlotToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.P)));
-            this.formatPlotToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.formatPlotToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.formatPlotToolStripMenuItem.Tag = "K2";
             this.formatPlotToolStripMenuItem.Text = "&Graph";
             this.formatPlotToolStripMenuItem.Click += new System.EventHandler(this.formatGraphToolStripMenuItem_Click);
@@ -610,7 +615,7 @@ namespace LybraFit
             this.formatColumnsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("formatColumnsToolStripMenuItem.Image")));
             this.formatColumnsToolStripMenuItem.Name = "formatColumnsToolStripMenuItem";
             this.formatColumnsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.C)));
-            this.formatColumnsToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.formatColumnsToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.formatColumnsToolStripMenuItem.Tag = "K1";
             this.formatColumnsToolStripMenuItem.Text = "&Table Columns";
             this.formatColumnsToolStripMenuItem.Click += new System.EventHandler(this.editColumnsToolStripMenuItem_Click);
@@ -710,22 +715,27 @@ namespace LybraFit
             this.toolStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonOpenProject,
             this.toolStripButtonSaveProject,
-            this.toolStripButtonNewData,
+            this.toolStripProjectSeparator,
             this.toolStripButtonImport,
             this.toolStripButtonExport,
-            this.toolStripButtonCopy,
+            this.toolStripButtonNewData,
             this.toolStripButtonPasteAll,
+            this.toolStripButtonCopy,
             this.toolStripButtonPaste,
             this.toolStripButtonDeleteRows,
             this.toolStripButtonUndo,
+            this.toolStripDataSeparator,
             this.toolStripButtonColumnSettings,
             this.toolStripButtonGraphSettings,
-            this.toolStripButtonAddModels,
+            this.toolStripSettingsSeparator,
+            this.toolStripButtonAddModel,
+            this.toolStripButtonAddAllModels,
             this.toolStripButtonPlot,
             this.toolStripButtonFit,
+            this.toolStripModelSeparator,
             this.toolStripButtonZoomOut,
-            this.toolStripButtonFitAll,
             this.toolStripButtonReport,
+            this.toolStripHelpSeparator,
             this.toolStripButtonHelp});
             this.toolStripMain.Location = new System.Drawing.Point(0, 0);
             this.toolStripMain.Name = "toolStripMain";
@@ -754,18 +764,10 @@ namespace LybraFit
             this.toolStripButtonSaveProject.Text = "Save project";
             this.toolStripButtonSaveProject.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
-            // toolStripButtonNewData
+            // toolStripProjectSeparator
             // 
-            this.toolStripButtonNewData.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonNewData.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonNewData.Image")));
-            this.toolStripButtonNewData.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButtonNewData.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonNewData.Name = "toolStripButtonNewData";
-            this.toolStripButtonNewData.Size = new System.Drawing.Size(40, 47);
-            this.toolStripButtonNewData.Tag = "K0";
-            this.toolStripButtonNewData.Text = "Generate Data";
-            this.toolStripButtonNewData.ToolTipText = "Generate Data";
-            this.toolStripButtonNewData.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
+            this.toolStripProjectSeparator.Name = "toolStripProjectSeparator";
+            this.toolStripProjectSeparator.Size = new System.Drawing.Size(6, 50);
             // 
             // toolStripButtonImport
             // 
@@ -793,18 +795,18 @@ namespace LybraFit
             this.toolStripButtonExport.ToolTipText = "Export data to ASCII text file";
             this.toolStripButtonExport.Click += new System.EventHandler(this.toolStripButtonExport_Click);
             // 
-            // toolStripButtonCopy
+            // toolStripButtonNewData
             // 
-            this.toolStripButtonCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonCopy.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCopy.Image")));
-            this.toolStripButtonCopy.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButtonCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonCopy.Name = "toolStripButtonCopy";
-            this.toolStripButtonCopy.Size = new System.Drawing.Size(40, 47);
-            this.toolStripButtonCopy.Tag = "K2";
-            this.toolStripButtonCopy.Text = "Copy all data to clipboard";
-            this.toolStripButtonCopy.ToolTipText = "Copy all data to clipboard";
-            this.toolStripButtonCopy.Click += new System.EventHandler(this.copyStripMenuItem_Click);
+            this.toolStripButtonNewData.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonNewData.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonNewData.Image")));
+            this.toolStripButtonNewData.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonNewData.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonNewData.Name = "toolStripButtonNewData";
+            this.toolStripButtonNewData.Size = new System.Drawing.Size(40, 47);
+            this.toolStripButtonNewData.Tag = "K0";
+            this.toolStripButtonNewData.Text = "Generate Data";
+            this.toolStripButtonNewData.ToolTipText = "Generate Data";
+            this.toolStripButtonNewData.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // toolStripButtonPasteAll
             // 
@@ -818,6 +820,19 @@ namespace LybraFit
             this.toolStripButtonPasteAll.Text = "Import from clipboard";
             this.toolStripButtonPasteAll.ToolTipText = "Import from clipboard";
             this.toolStripButtonPasteAll.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
+            // 
+            // toolStripButtonCopy
+            // 
+            this.toolStripButtonCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonCopy.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCopy.Image")));
+            this.toolStripButtonCopy.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonCopy.Name = "toolStripButtonCopy";
+            this.toolStripButtonCopy.Size = new System.Drawing.Size(40, 47);
+            this.toolStripButtonCopy.Tag = "K2";
+            this.toolStripButtonCopy.Text = "Copy all data to clipboard";
+            this.toolStripButtonCopy.ToolTipText = "Copy all data to clipboard";
+            this.toolStripButtonCopy.Click += new System.EventHandler(this.copyStripMenuItem_Click);
             // 
             // toolStripButtonPaste
             // 
@@ -859,6 +874,11 @@ namespace LybraFit
             this.toolStripButtonUndo.ToolTipText = "Undo Delete/Paste";
             this.toolStripButtonUndo.Click += new System.EventHandler(this.toolStripButtonUndo_Click);
             // 
+            // toolStripDataSeparator
+            // 
+            this.toolStripDataSeparator.Name = "toolStripDataSeparator";
+            this.toolStripDataSeparator.Size = new System.Drawing.Size(6, 50);
+            // 
             // toolStripButtonColumnSettings
             // 
             this.toolStripButtonColumnSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -885,18 +905,36 @@ namespace LybraFit
             this.toolStripButtonGraphSettings.ToolTipText = "Graph settings";
             this.toolStripButtonGraphSettings.Click += new System.EventHandler(this.formatGraphToolStripMenuItem_Click);
             // 
-            // toolStripButtonAddModels
+            // toolStripSettingsSeparator
             // 
-            this.toolStripButtonAddModels.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonAddModels.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonAddModels.Image")));
-            this.toolStripButtonAddModels.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButtonAddModels.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonAddModels.Name = "toolStripButtonAddModels";
-            this.toolStripButtonAddModels.Size = new System.Drawing.Size(40, 47);
-            this.toolStripButtonAddModels.Tag = "K2";
-            this.toolStripButtonAddModels.Text = "Add models";
-            this.toolStripButtonAddModels.ToolTipText = "Add models";
-            this.toolStripButtonAddModels.Click += new System.EventHandler(this.modelsToolStripMenuItem_Click);
+            this.toolStripSettingsSeparator.Name = "toolStripSettingsSeparator";
+            this.toolStripSettingsSeparator.Size = new System.Drawing.Size(6, 50);
+            // 
+            // toolStripButtonAddModel
+            // 
+            this.toolStripButtonAddModel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonAddModel.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonAddModel.Image")));
+            this.toolStripButtonAddModel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonAddModel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonAddModel.Name = "toolStripButtonAddModel";
+            this.toolStripButtonAddModel.Size = new System.Drawing.Size(40, 47);
+            this.toolStripButtonAddModel.Tag = "K2";
+            this.toolStripButtonAddModel.Text = "Add models";
+            this.toolStripButtonAddModel.ToolTipText = "Add models";
+            this.toolStripButtonAddModel.Click += new System.EventHandler(this.modelsToolStripMenuItem_Click);
+            // 
+            // toolStripButtonAddAllModels
+            // 
+            this.toolStripButtonAddAllModels.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonAddAllModels.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonAddAllModels.Image")));
+            this.toolStripButtonAddAllModels.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonAddAllModels.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonAddAllModels.Name = "toolStripButtonAddAllModels";
+            this.toolStripButtonAddAllModels.Size = new System.Drawing.Size(40, 47);
+            this.toolStripButtonAddAllModels.Tag = "K2";
+            this.toolStripButtonAddAllModels.Text = "Add all library models";
+            this.toolStripButtonAddAllModels.ToolTipText = "Add all library models";
+            this.toolStripButtonAddAllModels.Click += new System.EventHandler(this.toolStripButtonFitAll_Click);
             // 
             // toolStripButtonPlot
             // 
@@ -924,6 +962,11 @@ namespace LybraFit
             this.toolStripButtonFit.ToolTipText = "Find best fit for current model";
             this.toolStripButtonFit.Click += new System.EventHandler(this.btnCalcBestFit_Click);
             // 
+            // toolStripModelSeparator
+            // 
+            this.toolStripModelSeparator.Name = "toolStripModelSeparator";
+            this.toolStripModelSeparator.Size = new System.Drawing.Size(6, 50);
+            // 
             // toolStripButtonZoomOut
             // 
             this.toolStripButtonZoomOut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -934,19 +977,6 @@ namespace LybraFit
             this.toolStripButtonZoomOut.Tag = "K8";
             this.toolStripButtonZoomOut.Text = "Zoom Out / Clear Filter";
             this.toolStripButtonZoomOut.Click += new System.EventHandler(this.toolStripButtonZoomOut_Click);
-            // 
-            // toolStripButtonFitAll
-            // 
-            this.toolStripButtonFitAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonFitAll.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonFitAll.Image")));
-            this.toolStripButtonFitAll.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButtonFitAll.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonFitAll.Name = "toolStripButtonFitAll";
-            this.toolStripButtonFitAll.Size = new System.Drawing.Size(40, 47);
-            this.toolStripButtonFitAll.Tag = "K2";
-            this.toolStripButtonFitAll.Text = "Add all library models";
-            this.toolStripButtonFitAll.ToolTipText = "Add all library models";
-            this.toolStripButtonFitAll.Click += new System.EventHandler(this.toolStripButtonFitAll_Click);
             // 
             // toolStripButtonReport
             // 
@@ -960,6 +990,11 @@ namespace LybraFit
             this.toolStripButtonReport.Text = "Generate results report";
             this.toolStripButtonReport.ToolTipText = "Generate results report";
             this.toolStripButtonReport.Click += new System.EventHandler(this.toolStripButtonReport_Click);
+            // 
+            // toolStripHelpSeparator
+            // 
+            this.toolStripHelpSeparator.Name = "toolStripHelpSeparator";
+            this.toolStripHelpSeparator.Size = new System.Drawing.Size(6, 50);
             // 
             // toolStripButtonHelp
             // 
@@ -1118,6 +1153,7 @@ namespace LybraFit
             this.graph.YAxisLabelsPow = 0;
             this.graph.YAxisLabelsStep = 0F;
             this.graph.YAxisText = "";
+            this.graph.YAxisTextVertical = false;
             // 
             // contextMenuPlot
             // 
@@ -1354,7 +1390,7 @@ namespace LybraFit
             this.logResultToolStripMenuItem,
             this.derivedValuesPopToolStripMenuItem});
             this.contextMenuParametersGrid.Name = "contextMenuParametersGrid";
-            this.contextMenuParametersGrid.Size = new System.Drawing.Size(165, 114);
+            this.contextMenuParametersGrid.Size = new System.Drawing.Size(165, 92);
             // 
             // toolStripMenuCopyValue
             // 
@@ -1526,8 +1562,8 @@ namespace LybraFit
             // 
             // helpProvider
             // 
-            this.helpProvider.HelpNamespace = "C:\\Users\\ANDREY\\Documents\\Visual Studio 2013\\Projects\\LybraFit\\Help\\LybraFitHelp.c" +
-    "hm";
+            this.helpProvider.HelpNamespace = "C:\\Users\\ANDREY\\Documents\\Visual Studio 2013\\Projects\\LybraFit\\Help\\LybraFitHelp." +
+    "chm";
             // 
             // timer
             // 
@@ -1547,8 +1583,8 @@ namespace LybraFit
             this.MainMenuStrip = this.mainMenu;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(1097, 784);
-
-            this.Text = Program.APPLICATION_NAME;
+            //this.Name = "MainForm";
+            this.Text = "LybraFit";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -1647,10 +1683,10 @@ namespace LybraFit
         private System.Windows.Forms.ToolStripButton toolStripButtonGraphSettings;
         private System.Windows.Forms.ToolStripButton toolStripButtonPlot;
         private System.Windows.Forms.ToolStripButton toolStripButtonFit;
-        private System.Windows.Forms.ToolStripButton toolStripButtonFitAll;
+        private System.Windows.Forms.ToolStripButton toolStripButtonAddAllModels;
         private System.Windows.Forms.ToolStripButton toolStripButtonReport;
         private System.Windows.Forms.ToolStripButton toolStripButtonHelp;
-        private System.Windows.Forms.ToolStripButton toolStripButtonAddModels;
+        private System.Windows.Forms.ToolStripButton toolStripButtonAddModel;
         private System.Windows.Forms.Label lblLastModel;
         private System.Windows.Forms.Label label2;
         private StylishButton btnInitParameters;
@@ -1706,6 +1742,11 @@ namespace LybraFit
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuRecentFiles;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRecentProjects;
+        private System.Windows.Forms.ToolStripSeparator toolStripProjectSeparator;
+        private System.Windows.Forms.ToolStripSeparator toolStripDataSeparator;
+        private System.Windows.Forms.ToolStripSeparator toolStripSettingsSeparator;
+        private System.Windows.Forms.ToolStripSeparator toolStripModelSeparator;
+        private System.Windows.Forms.ToolStripSeparator toolStripHelpSeparator;
     }
 }
 

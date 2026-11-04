@@ -203,20 +203,20 @@
             // lblModelName
             // 
             this.lblModelName.AutoSize = true;
-            this.lblModelName.Font = new System.Drawing.Font("Calisto MT", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblModelName.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblModelName.Location = new System.Drawing.Point(62, 11);
             this.lblModelName.Name = "lblModelName";
-            this.lblModelName.Size = new System.Drawing.Size(41, 15);
+            this.lblModelName.Size = new System.Drawing.Size(38, 15);
             this.lblModelName.TabIndex = 1;
             this.lblModelName.Text = "label2";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calisto MT", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(13, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 15);
+            this.label1.Size = new System.Drawing.Size(47, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "Model: ";
             // 
@@ -255,7 +255,7 @@
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-
+            //this.Name = "DerviedValuesDialog";
             this.Text = "Derived Values";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DerviedValuesDialog_FormClosing);
             this.Load += new System.EventHandler(this.DerviedValuesDialog_Load);

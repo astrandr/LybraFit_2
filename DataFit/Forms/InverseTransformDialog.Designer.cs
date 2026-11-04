@@ -48,26 +48,28 @@
             // lblMinY
             // 
             this.lblMinY.AutoSize = true;
-            this.lblMinY.Location = new System.Drawing.Point(47, 25);
+            this.lblMinY.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMinY.Location = new System.Drawing.Point(53, 25);
             this.lblMinY.Name = "lblMinY";
-            this.lblMinY.Size = new System.Drawing.Size(41, 13);
+            this.lblMinY.Size = new System.Drawing.Size(41, 15);
             this.lblMinY.TabIndex = 0;
-            this.lblMinY.Text = "lblMinY";
+            this.lblMinY.Text = "Min Y:";
             this.lblMinY.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblMaxY
             // 
             this.lblMaxY.AutoSize = true;
-            this.lblMaxY.Location = new System.Drawing.Point(44, 56);
+            this.lblMaxY.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMaxY.Location = new System.Drawing.Point(51, 56);
             this.lblMaxY.Name = "lblMaxY";
-            this.lblMaxY.Size = new System.Drawing.Size(44, 13);
+            this.lblMaxY.Size = new System.Drawing.Size(43, 15);
             this.lblMaxY.TabIndex = 1;
-            this.lblMaxY.Text = "lblMaxY";
+            this.lblMaxY.Text = "Max Y:";
             this.lblMaxY.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtMinY
             // 
-            this.txtMinY.Location = new System.Drawing.Point(94, 22);
+            this.txtMinY.Location = new System.Drawing.Point(100, 22);
             this.txtMinY.Name = "txtMinY";
             this.txtMinY.Size = new System.Drawing.Size(84, 20);
             this.txtMinY.TabIndex = 0;
@@ -75,7 +77,7 @@
             // 
             // txtMaxY
             // 
-            this.txtMaxY.Location = new System.Drawing.Point(94, 53);
+            this.txtMaxY.Location = new System.Drawing.Point(100, 53);
             this.txtMaxY.Name = "txtMaxY";
             this.txtMaxY.Size = new System.Drawing.Size(84, 20);
             this.txtMaxY.TabIndex = 1;
@@ -83,7 +85,7 @@
             // 
             // txtStepY
             // 
-            this.txtStepY.Location = new System.Drawing.Point(94, 84);
+            this.txtStepY.Location = new System.Drawing.Point(100, 84);
             this.txtStepY.Name = "txtStepY";
             this.txtStepY.Size = new System.Drawing.Size(84, 20);
             this.txtStepY.TabIndex = 2;
@@ -92,19 +94,21 @@
             // lblStepY
             // 
             this.lblStepY.AutoSize = true;
-            this.lblStepY.Location = new System.Drawing.Point(42, 87);
+            this.lblStepY.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStepY.Location = new System.Drawing.Point(51, 87);
             this.lblStepY.Name = "lblStepY";
-            this.lblStepY.Size = new System.Drawing.Size(46, 13);
+            this.lblStepY.Size = new System.Drawing.Size(43, 15);
             this.lblStepY.TabIndex = 4;
-            this.lblStepY.Text = "lblStepY";
+            this.lblStepY.Text = "Step Y:";
             this.lblStepY.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblMaxYV
             // 
             this.lblMaxYV.AutoSize = true;
+            this.lblMaxYV.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMaxYV.Location = new System.Drawing.Point(194, 56);
             this.lblMaxYV.Name = "lblMaxYV";
-            this.lblMaxYV.Size = new System.Drawing.Size(51, 13);
+            this.lblMaxYV.Size = new System.Drawing.Size(57, 15);
             this.lblMaxYV.TabIndex = 7;
             this.lblMaxYV.Text = "lblMaxYV";
             this.lblMaxYV.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -112,9 +116,10 @@
             // lblMinYV
             // 
             this.lblMinYV.AutoSize = true;
+            this.lblMinYV.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMinYV.Location = new System.Drawing.Point(194, 25);
             this.lblMinYV.Name = "lblMinYV";
-            this.lblMinYV.Size = new System.Drawing.Size(48, 13);
+            this.lblMinYV.Size = new System.Drawing.Size(55, 15);
             this.lblMinYV.TabIndex = 6;
             this.lblMinYV.Text = "lblMinYV";
             this.lblMinYV.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -136,12 +141,12 @@
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 5;
-            this.btnOk.Text = "Ok";
+            this.btnOk.Text = "OK";
             this.btnOk.UseVisualStyleBackColor = true;
             // 
             // txtPrecision
             // 
-            this.txtPrecision.Location = new System.Drawing.Point(94, 117);
+            this.txtPrecision.Location = new System.Drawing.Point(100, 117);
             this.txtPrecision.Name = "txtPrecision";
             this.txtPrecision.Size = new System.Drawing.Size(84, 20);
             this.txtPrecision.TabIndex = 3;
@@ -150,11 +155,12 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(36, 120);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 13);
+            this.label1.Size = new System.Drawing.Size(58, 15);
             this.label1.TabIndex = 10;
-            this.label1.Text = "precision:";
+            this.label1.Text = "Precision:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // errorProvider

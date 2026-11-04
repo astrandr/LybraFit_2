@@ -86,9 +86,10 @@ namespace LybraFit.Forms
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 13);
+            this.label1.Size = new System.Drawing.Size(55, 15);
             this.label1.TabIndex = 1;
             this.label1.Text = "Columns";
             // 
@@ -129,9 +130,10 @@ namespace LybraFit.Forms
             // chkAutoWidth
             // 
             this.chkAutoWidth.AutoSize = true;
-            this.chkAutoWidth.Location = new System.Drawing.Point(83, 12);
+            this.chkAutoWidth.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkAutoWidth.Location = new System.Drawing.Point(86, 12);
             this.chkAutoWidth.Name = "chkAutoWidth";
-            this.chkAutoWidth.Size = new System.Drawing.Size(101, 17);
+            this.chkAutoWidth.Size = new System.Drawing.Size(115, 19);
             this.chkAutoWidth.TabIndex = 1;
             this.chkAutoWidth.Text = "Automatic width";
             this.chkAutoWidth.UseVisualStyleBackColor = true;
@@ -142,9 +144,10 @@ namespace LybraFit.Forms
             this.chkVisible.AutoSize = true;
             this.chkVisible.Checked = true;
             this.chkVisible.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkVisible.Location = new System.Drawing.Point(28, 12);
+            this.chkVisible.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkVisible.Location = new System.Drawing.Point(17, 12);
             this.chkVisible.Name = "chkVisible";
-            this.chkVisible.Size = new System.Drawing.Size(56, 17);
+            this.chkVisible.Size = new System.Drawing.Size(60, 19);
             this.chkVisible.TabIndex = 0;
             this.chkVisible.Text = "Visible";
             this.chkVisible.UseVisualStyleBackColor = true;
@@ -154,7 +157,7 @@ namespace LybraFit.Forms
             // 
             this.txtCustomFormat.Enabled = false;
             this.txtCustomFormat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCustomFormat.Location = new System.Drawing.Point(86, 138);
+            this.txtCustomFormat.Location = new System.Drawing.Point(100, 142);
             this.txtCustomFormat.Name = "txtCustomFormat";
             this.txtCustomFormat.Size = new System.Drawing.Size(91, 20);
             this.txtCustomFormat.TabIndex = 5;
@@ -164,16 +167,17 @@ namespace LybraFit.Forms
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(6, 141);
+            this.label21.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(34, 145);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(80, 13);
+            this.label21.Size = new System.Drawing.Size(52, 15);
             this.label21.TabIndex = 8;
-            this.label21.Text = "Custom Fromat:";
+            this.label21.Text = "Custom:";
             // 
             // nmrDigits
             // 
             this.nmrDigits.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nmrDigits.Location = new System.Drawing.Point(86, 104);
+            this.nmrDigits.Location = new System.Drawing.Point(100, 108);
             this.nmrDigits.Maximum = new decimal(new int[] {
             12,
             0,
@@ -188,9 +192,10 @@ namespace LybraFit.Forms
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(46, 108);
+            this.label22.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(46, 112);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(36, 13);
+            this.label22.Size = new System.Drawing.Size(40, 15);
             this.label22.TabIndex = 6;
             this.label22.Text = "Digits:";
             // 
@@ -199,7 +204,7 @@ namespace LybraFit.Forms
             this.cboFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboFormat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboFormat.FormattingEnabled = true;
-            this.cboFormat.Location = new System.Drawing.Point(86, 69);
+            this.cboFormat.Location = new System.Drawing.Point(100, 73);
             this.cboFormat.Name = "cboFormat";
             this.cboFormat.Size = new System.Drawing.Size(91, 21);
             this.cboFormat.TabIndex = 3;
@@ -209,16 +214,17 @@ namespace LybraFit.Forms
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(40, 73);
+            this.label23.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(38, 77);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(42, 13);
+            this.label23.Size = new System.Drawing.Size(48, 15);
             this.label23.TabIndex = 4;
             this.label23.Text = "Format:";
             // 
             // txtName
             // 
             this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtName.Location = new System.Drawing.Point(86, 35);
+            this.txtName.Location = new System.Drawing.Point(100, 39);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(91, 20);
             this.txtName.TabIndex = 2;
@@ -228,9 +234,10 @@ namespace LybraFit.Forms
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(44, 38);
+            this.label25.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(44, 42);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(38, 13);
+            this.label25.Size = new System.Drawing.Size(42, 15);
             this.label25.TabIndex = 0;
             this.label25.Text = "Name:";
             // 
@@ -246,9 +253,10 @@ namespace LybraFit.Forms
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(21, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 13);
+            this.label2.Size = new System.Drawing.Size(62, 15);
             this.label2.TabIndex = 11;
             this.label2.Text = "Table font:";
             // 
@@ -301,9 +309,10 @@ namespace LybraFit.Forms
             // 
             this.chkAutoSort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.chkAutoSort.AutoSize = true;
-            this.chkAutoSort.Location = new System.Drawing.Point(25, 56);
+            this.chkAutoSort.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkAutoSort.Location = new System.Drawing.Point(25, 54);
             this.chkAutoSort.Name = "chkAutoSort";
-            this.chkAutoSort.Size = new System.Drawing.Size(145, 17);
+            this.chkAutoSort.Size = new System.Drawing.Size(166, 19);
             this.chkAutoSort.TabIndex = 13;
             this.chkAutoSort.Text = "Auto-Sort on First Column";
             this.chkAutoSort.UseVisualStyleBackColor = true;
