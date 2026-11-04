@@ -71,9 +71,10 @@ namespace LybraFit
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(13, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 13);
+            this.label1.Size = new System.Drawing.Size(93, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "Original content";
             // 
@@ -92,18 +93,20 @@ namespace LybraFit
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(13, 197);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 13);
+            this.label2.Size = new System.Drawing.Size(42, 15);
             this.label2.TabIndex = 2;
             this.label2.Text = "Parsed";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(24, 388);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(19, 389);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 13);
+            this.label3.Size = new System.Drawing.Size(97, 15);
             this.label3.TabIndex = 4;
             this.label3.Text = "skip header lines:";
             // 
@@ -119,9 +122,10 @@ namespace LybraFit
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(20, 425);
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(10, 424);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(93, 13);
+            this.label4.Size = new System.Drawing.Size(106, 15);
             this.label4.TabIndex = 9;
             this.label4.Text = "1st Column Name:";
             // 
@@ -136,7 +140,7 @@ namespace LybraFit
             // 
             // txt2ndColumnName
             // 
-            this.txt2ndColumnName.Location = new System.Drawing.Point(308, 421);
+            this.txt2ndColumnName.Location = new System.Drawing.Point(312, 421);
             this.txt2ndColumnName.MaxLength = 52;
             this.txt2ndColumnName.Name = "txt2ndColumnName";
             this.txt2ndColumnName.Size = new System.Drawing.Size(56, 20);
@@ -146,9 +150,10 @@ namespace LybraFit
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(209, 425);
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(200, 424);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(97, 13);
+            this.label5.Size = new System.Drawing.Size(111, 15);
             this.label5.TabIndex = 11;
             this.label5.Text = "2nd Column Name:";
             // 
@@ -165,9 +170,10 @@ namespace LybraFit
             // chkHasErrColumn
             // 
             this.chkHasErrColumn.AutoSize = true;
-            this.chkHasErrColumn.Location = new System.Drawing.Point(405, 423);
+            this.chkHasErrColumn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkHasErrColumn.Location = new System.Drawing.Point(396, 422);
             this.chkHasErrColumn.Name = "chkHasErrColumn";
-            this.chkHasErrColumn.Size = new System.Drawing.Size(113, 17);
+            this.chkHasErrColumn.Size = new System.Drawing.Size(127, 19);
             this.chkHasErrColumn.TabIndex = 4;
             this.chkHasErrColumn.Text = "3rd Column Name:";
             this.chkHasErrColumn.UseVisualStyleBackColor = true;
@@ -181,6 +187,7 @@ namespace LybraFit
             this.columnHeader3});
             this.listParsedData.FullRowSelect = true;
             this.listParsedData.GridLines = true;
+            this.listParsedData.HideSelection = false;
             this.listParsedData.Location = new System.Drawing.Point(16, 214);
             this.listParsedData.Name = "listParsedData";
             this.listParsedData.Size = new System.Drawing.Size(589, 156);
@@ -207,27 +214,30 @@ namespace LybraFit
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(213, 462);
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(204, 461);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(95, 13);
+            this.label6.Size = new System.Drawing.Size(108, 15);
             this.label6.TabIndex = 18;
             this.label6.Text = "2nd Column Index:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(24, 462);
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(13, 461);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(91, 13);
+            this.label7.Size = new System.Drawing.Size(103, 15);
             this.label7.TabIndex = 17;
             this.label7.Text = "1st Column Index:";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(425, 462);
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(416, 461);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(92, 13);
+            this.label8.Size = new System.Drawing.Size(105, 15);
             this.label8.TabIndex = 19;
             this.label8.Text = "3rd Column Index:";
             // 
@@ -252,7 +262,7 @@ namespace LybraFit
             // 
             // num2ndColumnIndex
             // 
-            this.num2ndColumnIndex.Location = new System.Drawing.Point(308, 458);
+            this.num2ndColumnIndex.Location = new System.Drawing.Point(312, 458);
             this.num2ndColumnIndex.Minimum = new decimal(new int[] {
             1,
             0,
@@ -303,18 +313,20 @@ namespace LybraFit
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(26, 529);
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(26, 530);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(30, 13);
+            this.label9.Size = new System.Drawing.Size(32, 13);
             this.label9.TabIndex = 23;
             this.label9.Text = "Title:";
             // 
             // chkSkipErrors
             // 
             this.chkSkipErrors.AutoSize = true;
+            this.chkSkipErrors.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkSkipErrors.Location = new System.Drawing.Point(119, 496);
             this.chkSkipErrors.Name = "chkSkipErrors";
-            this.chkSkipErrors.Size = new System.Drawing.Size(122, 17);
+            this.chkSkipErrors.Size = new System.Drawing.Size(134, 19);
             this.chkSkipErrors.TabIndex = 9;
             this.chkSkipErrors.Text = "Skip lines with errors";
             this.chkSkipErrors.UseVisualStyleBackColor = true;
@@ -323,9 +335,10 @@ namespace LybraFit
             // 
             this.rdoStandardDelimiters.AutoSize = true;
             this.rdoStandardDelimiters.Checked = true;
+            this.rdoStandardDelimiters.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdoStandardDelimiters.Location = new System.Drawing.Point(6, 10);
             this.rdoStandardDelimiters.Name = "rdoStandardDelimiters";
-            this.rdoStandardDelimiters.Size = new System.Drawing.Size(114, 17);
+            this.rdoStandardDelimiters.Size = new System.Drawing.Size(127, 19);
             this.rdoStandardDelimiters.TabIndex = 1;
             this.rdoStandardDelimiters.TabStop = true;
             this.rdoStandardDelimiters.Text = "Standard delimiters";
@@ -334,9 +347,10 @@ namespace LybraFit
             // rdoAnyNonNumericDelimiter
             // 
             this.rdoAnyNonNumericDelimiter.AutoSize = true;
+            this.rdoAnyNonNumericDelimiter.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdoAnyNonNumericDelimiter.Location = new System.Drawing.Point(193, 10);
             this.rdoAnyNonNumericDelimiter.Name = "rdoAnyNonNumericDelimiter";
-            this.rdoAnyNonNumericDelimiter.Size = new System.Drawing.Size(152, 17);
+            this.rdoAnyNonNumericDelimiter.Size = new System.Drawing.Size(169, 19);
             this.rdoAnyNonNumericDelimiter.TabIndex = 2;
             this.rdoAnyNonNumericDelimiter.Text = "Any non numeric character";
             this.rdoAnyNonNumericDelimiter.UseVisualStyleBackColor = true;

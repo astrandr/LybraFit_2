@@ -62,7 +62,7 @@
             // 
             // lblModelName
             // 
-            this.lblModelName.Font = new System.Drawing.Font("Calisto MT", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblModelName.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblModelName.Location = new System.Drawing.Point(42, 9);
             this.lblModelName.Name = "lblModelName";
             this.lblModelName.Size = new System.Drawing.Size(330, 24);

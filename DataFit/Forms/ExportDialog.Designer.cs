@@ -64,13 +64,13 @@
             this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlButtons.Location = new System.Drawing.Point(0, 330);
             this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(584, 50);
+            this.pnlButtons.Size = new System.Drawing.Size(609, 50);
             this.pnlButtons.TabIndex = 3;
             // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(193, 15);
+            this.btnCancel.Location = new System.Drawing.Point(201, 15);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 9;
@@ -80,11 +80,11 @@
             // btnOk
             // 
             this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOk.Location = new System.Drawing.Point(319, 15);
+            this.btnOk.Location = new System.Drawing.Point(327, 15);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 10;
-            this.btnOk.Text = "Ok";
+            this.btnOk.Text = "OK";
             this.btnOk.UseVisualStyleBackColor = true;
             // 
             // pnlFile
@@ -96,7 +96,7 @@
             this.pnlFile.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlFile.Location = new System.Drawing.Point(0, 287);
             this.pnlFile.Name = "pnlFile";
-            this.pnlFile.Size = new System.Drawing.Size(584, 43);
+            this.pnlFile.Size = new System.Drawing.Size(609, 43);
             this.pnlFile.TabIndex = 2;
             // 
             // btnBrowse
@@ -112,9 +112,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 15);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(6, 14);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 13);
+            this.label2.Size = new System.Drawing.Size(67, 15);
             this.label2.TabIndex = 1;
             this.label2.Text = "Output file:";
             // 
@@ -140,7 +141,7 @@
             this.pnlOptions.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlOptions.Location = new System.Drawing.Point(0, 0);
             this.pnlOptions.Name = "pnlOptions";
-            this.pnlOptions.Size = new System.Drawing.Size(584, 58);
+            this.pnlOptions.Size = new System.Drawing.Size(609, 58);
             this.pnlOptions.TabIndex = 0;
             // 
             // chkColumns
@@ -148,9 +149,10 @@
             this.chkColumns.AutoSize = true;
             this.chkColumns.Checked = true;
             this.chkColumns.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkColumns.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkColumns.Location = new System.Drawing.Point(380, 21);
             this.chkColumns.Name = "chkColumns";
-            this.chkColumns.Size = new System.Drawing.Size(66, 17);
+            this.chkColumns.Size = new System.Drawing.Size(74, 19);
             this.chkColumns.TabIndex = 5;
             this.chkColumns.Text = "Columns";
             this.chkColumns.UseVisualStyleBackColor = true;
@@ -159,9 +161,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(449, 23);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(465, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.Size = new System.Drawing.Size(63, 15);
             this.label1.TabIndex = 6;
             this.label1.Text = "Delimiters:";
             // 
@@ -175,7 +178,7 @@
             ";",
             ":",
             ","});
-            this.cboDelimiters.Location = new System.Drawing.Point(507, 19);
+            this.cboDelimiters.Location = new System.Drawing.Point(534, 19);
             this.cboDelimiters.Name = "cboDelimiters";
             this.cboDelimiters.Size = new System.Drawing.Size(63, 21);
             this.cboDelimiters.TabIndex = 6;
@@ -184,9 +187,10 @@
             // chkDifference
             // 
             this.chkDifference.AutoSize = true;
+            this.chkDifference.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkDifference.Location = new System.Drawing.Point(295, 21);
             this.chkDifference.Name = "chkDifference";
-            this.chkDifference.Size = new System.Drawing.Size(80, 17);
+            this.chkDifference.Size = new System.Drawing.Size(85, 19);
             this.chkDifference.TabIndex = 4;
             this.chkDifference.Text = "Differences";
             this.chkDifference.UseVisualStyleBackColor = true;
@@ -195,9 +199,10 @@
             // chkModel
             // 
             this.chkModel.AutoSize = true;
+            this.chkModel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkModel.Location = new System.Drawing.Point(235, 21);
             this.chkModel.Name = "chkModel";
-            this.chkModel.Size = new System.Drawing.Size(55, 17);
+            this.chkModel.Size = new System.Drawing.Size(60, 19);
             this.chkModel.TabIndex = 3;
             this.chkModel.Text = "Model";
             this.chkModel.UseVisualStyleBackColor = true;
@@ -206,9 +211,10 @@
             // chkErrors
             // 
             this.chkErrors.AutoSize = true;
+            this.chkErrors.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkErrors.Location = new System.Drawing.Point(157, 21);
             this.chkErrors.Name = "chkErrors";
-            this.chkErrors.Size = new System.Drawing.Size(73, 17);
+            this.chkErrors.Size = new System.Drawing.Size(78, 19);
             this.chkErrors.TabIndex = 2;
             this.chkErrors.Text = "Data error";
             this.chkErrors.UseVisualStyleBackColor = true;
@@ -217,9 +223,10 @@
             // chkFormat
             // 
             this.chkFormat.AutoSize = true;
+            this.chkFormat.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkFormat.Location = new System.Drawing.Point(79, 21);
             this.chkFormat.Name = "chkFormat";
-            this.chkFormat.Size = new System.Drawing.Size(73, 17);
+            this.chkFormat.Size = new System.Drawing.Size(81, 19);
             this.chkFormat.TabIndex = 1;
             this.chkFormat.Text = "Formatted";
             this.chkFormat.UseVisualStyleBackColor = true;
@@ -228,9 +235,10 @@
             // chkHeader
             // 
             this.chkHeader.AutoSize = true;
+            this.chkHeader.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkHeader.Location = new System.Drawing.Point(13, 21);
             this.chkHeader.Name = "chkHeader";
-            this.chkHeader.Size = new System.Drawing.Size(61, 17);
+            this.chkHeader.Size = new System.Drawing.Size(64, 19);
             this.chkHeader.TabIndex = 0;
             this.chkHeader.Text = "Header";
             this.chkHeader.UseVisualStyleBackColor = true;
@@ -243,7 +251,7 @@
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 58);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(584, 100);
+            this.pnlHeader.Size = new System.Drawing.Size(609, 100);
             this.pnlHeader.TabIndex = 1;
             // 
             // txtHeader
@@ -256,7 +264,7 @@
             this.txtHeader.Multiline = true;
             this.txtHeader.Name = "txtHeader";
             this.txtHeader.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtHeader.Size = new System.Drawing.Size(584, 100);
+            this.txtHeader.Size = new System.Drawing.Size(609, 100);
             this.txtHeader.TabIndex = 6;
             // 
             // pnlPreview
@@ -266,7 +274,7 @@
             this.pnlPreview.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlPreview.Location = new System.Drawing.Point(0, 158);
             this.pnlPreview.Name = "pnlPreview";
-            this.pnlPreview.Size = new System.Drawing.Size(584, 129);
+            this.pnlPreview.Size = new System.Drawing.Size(609, 129);
             this.pnlPreview.TabIndex = 4;
             // 
             // txtPreview
@@ -278,7 +286,7 @@
             this.txtPreview.Multiline = true;
             this.txtPreview.Name = "txtPreview";
             this.txtPreview.ReadOnly = true;
-            this.txtPreview.Size = new System.Drawing.Size(584, 129);
+            this.txtPreview.Size = new System.Drawing.Size(609, 129);
             this.txtPreview.TabIndex = 0;
             this.txtPreview.TabStop = false;
             // 
@@ -292,7 +300,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 380);
+            this.ClientSize = new System.Drawing.Size(609, 380);
             this.Controls.Add(this.pnlPreview);
             this.Controls.Add(this.pnlHeader);
             this.Controls.Add(this.pnlOptions);
