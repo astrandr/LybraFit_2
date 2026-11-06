@@ -28,11 +28,11 @@ namespace LybraFit
             Program.IsFromUser = true;
 
             dataTable = new DataTable();
-            dataTable.Columns.Add(new DataColumn("Column 1", typeof(float)));
-            dataTable.Columns.Add(new DataColumn("Column 2", typeof(float)));
-            dataTable.Columns.Add(new DataColumn("Column 3", typeof(float)));
-            dataTable.Columns.Add(new DataColumn("Column 4", typeof(float)));
-            dataTable.Columns.Add(new DataColumn("Column 5", typeof(float)));
+            dataTable.Columns.Add(new DataColumn("Column 1", typeof(double)));
+            dataTable.Columns.Add(new DataColumn("Column 2", typeof(double)));
+            dataTable.Columns.Add(new DataColumn("Column 3", typeof(double)));
+            dataTable.Columns.Add(new DataColumn("Column 4", typeof(double)));
+            dataTable.Columns.Add(new DataColumn("Column 5", typeof(double)));
 
             for (int i = 0; i < doc.Data.Count; i++)
             {

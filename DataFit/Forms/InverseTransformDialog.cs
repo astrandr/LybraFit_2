@@ -24,7 +24,7 @@ namespace LybraFit.Forms
             txtMaxY.Text = settings.MaxY.ToString(); lblMaxYV.Text = "<= " + settings.MaxY.ToString();
             txtMinY.Text = settings.MinY.ToString(); lblMinYV.Text = ">= " + settings.MinY.ToString();
             txtStepY.Text = "0";
-            txtPrecision.Text = AutoFormatNumber.NumberFormatter.FloatToString((float)Math.Abs(settings.MaxY * 0.001f), 4, 3);
+            txtPrecision.Text = AutoFormatNumber.NumberFormatter.FloatToString((double)Math.Abs(settings.MaxY * 0.001f), 4, 3);
 
             lblMaxY.Text = "max " + columnNames[1];
             lblMinY.Text = "min " + columnNames[1];
@@ -39,28 +39,28 @@ namespace LybraFit.Forms
             errorProvider.SetError((Control)txtStepY, "");
             errorProvider.SetError((Control)txtPrecision, "");
 
-            if(!float.TryParse(txtMaxY.Text, out settings.MaxY))
+            if(!double.TryParse(txtMaxY.Text, out settings.MaxY))
             {
                 errorProvider.SetError((Control)txtMaxY, "Invalid value");
                 txtMaxY.Focus();
                 return false;
             }
 
-            if (!float.TryParse(txtMinY.Text, out settings.MinY))
+            if (!double.TryParse(txtMinY.Text, out settings.MinY))
             {
                 errorProvider.SetError((Control)txtMinY, "Invalid value");
                 txtMinY.Focus();
                 return false;
             }
 
-            if (!float.TryParse(txtStepY.Text, out settings.StepY))
+            if (!double.TryParse(txtStepY.Text, out settings.StepY))
             {
                 errorProvider.SetError((Control)txtStepY, "Invalid value");
                 txtStepY.Focus();
                 return false;
             }
 
-            if (!float.TryParse(txtPrecision.Text, out settings.Eps))
+            if (!double.TryParse(txtPrecision.Text, out settings.Eps))
             {
                 errorProvider.SetError((Control)txtPrecision, "Invalid value");
                 txtPrecision.Focus();

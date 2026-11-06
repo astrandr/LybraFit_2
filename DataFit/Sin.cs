@@ -16,11 +16,11 @@ namespace FuncLib
             this.parameters = new string[] { "a", "\u03c9", "\u03b1", "b" };
         }
 
-        public override void CalcProcedure(float[] X, float[] P, ref float[] Y)
+        public override void CalcProcedure(double[] X, double[] P, ref double[] Y)
         {
             for (int i = 0; i < X.Length; i++)
             {
-                Y[i] = P[0] * (float)Math.Sin(P[1] * X[i] + P[2]) + P[3];
+                Y[i] = P[0] * Math.Sin(P[1] * X[i] + P[2]) + P[3];
             }
         }
 
@@ -30,11 +30,11 @@ namespace FuncLib
         /// <param name="X"></param>
         /// <param name="Y"></param>
         /// <returns></returns>
-        public float[] InitParameters2(float[] X, float[] Y)
+        public double[] InitParameters2(double[] X, double[] Y)
         {
             CheckNumberOfPointsForInitialization(X);
-            float[] P = new float[4];
-            float[] A, Ph; //Amlitudes and phases of fourier transform
+            double[] P = new double[4];
+            double[] A, Ph; //Amlitudes and phases of fourier transform
             FourierTransform.GetModulePhase2(Y, out A, out Ph);
 
             int maxAIndex = 1;
@@ -48,7 +48,7 @@ namespace FuncLib
 
             P[0] = A[maxAIndex];
             P[2] = Ph[maxAIndex];
-            P[1] = (float)maxAIndex / X.Length * 2 * (float)Math.PI / (X[1] - X[0]); //Normalized to data spacing
+            P[1] = (double)maxAIndex / X.Length * 2 * (double)Math.PI / (X[1] - X[0]); //Normalized to data spacing
             P[3] = A[0];
             return P;
         }
@@ -59,11 +59,11 @@ namespace FuncLib
         /// <param name="X"></param>
         /// <param name="Y"></param>
         /// <returns></returns>
-        public override float[] InitParameters(float[] X, float[] Y)
+        public override double[] InitParameters(double[] X, double[] Y)
         {
             CheckNumberOfPointsForInitialization(X);
-            float[] P = new float[4];
-            float[] Re = X, Im = Y; //Amlitudes and phases of fourier transform
+            double[] P = new double[4];
+            double[] Re = X, Im = Y; //Amlitudes and phases of fourier transform
 
             //Check if length is of power of 2 and round to closes if needed
             int length = X.Length;
@@ -72,8 +72,8 @@ namespace FuncLib
 
             length = (int)Math.Pow(2, m);
 
-            Re = new float[length];
-            Im = new float[length];
+            Re = new double[length];
+            Im = new double[length];
 
             Array.Copy(Y, Re, Re.Length);
 
@@ -88,13 +88,13 @@ namespace FuncLib
                 }
             }
 
-            P[0] = 2 * (float)Math.Sqrt(Re[maxAmplIndex] * Re[maxAmplIndex] + Im[maxAmplIndex] * Im[maxAmplIndex]);
-            float period = length/maxAmplIndex * (X[1] - X[0]);
+            P[0] = 2 * (double)Math.Sqrt(Re[maxAmplIndex] * Re[maxAmplIndex] + Im[maxAmplIndex] * Im[maxAmplIndex]);
+            double period = length/maxAmplIndex * (X[1] - X[0]);
             P[1] = 2 * PI /period; //Normalized to data spacing
-            P[2] = (float)Math.Atan2(Re[maxAmplIndex], -Im[maxAmplIndex])/2/PI;
+            P[2] = (double)Math.Atan2(Re[maxAmplIndex], -Im[maxAmplIndex])/2/PI;
             P[2] += (X[0] / period); // account for the shift
             P[2] = (P[2] - (int)P[2]) * 2 * PI;
-            P[3] = (float)Math.Sqrt(Re[0] * Re[0] + Im[0] * Im[0]);
+            P[3] = (double)Math.Sqrt(Re[0] * Re[0] + Im[0] * Im[0]);
             return P;
         }
     }

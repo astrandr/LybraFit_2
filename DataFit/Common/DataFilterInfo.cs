@@ -10,8 +10,8 @@ namespace LybraFit.Common
 
         public string ColumnName;
         public bool Selected;
-        public float Min;
-        public float Max;
+        public double Min;
+        public double Max;
         public bool Visible;
 
         public override string ToString() { return ColumnName; }

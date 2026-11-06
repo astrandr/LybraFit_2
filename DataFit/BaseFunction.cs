@@ -19,6 +19,6 @@ namespace FuncLib
 
         public string[] Parameters { get { return parameters; } set { parameters = value; } }
 
-        public abstract void CalcProcedure(float[] X, float[] P, ref float[] Y);
+        public abstract void CalcProcedure(double[] X, double[] P, ref double[] Y);
     }
 }

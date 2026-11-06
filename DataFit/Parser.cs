@@ -68,7 +68,7 @@ namespace FuncLib
             mathLibOperations = tempList.ToArray();
         }
 
-        public static string ReplaceParametersWithValues(string description, string[] parameters, float[] values, string[] formattedValues)
+        public static string ReplaceParametersWithValues(string description, string[] parameters, double[] values, string[] formattedValues)
         {
             string expression = description.Replace(" ", "");
 

@@ -19,7 +19,7 @@ namespace FuncLib
             this.parameters = new string[] { "a", "b", "c", "d", "e", "f", "g" };
         }
 
-        public override void CalcProcedure(float[] X, float[] P, ref float[] Y)
+        public override void CalcProcedure(double[] X, double[] P, ref double[] Y)
         {
             for (int i = 0; i < X.Length; i++)
             {
@@ -27,7 +27,7 @@ namespace FuncLib
             }
         }
 
-        public override float[] InitParameters(float[] X, float[] Y)
+        public override double[] InitParameters(double[] X, double[] Y)
         {
             CheckNumberOfPointsForInitialization(X);
 

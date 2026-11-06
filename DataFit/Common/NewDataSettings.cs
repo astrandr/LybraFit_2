@@ -15,9 +15,9 @@ namespace LybraFit.Common
         public bool HasErrData = false;
 
         public bool DataXAutoIncrement = false;
-        public float DataXMin = 0;
-        public float DataXMax = 0;
-        public float DataXIncrement = 0;
+        public double DataXMin = 0;
+        public double DataXMax = 0;
+        public double DataXIncrement = 0;
 
         public bool ErrDataCalculatedStd;
 

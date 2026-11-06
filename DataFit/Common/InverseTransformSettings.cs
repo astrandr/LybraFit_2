@@ -5,11 +5,11 @@ namespace LybraFit.Common
 {
     public class InverseTransformSettings
     {
-        public float MinYV;
-        public float MaxYV;
-        public float MinY;
-        public float MaxY;
-        public float StepY;
-        public float Eps;
+        public double MinYV;
+        public double MaxYV;
+        public double MinY;
+        public double MaxY;
+        public double StepY;
+        public double Eps;
     }
 }

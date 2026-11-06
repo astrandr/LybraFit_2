@@ -18,27 +18,27 @@ namespace FuncLib
             this.parameters = new string[] { "a", "b" };
         }
 
-        public override void CalcProcedure(float[] X, float[] P, ref float[] Y)
+        public override void CalcProcedure(double[] X, double[] P, ref double[] Y)
         {
             for (int i = 0; i < X.Length; i++)
             {
-                Y[i] = P[0] * (float)Math.Pow(X[i], P[1] * X[i]);
+                Y[i] = P[0] * Math.Pow(X[i], P[1] * X[i]);
             }
         }
 
-        public override float[] InitParameters(float[] X, float[] Y)
+        public override double[] InitParameters(double[] X, double[] Y)
         {
             CheckNumberOfPointsForInitialization(X);
 
-            float[] P = new float[2];
+            double[] P = new double[2];
 
-            float[] lny = new float[X.Length];
+            double[] lny = new double[X.Length];
 
             if (X.Length > 2)
             {
                 //Select only positive values
-                List<float> ys = new List<float>();
-                List<float> xs = new List<float>();
+                List<double> ys = new List<double>();
+                List<double> xs = new List<double>();
                 for (int i = 0; i < X.Length; i++)
                 {
                     if (Y[i] > 0 && X[i] > 0)
@@ -48,21 +48,21 @@ namespace FuncLib
                 }
                 for (int i = 0; i < xs.Count; i++)
                 {
-                    lny[i] = (float)Math.Log(ys[i]);
+                    lny[i] = (double)Math.Log(ys[i]);
                 }
 
-                float b = 0;
+                double b = 0;
                 for (int i = 1; i < xs.Count - 1; i++)
                 {
-                    float dlny = ((lny[i] - lny[i - 1]) / (xs[i] - xs[i - 1]) + (lny[i + 1] - lny[i]) / (xs[i + 1] - xs[i])) / 2;
-                    b += dlny / (1 + (float)Math.Log(xs[i]));
+                    double dlny = ((lny[i] - lny[i - 1]) / (xs[i] - xs[i - 1]) + (lny[i + 1] - lny[i]) / (xs[i + 1] - xs[i])) / 2;
+                    b += dlny / (1 + (double)Math.Log(xs[i]));
                 }
                 b /= (xs.Count - 2);
 
-                float a = 0;
+                double a = 0;
                 for (int i = 0; i < xs.Count - 1; i++)
                 {
-                    a += ys[i] / ((float)Math.Pow(xs[i], b * xs[i]));
+                    a += ys[i] / ((double)Math.Pow(xs[i], b * xs[i]));
                 }
                 a /= (xs.Count - 1);
 

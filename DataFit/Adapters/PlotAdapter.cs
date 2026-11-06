@@ -159,7 +159,8 @@ namespace LybraFit
 
             if (doc.HasErrorY)
             {
-                graph.SetPlotDataError("Data", doc.ErrY);
+                float[] ErrYData = Array.ConvertAll(doc.ErrY, v => (float)v);
+                graph.SetPlotDataError("Data", ErrYData);
             }
             else
             {
@@ -181,12 +182,13 @@ namespace LybraFit
         private void NewFilter(Document doc)
         {
             GraphControl graph = (GraphControl)this.control;
-
+ 
             plotData = new PlotData(doc.X, doc.Y, Configuration.GraphSettings.DataColor, Configuration.GraphSettings.DataLineStyle, (int)Configuration.GraphSettings.DataPointSize, (uint)Configuration.GraphSettings.DataLineWidth, PlotDataPointType.Point);
             graph.SetPlotData("Data", plotData);
             if (doc.HasErrorY)
             {
-                graph.SetPlotDataError("Data", doc.ErrY);
+                float[] errYData = Array.ConvertAll(doc.ErrY, v => (float)v);
+                graph.SetPlotDataError("Data", errYData);
             }
 
             UpdateGraphSettings(doc);
@@ -226,8 +228,8 @@ namespace LybraFit
                 return;
             }
 
-            float min = filterMessage.FilterItems[0].Min;
-            float max = filterMessage.FilterItems[0].Max;
+            float min = (float)filterMessage.FilterItems[0].Min;
+            float max = (float)filterMessage.FilterItems[0].Max;
 
             float step = 0;
             int pow = 0, minPow = 2, count = 10;
@@ -244,13 +246,13 @@ namespace LybraFit
 
             if (filterMessage.FilterItems.Length > 1)
             {
-                min = filterMessage.FilterItems[1].Min;
-                max = filterMessage.FilterItems[1].Max;
+                min = (float)filterMessage.FilterItems[1].Min;
+                max = (float)filterMessage.FilterItems[1].Max;
                 Utility.GetRoundedLimits2(ref min, ref max, ref count, ref step, ref pow);
 
-                graph.YAxisLabelsMin = min;
-                graph.YAxisLabelsMax = max;
-                graph.YAxisLabelsStep = step;
+                graph.YAxisLabelsMin = (float)min;
+                graph.YAxisLabelsMax = (float)max;
+                graph.YAxisLabelsStep = (float)step;
                 graph.YAxisLabelsPow = pow;
                 s = step.ToString();
                 graph.YAxisLabelsDigits = s.IndexOf(".") < 0 ? 0 : s.Length - s.IndexOf(".") - 1;

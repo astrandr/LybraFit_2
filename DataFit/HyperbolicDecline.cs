@@ -19,44 +19,44 @@ namespace FuncLib
             this.parameters = new string[] { "a", "b", "q" };
         }
 
-        public override void CalcProcedure(float[] X, float[] P, ref float[] Y)
+        public override void CalcProcedure(double[] X, double[] P, ref double[] Y)
         {
             for (int i = 0; i < X.Length; i++)
             {
-                Y[i] = P[2] * (float)Math.Pow(1 + P[1] / P[0] * X[i], -1 / P[1]);
+                Y[i] = P[2] * Math.Pow(1 + P[1] / P[0] * X[i], -1 / P[1]);
             }
         }
 
-        public override float[] InitParameters(float[] X, float[] Y)
+        public override double[] InitParameters(double[] X, double[] Y)
         {
             CheckNumberOfPointsForInitialization(X);
 
-            float[] P = new float[3];
+            double[] P = new double[3];
 
-            float[] lny = new float[X.Length];
-            float[] dlny = new float[X.Length - 2];
-            float[] xx = new float[X.Length - 2];
+            double[] lny = new double[X.Length];
+            double[] dlny = new double[X.Length - 2];
+            double[] xx = new double[X.Length - 2];
 
             if (X.Length > 2)
             {
-                float k = 1;
+                double k = 1;
                 for (int i = 0; i < X.Length; i++)
                 {
                     if (Y[i] < 0)
                     {
                         k = -1;
-                        lny[i] = (float)Math.Log(-Y[i]);
+                        lny[i] = (double)Math.Log(-Y[i]);
                     }
                     else
                     {
-                        lny[i] = (float)Math.Log(Y[i]);
+                        lny[i] = (double)Math.Log(Y[i]);
                     }
                 }
 
 
                 for (int i = 1; i < X.Length - 1; i++)
                 {
-                    float dlnY = (lny[i + 1] - lny[i]) / (X[i + 1] - X[i]);
+                    double dlnY = (lny[i + 1] - lny[i]) / (X[i + 1] - X[i]);
                     dlny[i - 1] = -1 / dlnY;
                     xx[i - 1] = (X[i] + X[i + 1]) / 2;
                 }
@@ -64,15 +64,15 @@ namespace FuncLib
 
                 FilterData(xx, dlny);
 
-                float[] Pln = LinearFit.LinearFitSolveLine(filteredX, filteredY);
+                double[] Pln = LinearFit.LinearFitSolveLine(filteredX, filteredY);
 
                 P[0] = Pln[0]*k;
                 P[1] = Pln[1];
 
-                float q = 0;
+                double q = 0;
                 for (int i = 0; i < X.Length; i++)
                 {
-                    q += Y[i] / (float)Math.Pow(1 + P[1] / P[0] * X[i], -1 / P[1]);
+                    q += Y[i] / (double)Math.Pow(1 + P[1] / P[0] * X[i], -1 / P[1]);
                 }
 
                 q /= X.Length;

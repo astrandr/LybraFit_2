@@ -132,7 +132,7 @@ namespace UIBase
 			if (sender == this.control || sender == this) return;
 
 			//Optimization for UI performance: Update control only if it is visible, otherwise only mark it for update.
-			if (true/*control.Visible*/) //TODO: This optimization is to optional
+			if (true/*control.Visible*/) //TODO: This optimization is too optional
 			{
                 try
                 {

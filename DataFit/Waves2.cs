@@ -19,11 +19,11 @@ namespace FuncLib
             this.parameters = new string[] { "a", "b", "c", "d", "e", "f", "g" };
         }
 
-        public override void CalcProcedure(float[] X, float[] P, ref float[] Y)
+        public override void CalcProcedure(double[] X, double[] P, ref double[] Y)
         {
             for (int i = 0; i < X.Length; i++)
             {
-                Y[i] = P[0] * (float)Math.Sin(P[1] * X[i] + P[2]) + P[3] * (float)Math.Sin(P[4] * X[i] + P[5]) + P[6];
+                Y[i] = P[0] * Math.Sin(P[1] * X[i] + P[2]) + P[3] * Math.Sin(P[4] * X[i] + P[5]) + P[6];
             }
         }
 
@@ -33,13 +33,13 @@ namespace FuncLib
         /// <param name="X"></param>
         /// <param name="Y"></param>
         /// <returns></returns>
-        public float[] InitParameters2(float[] X, float[] Y)
+        public double[] InitParameters2(double[] X, double[] Y)
         {
             CheckNumberOfPointsForInitialization(X);
-            float[] P = new float[7];
-            float[] A, Ph; //Amlitudes and phases of fourier transform
+            double[] P = new double[7];
+            double[] A, Ph; //Amlitudes and phases of fourier transform
             FourierTransform.GetModulePhase2(Y, out A, out Ph);
-            float[] dA = new float[A.Length]; dA[0] = 0;
+            double[] dA = new double[A.Length]; dA[0] = 0;
 
             //Calculate second derivatives
             for (int i = 1; i < dA.Length - 1; i++)
@@ -48,7 +48,7 @@ namespace FuncLib
             }
 
             int maxAIndex = 1;
-            float maxA = float.MaxValue;
+            double maxA = double.MaxValue;
             for (int i = 1; i < A.Length; i++)
             {
                 if (dA[i] < 0 && A[i] > A[maxAIndex] && A[i] < maxA)
@@ -59,7 +59,7 @@ namespace FuncLib
 
             P[0] = A[maxAIndex];
             P[2] = Ph[maxAIndex];
-            P[1] = (float)maxAIndex / X.Length * 2 * (float)Math.PI / (X[1] - X[0]); //Normalized to data spacing
+            P[1] = (double)maxAIndex / X.Length * 2 * (double)Math.PI / (X[1] - X[0]); //Normalized to data spacing
 
             int firstMaximaIndex = maxAIndex;
             //find second maxima
@@ -74,7 +74,7 @@ namespace FuncLib
 
             P[3] = A[maxAIndex];
             P[5] = Ph[maxAIndex];
-            P[4] = (float)maxAIndex / X.Length * 2 * (float)Math.PI / (X[1] - X[0]); //Normalized to data spacing
+            P[4] = (double)maxAIndex / X.Length * 2 * (double)Math.PI / (X[1] - X[0]); //Normalized to data spacing
 
             P[6] = A[0];
             return P;
@@ -86,11 +86,11 @@ namespace FuncLib
         /// <param name="X"></param>
         /// <param name="Y"></param>
         /// <returns></returns>
-        public override float[] InitParameters(float[] X, float[] Y)
+        public override double[] InitParameters(double[] X, double[] Y)
         {
             CheckNumberOfPointsForInitialization(X);
-            float[] P = new float[7];
-            float[] Re = X, Im = Y; //Amlitudes and phases of fourier transform
+            double[] P = new double[7];
+            double[] Re = X, Im = Y; //Amlitudes and phases of fourier transform
 
             //Check if length is of power of 2 and round to closes if needed
             int length = X.Length;
@@ -99,17 +99,17 @@ namespace FuncLib
 
             length = (int)Math.Pow(2, m);
 
-            Re = new float[length];
-            Im = new float[length];
+            Re = new double[length];
+            Im = new double[length];
 
             Array.Copy(Y, Re, Re.Length);
 
             FFTLibrary.Complex.FFT(1, m, Re, Im);
-            float[] A = new float[Re.Length/2];
-            float[] dA = new float[Re.Length/2];
+            double[] A = new double[Re.Length/2];
+            double[] dA = new double[Re.Length/2];
             for (int i = 1; i < A.Length; i++)
             {
-                A[i] = (float)Math.Sqrt(Re[i] * Re[i] + Im[i] * Im[i]);
+                A[i] = (double)Math.Sqrt(Re[i] * Re[i] + Im[i] * Im[i]);
             }
 
             //Calculate second derivatives
@@ -127,16 +127,16 @@ namespace FuncLib
                 }
             }
 
-            P[0] = 2 * (float)Math.Sqrt(Re[maxAmplIndex] * Re[maxAmplIndex] + Im[maxAmplIndex] * Im[maxAmplIndex]);
-            float period = length / maxAmplIndex * (X[1] - X[0]);
+            P[0] = 2 * (double)Math.Sqrt(Re[maxAmplIndex] * Re[maxAmplIndex] + Im[maxAmplIndex] * Im[maxAmplIndex]);
+            double period = length / maxAmplIndex * (X[1] - X[0]);
             P[1] = 2 * PI / period; //Normalized to data spacing
-            P[2] = (float)Math.Atan2(Re[maxAmplIndex], -Im[maxAmplIndex]);
+            P[2] = Math.Atan2(Re[maxAmplIndex], -Im[maxAmplIndex]);
             P[2] += (X[0] / period) * 2 * PI; // account for the shift
             P[2] = (P[2] - (int)P[2]);
 
             //Search for second maxima
             int firstMaximaIndex = maxAmplIndex;
-            float maxAmpl = float.MinValue;
+            double maxAmpl = double.MinValue;
             for (int i = 1; i < A.Length; i++)
             {
                 if (dA[i] < 0 && i != firstMaximaIndex && A[i] > maxAmpl)
@@ -146,14 +146,14 @@ namespace FuncLib
                 }
             }
 
-            P[3] = 2 * (float)Math.Sqrt(Re[maxAmplIndex] * Re[maxAmplIndex] + Im[maxAmplIndex] * Im[maxAmplIndex]);
+            P[3] = 2 * (double)Math.Sqrt(Re[maxAmplIndex] * Re[maxAmplIndex] + Im[maxAmplIndex] * Im[maxAmplIndex]);
             period = length / maxAmplIndex * (X[1] - X[0]);
             P[4] = 2 * PI / period; //Normalized to data spacing
-            P[5] = (float)Math.Atan2(Re[maxAmplIndex], -Im[maxAmplIndex]);
+            P[5] = (double)Math.Atan2(Re[maxAmplIndex], -Im[maxAmplIndex]);
             P[5] += (X[0] / period) * 2 * PI; // account for the shift
             P[5] = (P[2] - (int)P[2]);
             
-            P[6] = (float)Math.Sqrt(Re[0] * Re[0] + Im[0] * Im[0]);
+            P[6] = (double)Math.Sqrt(Re[0] * Re[0] + Im[0] * Im[0]);
             
             return P;
         }

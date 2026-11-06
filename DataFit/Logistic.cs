@@ -19,23 +19,23 @@ namespace FuncLib
             this.parameters = new string[] { "a", "b", "c" };
         }
 
-        public override void CalcProcedure(float[] X, float[] P, ref float[] Y)
+        public override void CalcProcedure(double[] X, double[] P, ref double[] Y)
         {
             for (int i = 0; i < X.Length; i++)
             {
-                Y[i] = P[0] / (1 + P[1] * (float)Math.Exp(-P[2] * X[i]));
+                Y[i] = P[0] / (1 + P[1] * Math.Exp(-P[2] * X[i]));
             }
         }
 
-        public override float[] InitParameters(float[] X, float[] Y)
+        public override double[] InitParameters(double[] X, double[] Y)
         {
             CheckNumberOfPointsForInitialization(X);
 
-            float[] P = new float[3];
+            double[] P = new double[3];
 
-            float[] ry = new float[X.Length];
-            float[] dry = new float[X.Length - 2];
-            float[] ryy = new float[X.Length - 2];
+            double[] ry = new double[X.Length];
+            double[] dry = new double[X.Length - 2];
+            double[] ryy = new double[X.Length - 2];
 
             if (X.Length > 2)
             {
@@ -54,15 +54,15 @@ namespace FuncLib
 
                 FilterData(dry, ryy);
 
-                float[] Pln = LinearFit.LinearFitSolveLine(filteredX, filteredY);
+                double[] Pln = LinearFit.LinearFitSolveLine(filteredX, filteredY);
 
                 P[0] = 1 / Pln[0];
                 P[2] = -1 / Pln[1];
 
-                float b = 0;
+                double b = 0;
                 for (int i = 0; i < X.Length; i++)
                 {
-                    b = b + (P[0] / Y[i] - 1) * (float)Math.Exp(P[2] * X[i]);
+                    b = b + (P[0] / Y[i] - 1) * (double)Math.Exp(P[2] * X[i]);
                 }
 
                 b = b / X.Length;

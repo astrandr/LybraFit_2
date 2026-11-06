@@ -18,22 +18,22 @@ namespace FuncLib
             this.parameters = new string[] { "a", "b" };
         }
 
-        public override void CalcProcedure(float[] X, float[] P, ref float[] Y)
+        public override void CalcProcedure(double[] X, double[] P, ref double[] Y)
         {
             for (int i = 0; i < X.Length; i++)
             {
-                Y[i] = 1 / (P[0] + P[1] * (float)Math.Log(X[i])); //TODO What if X = 0 or denominator is 0
+                Y[i] = 1 / (P[0] + P[1] * Math.Log(X[i])); //TODO What if X = 0 or denominator is 0
             }
         }
 
-        public override float[] InitParameters(float[] X, float[] Y)
+        public override double[] InitParameters(double[] X, double[] Y)
         {
             CheckNumberOfPointsForInitialization(X);
 
-            float[] P = new float[2];
+            double[] P = new double[2];
 
-            float[] ry = new float[X.Length];
-            float[] dry = new float[X.Length - 1];
+            double[] ry = new double[X.Length];
+            double[] dry = new double[X.Length - 1];
 
             if (X.Length > 2)
             {
@@ -42,7 +42,7 @@ namespace FuncLib
                     ry[i] = 1 / Y[i]; //TODO What if Y[i] = 0
                 }
 
-                float b = 0;
+                double b = 0;
                 for (int i = 1; i < X.Length - 1; i++)
                 {
                     dry[i] = (ry[i + 1] - ry[i]) / (X[i + 1] - X[i]);
@@ -50,10 +50,10 @@ namespace FuncLib
                 }
                 b /= (X.Length - 1);
 
-                float a = 0;
+                double a = 0;
                 for (int i = 1; i < X.Length - 1; i++)
                 {
-                    a += (ry[i] - b * (float)Math.Log(X[i]));
+                    a += (ry[i] - b * (double)Math.Log(X[i]));
                 }
                 a /= (X.Length - 1);
 

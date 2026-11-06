@@ -19,42 +19,42 @@ namespace FuncLib
             this.parameters = new string[] { "a", "b", "c" };
         }
 
-        public override void CalcProcedure(float[] X, float[] P, ref float[] Y)
+        public override void CalcProcedure(double[] X, double[] P, ref double[] Y)
         {
             for (int i = 0; i < X.Length; i++)
             {
-                Y[i] = P[0] * (float)Math.Exp(-(X[i] - P[1]) * (X[i] - P[1]) / (2 * P[2] * P[2]));
+                Y[i] = P[0] * Math.Exp(-(X[i] - P[1]) * (X[i] - P[1]) / (2 * P[2] * P[2]));
             }
         }
 
-        public override float[] InitParameters(float[] X, float[] Y)
+        public override double[] InitParameters(double[] X, double[] Y)
         {
             CheckNumberOfPointsForInitialization(X);
 
-            float[] P = new float[3];
+            double[] P = new double[3];
 
-            float[] lny = new float[X.Length];
-            float k = 1;
+            double[] lny = new double[X.Length];
+            double k = 1;
             for (int i = 0; i < X.Length; i++)
             {
                 if (Y[i] < 0)
                 {
-                    lny[i] = (float)Math.Log(-Y[i]);
+                    lny[i] = (double)Math.Log(-Y[i]);
                     k = -1;
                 }
                 else
                 {
-                    lny[i] = (float)Math.Log(Y[i]);
+                    lny[i] = (double)Math.Log(Y[i]);
                 }
             }
 
             FilterData(X, lny);
 
-            float[] Pln = LinearFit.LinearFitSolve(filteredX, filteredY, 3);
+            double[] Pln = LinearFit.LinearFitSolve(filteredX, filteredY, 3);
 
-            P[2] = (float)Math.Sqrt(-1.0f / 2 / Pln[2]);
+            P[2] = (double)Math.Sqrt(-1.0f / 2 / Pln[2]);
             P[1] = Pln[1] * P[2] * P[2];
-            P[0] = (float)Math.Exp(Pln[0] + P[1] * P[1] / P[2] / P[2] / 2)*k;
+            P[0] = (double)Math.Exp(Pln[0] + P[1] * P[1] / P[2] / P[2] / 2)*k;
 
 
             return P;

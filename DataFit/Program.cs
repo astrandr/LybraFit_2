@@ -34,7 +34,7 @@ namespace LybraFit
         public static Dictionary<string, UserFunction> UserModels = new Dictionary<string, UserFunction>();
         public static Dictionary<string, FitFunction> LibraryModels = new Dictionary<string, FitFunction>();
 
-        public static Dictionary<string, float[]> UserModelsInitialParameter = new Dictionary<string, float[]>();
+        public static Dictionary<string, double[]> UserModelsInitialParameter = new Dictionary<string, double[]>();
 
         public static Dictionary<string, string> RecentFiles = new Dictionary<string, string>(7);
         public static Dictionary<string, string> RecentProjects = new Dictionary<string, string>(7);
@@ -111,7 +111,7 @@ namespace LybraFit
                     }
                 }
             }
-            catch (Exception e)
+            catch
             {
                 MessageBox.Show("Internal error occured while initializing library models", "Initialization error!");
             }
@@ -274,7 +274,7 @@ namespace LybraFit
             foreach (string functionName in UserModelsInitialParameter.Keys)
             {
                 writer.Write(functionName);
-                float[] lastParamatersValues = UserModelsInitialParameter[functionName];
+                double[] lastParamatersValues = UserModelsInitialParameter[functionName];
                 for (int i = 0; i < lastParamatersValues.Length; i++)
                 {
                     writer.Write("\t" + lastParamatersValues[i].ToString());
@@ -296,11 +296,11 @@ namespace LybraFit
                     string[] tokens = line.Split('\t');
                     if (tokens.Length > 0 && UserModels.Keys.Contains(tokens[0]))
                     {
-                        float[] parameters = new float[tokens.Length - 1];
+                        double[] parameters = new double[tokens.Length - 1];
                         for (int i = 1; i < tokens.Length; i++)
                         {
-                            float v;
-                            if (!float.TryParse(tokens[i], out v))
+                            double v;
+                            if (!double.TryParse(tokens[i], out v))
                             {
                                 break;
                             }

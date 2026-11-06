@@ -16,18 +16,18 @@ namespace LybraFit
     {
         public ColumnSettings[] GridColumnSettings;
         public string DataFile = "";
-        public List<float[]> Data = null;
-        private List<float[]> unfilteredData = null;
+        public List<double[]> Data = null;
+        private List<double[]> unfilteredData = null;
         public string[] ColumnNames = new string[] { "X", "Y", "Err", "Model", "Difference" };
         public int ColumnCount = 5;
         public string ErrMessage = "";
         public bool HasErrorY = false;
         public bool YCalculated = false;
         public UserFunction yCalculationFunction = null;
-        public float[] Parameters;
+        public double[] Parameters;
 
-        public float[] FitDataX;
-        public float[] FitDataY;
+        public double[] FitDataX;
+        public double[] FitDataY;
         public string XDataName = "X";
         public string YDataName = "Y";
         public Dictionary<string, ModelFitInfo> Models = new Dictionary<string, ModelFitInfo>();
@@ -37,7 +37,7 @@ namespace LybraFit
 
         public Document(int coumnCount = 5, string[] columnNames = null)
         {
-            Data = new List<float[]>();
+            Data = new List<double[]>();
 
             ColumnCount = coumnCount;
             if (columnNames != null) ColumnNames = columnNames;
@@ -63,12 +63,12 @@ namespace LybraFit
             GridColumnSettings[2].ReadOnly = false;
         }
 
-        public float[] X
+        public double[] X
         {
             //TODO this can be optimized with dirty flag for the data
             get
             {
-                float[] X = new float[Data.Count];
+                double[] X = new double[Data.Count];
                 for (int i = 0; i < X.Length; i++)
                 {
                     X[i] = Data[i][0];
@@ -77,12 +77,12 @@ namespace LybraFit
             }
         }
 
-        public float[] Y
+        public double[] Y
         {
             //TODO this can be optimized with dirty flag for the data
             get
             {
-                float[] Y = new float[Data.Count];
+                double[] Y = new double[Data.Count];
                 for (int i = 0; i < Y.Length; i++)
                 {
                     Y[i] = Data[i][1];
@@ -91,13 +91,13 @@ namespace LybraFit
             }
         }
 
-        public float[] ErrY
+        public double[] ErrY
         {
             //TODO this can be optimized with dirty flag for the data
             get
             {
                 if (!HasErrorY) return null;
-                float[] errY = new float[Data.Count];
+                double[] errY = new double[Data.Count];
                 for (int i = 0; i < Y.Length; i++)
                 {
                     errY[i] = Data[i][2];
@@ -135,7 +135,7 @@ namespace LybraFit
                 ColumnNames = items;
             }
             columnCount = items.Length;
-            List<float[]> newData = new List<float[]>();
+            List<double[]> newData = new List<double[]>();
             unfilteredData = null;
             HasErrorY = false;
             bool skipLine = !hasHeader;
@@ -144,13 +144,13 @@ namespace LybraFit
             {
                 if (!skipLine) line = r.ReadLine();
                 skipLine = false;
-                float[] lineData = new float[5];
+                double[] lineData = new double[5];
                 lineNumber++;
                 items = line.Trim().Split(splitChars);
 
                 for (int i = 0; i < columnCount; i++)
                 {
-                    float f;
+                    double f;
                     if (i >= items.Length)
                     {
 
@@ -158,7 +158,7 @@ namespace LybraFit
                         r.Close();
                         return false;
                     }
-                    if (!float.TryParse(items[i], out f))
+                    if (!double.TryParse(items[i], out f))
                     {
 
                         ErrMessage = "Cannot parse value on line:" + lineNumber + "  :" + items[i];
@@ -186,14 +186,14 @@ namespace LybraFit
             int lineNumber = importSettings.HeaderLinesCount;;
             int columnCount = importSettings.HasErrColumn ? 3 : 2;
 
-            List<float[]> newData = new List<float[]>();
+            List<double[]> newData = new List<double[]>();
             unfilteredData = null;
             HasErrorY = false; //TODO These initializations are to be moved in a separate mathod Initialize or this method is to be made static and return document as all others form file and text creation
-            float f;
+            double f;
             while (lineNumber < lines.Length)
             {
                 line = lines[lineNumber];
-                float[] lineData = new float[5];
+                double[] lineData = new double[5];
                 lineNumber++;
 
                 if (importSettings.UseStandardDelimiters)
@@ -213,7 +213,7 @@ namespace LybraFit
 
                 if (items.Length > importSettings.Column1Index)
                 {
-                    if (!float.TryParse(items[importSettings.Column1Index], out f))
+                    if (!double.TryParse(items[importSettings.Column1Index], out f))
                     {
                         if (importSettings.SkipLinesWithError) continue;
 
@@ -231,7 +231,7 @@ namespace LybraFit
 
                 if (items.Length > importSettings.Column2Index)
                 {
-                    if (!float.TryParse(items[importSettings.Column2Index], out f))
+                    if (!double.TryParse(items[importSettings.Column2Index], out f))
                     {
                         if (importSettings.SkipLinesWithError) continue;
                         ErrMessage = "Cannot parse value on line:" + lineNumber + "  :" + items[importSettings.Column2Index];
@@ -250,7 +250,7 @@ namespace LybraFit
                 {
                     if (items.Length > importSettings.Column3Index)
                     {
-                        if (!float.TryParse(items[importSettings.Column3Index], out f))
+                        if (!double.TryParse(items[importSettings.Column3Index], out f))
                         {
                             if (importSettings.SkipLinesWithError) continue;
                             ErrMessage = "Cannot parse value on line:" + lineNumber + "  :" + items[importSettings.Column3Index];
@@ -294,7 +294,7 @@ namespace LybraFit
                 return false;
             }
 
-            Data = new List<float[]>();
+            Data = new List<double[]>();
             for (int columnIndex = 0; columnIndex < items.Length; columnIndex++)
             {
                 ColumnNames[columnIndex] = items[columnIndex];
@@ -302,13 +302,13 @@ namespace LybraFit
            
 
             int lineIndex = 1;
-            List<float[]> newData = new List<float[]>();
+            List<double[]> newData = new List<double[]>();
             HasErrorY = false;
             unfilteredData = null;
             while (lineIndex < lines.Length)
             {
                 items = lines[lineIndex].Trim().Split(splitChars, StringSplitOptions.RemoveEmptyEntries);
-                float[] lineData = new float[this.ColumnCount];
+                double[] lineData = new double[this.ColumnCount];
                 if (items.Length < 2)
                 {
                     ErrMessage = String.Format("Cannot find two columns values at line index {0}", lineIndex);
@@ -316,9 +316,9 @@ namespace LybraFit
                 }
                 for (int columnIndex = 0; columnIndex < items.Length; columnIndex++)
                 {
-                    float f = 0;
+                    double f = 0;
 
-                    if (!float.TryParse(items[columnIndex], out f))
+                    if (!double.TryParse(items[columnIndex], out f))
                     {
                         ErrMessage = String.Format("Cannot parse value '{0}' at index {1}", items[columnIndex], lineIndex);
                         return false;
@@ -343,12 +343,12 @@ namespace LybraFit
 
             while (index < items.Length)
             {
-                float[] lineData = new float[5];
-                float f = 0;
+                double[] lineData = new double[5];
+                double f = 0;
                 while (index < items.Length && string.IsNullOrEmpty(items[index])) index++;
                 if (index < items.Length)
                 {
-                    if (!float.TryParse(items[index], out f))
+                    if (!double.TryParse(items[index], out f))
                     {
                         ErrMessage = String.Format("Cannot parse value '{0}' at index {1}", items[index], index);
                         return false;
@@ -361,7 +361,7 @@ namespace LybraFit
                 while (index < items.Length && string.IsNullOrEmpty(items[index])) index++;
                 if (index < items.Length)
                 {
-                    if (!float.TryParse(items[index], out f))
+                    if (!double.TryParse(items[index], out f))
                     {
 
                         ErrMessage = String.Format("Cannot parse value {0} at index {1}", items[index], index);
@@ -386,7 +386,7 @@ namespace LybraFit
             return true;
         }
 
-        public void UpdateX(float[] newX)
+        public void UpdateX(double[] newX)
         {
             for (int i = 0; i < newX.Length; i++)
             {
@@ -394,7 +394,7 @@ namespace LybraFit
             }
         }
 
-        public void UpdateY(float[] newY)
+        public void UpdateY(double[] newY)
         {
             for (int i = 0; i < newY.Length; i++)
             {
@@ -443,7 +443,7 @@ namespace LybraFit
             Data.Insert(toIndex, dataRow);
         }
 
-        private bool DataFilterPredicate(float[] row)
+        private bool DataFilterPredicate(double[] row)
         {
             for (int i = 0; i < DataFilterInfo.Items.Count; i++)
             {
@@ -461,7 +461,7 @@ namespace LybraFit
 
         public void Sort()
         {
-            Data = Data.OrderBy( r => r[0]).ToList<float[]>();
+            Data = Data.OrderBy( r => r[0]).ToList<double[]>();
         }
 
         public void FilterData(List<DataFilterInfo> filterItems)
@@ -469,22 +469,22 @@ namespace LybraFit
             //Restore to original data and filter it
             if (unfilteredData == null) 
             {
-                unfilteredData = new List<float[]>();
-                foreach (float[] row in Data)
+                unfilteredData = new List<double[]>();
+                foreach (double[] row in Data)
                 {
                     unfilteredData.Add(row);
                 }
             }
             else
             {
-                Data = new List<float[]>();
-                foreach (float[] row in unfilteredData)
+                Data = new List<double[]>();
+                foreach (double[] row in unfilteredData)
                 {
                     Data.Add(row);
                 }
             }
 
-            Data.RemoveAll(new Predicate<float[]>(DataFilterPredicate));
+            Data.RemoveAll(new Predicate<double[]>(DataFilterPredicate));
         }
     }
 }

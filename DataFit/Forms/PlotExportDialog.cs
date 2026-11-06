@@ -17,10 +17,10 @@ namespace LybraFit.Forms
 
         private int currentUnits;
         private int dpi;
-        private float width, height, margins;
-        private const float inchToCm = 2.54f;
-        private bool preserveAspect = false;
-        private float aspectRatio = 1;
+        private double width, height, margins;
+        private const double inchToCm = 2.54f;
+
+        private double aspectRatio = 1;
         private Document doc;
 
         public PlotExportDialog()
@@ -44,7 +44,7 @@ namespace LybraFit.Forms
         {
             Program.IsFromUser = false;
             this.doc = doc;
-            aspectRatio = (float)size.Width / size.Height;
+            aspectRatio = (double)size.Width / size.Height;
             cboPaper.SelectedIndex = 0;
             cboUnits.SelectedIndex = 0;
             currentUnits = 0;
@@ -89,7 +89,7 @@ namespace LybraFit.Forms
             {
                 if (DialogResult == DialogResult.OK)
                 {
-                    if (!float.TryParse(txtWidth.Text, out width))
+                    if (!double.TryParse(txtWidth.Text, out width))
                     {
                         errorProvider.SetError((Control)txtWidth, "Invalid number");
                         e.Cancel = true;
@@ -97,7 +97,7 @@ namespace LybraFit.Forms
                     }
                     else errorProvider.SetError((Control)txtWidth, "");
 
-                    if (!float.TryParse(txtHeight.Text, out height))
+                    if (!double.TryParse(txtHeight.Text, out height))
                     {
                         errorProvider.SetError((Control)txtHeight, "Invalid number");
                         e.Cancel = true;
@@ -113,7 +113,7 @@ namespace LybraFit.Forms
                     }
                     else errorProvider.SetError((Control)cboDPI, "");
 
-                    if (!float.TryParse(txtMargins.Text, out margins))
+                    if (!double.TryParse(txtMargins.Text, out margins))
                     {
                         errorProvider.SetError((Control)cboDPI, "Invalid number");
                         e.Cancel = true;
@@ -155,19 +155,19 @@ namespace LybraFit.Forms
                 return;
             }
 
-            if (!float.TryParse(txtWidth.Text, out width))
+            if (!double.TryParse(txtWidth.Text, out width))
             {
                 errorProvider.SetError((Control)txtWidth, "Invalid value");
                 return;
             }
 
-            if (!float.TryParse(txtHeight.Text, out height))
+            if (!double.TryParse(txtHeight.Text, out height))
             {
                 errorProvider.SetError((Control)txtHeight, "Invalid value");
                 return;
             }
 
-            if (!float.TryParse(txtMargins.Text, out margins))
+            if (!double.TryParse(txtMargins.Text, out margins))
             {
                 errorProvider.SetError((Control)txtMargins, "Invalid value");
                 return;
@@ -183,37 +183,37 @@ namespace LybraFit.Forms
                             margins = margins / dpi;
                             break;
                         case 2: // convert from pixels to cm
-                            width = (float)width / dpi * inchToCm;
-                            height = (float)height / dpi * inchToCm;
-                            margins = (float)margins / dpi * inchToCm;
+                            width = (double)width / dpi * inchToCm;
+                            height = (double)height / dpi * inchToCm;
+                            margins = (double)margins / dpi * inchToCm;
                             break;
                     }
                     break;
                 case 1: switch (cboUnits.SelectedIndex)
                     {
                         case 2: // Convert from inches to cm
-                            width = (float)width * inchToCm;
-                            height = (float)height * inchToCm;
-                            margins = (float)margins * inchToCm;
+                            width = (double)width * inchToCm;
+                            height = (double)height * inchToCm;
+                            margins = (double)margins * inchToCm;
                             break;
                         case 0: // convert from inches to pixels
-                            width = (float)width * dpi;
-                            height = (float)height * dpi;
-                            margins = (float)margins * dpi;
+                            width = (double)width * dpi;
+                            height = (double)height * dpi;
+                            margins = (double)margins * dpi;
                             break;
                     }
                     break;
                 case 2: switch (cboUnits.SelectedIndex)
                     {
                         case 1: // Convert from cm to inches
-                            width = (float)width / inchToCm;
-                            height = (float)height / inchToCm;
-                            margins = (float)margins / inchToCm;
+                            width = (double)width / inchToCm;
+                            height = (double)height / inchToCm;
+                            margins = (double)margins / inchToCm;
                             break;
                         case 0: // convert from cm to pixels
-                            width = (float)width / inchToCm * dpi;
-                            height = (float)height / inchToCm * dpi;
-                            margins = (float)margins / inchToCm * dpi;
+                            width = (double)width / inchToCm * dpi;
+                            height = (double)height / inchToCm * dpi;
+                            margins = (double)margins / inchToCm * dpi;
                             break;
                     }
                     break;
@@ -246,7 +246,7 @@ namespace LybraFit.Forms
 
             if (chkAspect.Checked)
             {
-                if (float.TryParse(txtWidth.Text, out width))
+                if (double.TryParse(txtWidth.Text, out width))
                 {
                     height = width / aspectRatio;
                     if (currentUnits == 0)
@@ -269,14 +269,14 @@ namespace LybraFit.Forms
 
             if (chkAspect.Checked)
             {
-                if (!float.TryParse(txtWidth.Text, out width))
+                if (!double.TryParse(txtWidth.Text, out width))
                 {
                     errorProvider.SetError((Control)txtWidth, "Invalid value");
                     chkAspect.Checked = false;
                     return;
                 }
 
-                if (!float.TryParse(txtHeight.Text, out height))
+                if (!double.TryParse(txtHeight.Text, out height))
                 {
                     errorProvider.SetError((Control)txtHeight, "Invalid value");
                     chkAspect.Checked = false;
@@ -304,8 +304,8 @@ namespace LybraFit.Forms
             if (cboPaper.SelectedIndex != 0)
             {
 
-                float[] paperWidth = new float[] { width, 8.3f, 5.8f, 4.1f };
-                float[] paperHeight = new float[] { height, 11.7f, 8.3f, 5.8f };
+                double[] paperWidth = new double[] { width, 8.3f, 5.8f, 4.1f };
+                double[] paperHeight = new double[] { height, 11.7f, 8.3f, 5.8f };
 
                 if (!int.TryParse(cboDPI.Text, out dpi))
                 {
@@ -317,7 +317,7 @@ namespace LybraFit.Forms
                     errorProvider.SetError((Control)cboDPI, "");
                 }
 
-                if (!float.TryParse(txtMargins.Text, out margins))
+                if (!double.TryParse(txtMargins.Text, out margins))
                 {
                     errorProvider.SetError((Control)txtMargins, "Invalid value");
                     return;
@@ -330,7 +330,7 @@ namespace LybraFit.Forms
                 switch (currentUnits)
                 {
                     case 0: margins = margins / dpi; break;
-                    case 2: margins = (float)margins / inchToCm; break;
+                    case 2: margins = (double)margins / inchToCm; break;
                 }
 
 

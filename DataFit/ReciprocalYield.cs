@@ -19,7 +19,7 @@ namespace FuncLib
             this.parameters = new string[] { "a", "b" };
         }
 
-        public override void CalcProcedure(float[] X, float[] P, ref float[] Y)
+        public override void CalcProcedure(double[] X, double[] P, ref double[] Y)
         {
             for (int i = 0; i < X.Length; i++)
             {
@@ -27,13 +27,13 @@ namespace FuncLib
             }
         }
 
-        public override float[] InitParameters(float[] X, float[] Y)
+        public override double[] InitParameters(double[] X, double[] Y)
         {
             CheckNumberOfPointsForInitialization(X);
 
-            float[] P = new float[2];
-            float[] rdy = new float[X.Length - 1];
-            float[] xx = new float[X.Length - 1];
+            double[] P = new double[2];
+            double[] rdy = new double[X.Length - 1];
+            double[] xx = new double[X.Length - 1];
 
 
             for (int i = 0; i < X.Length - 1; i++)
@@ -43,7 +43,7 @@ namespace FuncLib
             }
             FilterData(xx, rdy);
 
-            float[] Pln = LinearFit.LinearFitSolve(filteredX, filteredY, 3);
+            double[] Pln = LinearFit.LinearFitSolve(filteredX, filteredY, 3);
             P[0] = Pln[0];
             P[1] = Pln[1] / 2;
 

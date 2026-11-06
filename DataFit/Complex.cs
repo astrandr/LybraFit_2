@@ -152,10 +152,10 @@ namespace FFTLibrary
         // x and y are the real and imaginary arrays of 2^m points.
         // dir =  1 gives forward transform
         // dir = -1 gives reverse transform 
-        public static void FFT(short dir, int m, float[] x, float[] y)
+        public static void FFT(short dir, int m, double[] x, double[] y)
         {
             int n, i, i1, j, k, i2, l, l1, l2;
-            float c1, c2, tx, ty, t1, t2, u1, u2, z;
+            double c1, c2, tx, ty, t1, t2, u1, u2, z;
 
             // Calculate the number of points
 
@@ -221,12 +221,12 @@ namespace FFTLibrary
                     u1 = z;
                 }
 
-                c2 = (float)Math.Sqrt((1.0 - c1) / 2.0);
+                c2 = (double)Math.Sqrt((1.0 - c1) / 2.0);
 
                 if (dir == 1)
                     c2 = -c2;
 
-                c1 = (float)Math.Sqrt((1.0 + c1) / 2.0);
+                c1 = (double)Math.Sqrt((1.0 + c1) / 2.0);
             }
 
             // Scaling for forward transform

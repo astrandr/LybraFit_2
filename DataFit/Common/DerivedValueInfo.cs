@@ -24,9 +24,9 @@ namespace LybraFit.Common
 
         public string Name;
 
-        public float Value;
+        public double Value;
 
-        public float Sigma;
+        public double Sigma;
 
         public DerivedValueInfo()
         {
@@ -102,22 +102,22 @@ namespace LybraFit.Common
             return true;
         }
 
-        public void UpdateValue(float[] pv, float[] sigmas = null)
+        public void UpdateValue(double[] pv, double[] sigmas = null)
         {
             Value = CalcFunction.Calculate(0, pv);
-            float ds = 0;
+            double ds = 0;
 
             if (sigmas != null)
             {
                 for (int i = 0; i < sigmas.Length; i++)
                 {
                     pv[i] += sigmas[i];
-                    float dv = CalcFunction.Calculate(0, pv) - Value;
+                    double dv = CalcFunction.Calculate(0, pv) - Value;
                     pv[i] -= sigmas[i];
                     ds += dv * dv;
                 }
 
-                Sigma = (float)Math.Sqrt(ds);
+                Sigma = (double)Math.Sqrt(ds);
             }
             else
             {
@@ -129,8 +129,8 @@ namespace LybraFit.Common
         {
             Name = info.GetString("Name");
             mathExpression = info.GetString("MathExpression");
-            Value = (float)info.GetValue("Value", typeof(float));
-            Sigma = (float)info.GetValue("Sigma", typeof(float));
+            Value = (double)info.GetValue("Value", typeof(double));
+            Sigma = (double)info.GetValue("Sigma", typeof(double));
             PostSerializationProcess(context);
         }
 

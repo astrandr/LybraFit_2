@@ -78,8 +78,8 @@ namespace Test.Common
         }
         protected void VerifyCentered(Window parent)
         {
-            Assert.IsTrue(AreClose((float)window.Bounds.Left, (parent.Bounds.Left + parent.Bounds.Right) / 2 - (window.Bounds.Width) / 2), "Window is not centerd with respect to the parent");
-            Assert.IsTrue(AreClose((float)window.Bounds.Top, (parent.Bounds.Top + parent.Bounds.Bottom) / 2 - (window.Bounds.Height) / 2), "Window is not centerd with respect to the parent");
+            Assert.IsTrue(AreClose((double)window.Bounds.Left, (parent.Bounds.Left + parent.Bounds.Right) / 2 - (window.Bounds.Width) / 2), "Window is not centerd with respect to the parent");
+            Assert.IsTrue(AreClose((double)window.Bounds.Top, (parent.Bounds.Top + parent.Bounds.Bottom) / 2 - (window.Bounds.Height) / 2), "Window is not centerd with respect to the parent");
         }
     }
 }

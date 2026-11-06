@@ -19,7 +19,7 @@ namespace FuncLib
             this.parameters = new string[] { "a", "b" };
         }
 
-        public override void CalcProcedure(float[] X, float[] P, ref float[] Y)
+        public override void CalcProcedure(double[] X, double[] P, ref double[] Y)
         {
             for (int i = 0; i < X.Length; i++)
             {
@@ -27,16 +27,16 @@ namespace FuncLib
             }
         }
 
-        public override float[] InitParameters(float[] X, float[] Y)
+        public override double[] InitParameters(double[] X, double[] Y)
         {
             CheckNumberOfPointsForInitialization(X);
 
-            float[] P = new float[2];
+            double[] P = new double[2];
 
             if (X.Length > 2)
             {
-                List<float> ys = new List<float>();
-                List<float> xs = new List<float>();
+                List<double> ys = new List<double>();
+                List<double> xs = new List<double>();
                 for (int i = 0; i < X.Length; i++)
                 {
                     if (Y[i] != 0)
@@ -44,14 +44,14 @@ namespace FuncLib
                         ys.Add(Y[i]); xs.Add(X[i]);
                     }
                 }
-                float[] ry = new float[xs.Count];
+                double[] ry = new double[xs.Count];
                 for (int i = 0; i < xs.Count; i++)
                 {
                     ry[i] = 1 / ys[i];
                 }
                 FilterData(xs.ToArray(), ry);
 
-                float[] Pln = LinearFit.LinearFitSolveLine(filteredX, filteredY);
+                double[] Pln = LinearFit.LinearFitSolveLine(filteredX, filteredY);
                 P[0] = 1 / Pln[0];
                 P[1] = P[0] * Pln[1];
 

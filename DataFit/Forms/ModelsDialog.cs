@@ -402,8 +402,8 @@ namespace LybraFit.Forms
         private void UpdateModels()
         {
             Program.SaveUserFunctions();
-            float[] X = doc.X;
-            float[] Y = doc.Y;
+            double[] X = doc.X;
+            double[] Y = doc.Y;
             foreach (DataGridViewRow row in dataGridFitFunctions.Rows)
             {
                 if (row.IsNewRow) continue;
@@ -434,18 +434,10 @@ namespace LybraFit.Forms
                             LeastSquare.CalculateValuesDalegate calcFunc = new LeastSquare.CalculateValuesDalegate(modelFitInfo.ModelFunction.CalcProcedure);
                             int[] flagsArr = new int[modelFitInfo.LastFitParameters.Length]; for (int i = 0; i < flagsArr.Length; i++) { flagsArr[i] = i; };
                             LeastSquare ls = new LeastSquare(X, Y, modelFitInfo.LastFitParameters, new int[0], calcFunc, null);
-                            float eps = ls.CalculateStdError();
-                            float[] errY;
+                            double eps = ls.CalculateStdError();
+                            double[] errY;
                             ls.GetFitErrorAllParameters(0.01f, out modelFitInfo.SigmaParameters, out errY);
                             modelFitInfo.FitResultStdError = eps;
-                        }
-                        catch (InitializationException ine)
-                        {
-                            MessageBox.Show("Failed to initialize parameters for: \r\n" + modelFitInfo.ModelFunction.Name, "Error");
-                        }
-                        catch (InvalidDataForInitializationError ine)
-                        {
-                            MessageBox.Show("Failed to initialize parameters for: \r\n" + modelFitInfo.ModelFunction.Name, "Error");
                         }
                         catch (Exception)
                         {
@@ -480,7 +472,7 @@ namespace LybraFit.Forms
                         ModelFunction = function,
                         FitResultChiSquare = 0,
                         FitResultStdError = 0,
-                        LastFitParameters = new float[function.Parameters.Length]
+                        LastFitParameters = new double[function.Parameters.Length]
                     };
                     if (Program.UserModelsInitialParameter.ContainsKey(name))
                     {
@@ -493,8 +485,8 @@ namespace LybraFit.Forms
                     LeastSquare.CalculateValuesDalegate calcFunc = new LeastSquare.CalculateValuesDalegate(modelFitInfo.ModelFunction.CalcProcedure);
                     int[] flagsArr = new int[modelFitInfo.LastFitParameters.Length]; for (int i = 0; i < flagsArr.Length; i++) { flagsArr[i] = i; };
                     LeastSquare ls = new LeastSquare(X, Y, modelFitInfo.LastFitParameters, new int[0], calcFunc, null);
-                    float eps = ls.CalculateStdError();
-                    float[] errY;
+                    double eps = ls.CalculateStdError();
+                    double[] errY;
                     ls.GetFitErrorAllParameters(0.01f, out modelFitInfo.SigmaParameters, out errY);
                     modelFitInfo.FitResultStdError = eps;
                     doc.Models.Add(name, modelFitInfo);

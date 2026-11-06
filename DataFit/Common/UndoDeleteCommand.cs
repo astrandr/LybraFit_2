@@ -6,7 +6,7 @@ namespace LybraFit.Common
     public struct DeletedRow
     {
         public int index;
-        public float[] data;
+        public double[] data;
     }
 
     public class UndoDeleteCommand : Command

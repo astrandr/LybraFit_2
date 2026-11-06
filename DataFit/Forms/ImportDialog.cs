@@ -157,8 +157,8 @@ namespace LybraFit
             for (int i = 0; i < lines.Length; i++)
             {
                 string[] tokens = lines[i].Split(Document.StandardDelimiters, StringSplitOptions.RemoveEmptyEntries);
-                float r;
-                if (tokens.All(s => float.TryParse(s, out r)))
+                double r;
+                if (tokens.All(s => double.TryParse(s, out r)))
                 {
                     numHeaderLinesCount.Value = i;
                     return;

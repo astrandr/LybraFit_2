@@ -19,10 +19,10 @@ namespace LybraFit.Forms
             InitializeComponent();
         }
 
-        private bool VerifyParseNumber(TextBox textBox, ref float v)
+        private bool VerifyParseNumber(TextBox textBox, ref double v)
         {
             errorProvider.SetError((Control)textBox, "");
-            if (!float.TryParse(textBox.Text, out v))
+            if (!double.TryParse(textBox.Text, out v))
             {
                 errorProvider.SetError((Control)textBox, Constants.ERROR_INVALID_NUMBER);
                 textBox.Focus();
