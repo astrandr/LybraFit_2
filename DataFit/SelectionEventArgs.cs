@@ -9,6 +9,6 @@ namespace GraphControlLib
 {
     public class SelectionEventArgs :EventArgs
     {
-        public float MinX, MaxX, MinY, MaxY;
+        public double MinX, MaxX, MinY, MaxY;
     }
 }

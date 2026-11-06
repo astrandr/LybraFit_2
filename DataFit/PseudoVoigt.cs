@@ -31,36 +31,36 @@ namespace FuncLib
         {
             CheckNumberOfPointsForInitialization(X);
 
-            float[] PG = new float[3];
+            double[] PG = new double[3];
 
             //Init prameters of the Gaussian
-            float[] lny = new float[X.Length];
-            float k = 1;
+            double[] lny = new double[X.Length];
+            double k = 1;
             for (int i = 0; i < X.Length; i++)
             {
                 if (Y[i] < 0)
                 {
-                    lny[i] = (float)Math.Log(-Y[i]);
+                    lny[i] = (double)Math.Log(-Y[i]);
                     k = -1;
                 }
                 else
                 {
-                    lny[i] = (float)Math.Log(Y[i]);
+                    lny[i] = (double)Math.Log(Y[i]);
                 }
             }
 
             FilterData(X, lny);
 
-            float[] Pln = LinearFit.LinearFitSolve(filteredX, filteredY, 3);
+            double[] Pln = LinearFit.LinearFitSolve(filteredX, filteredY, 3);
 
-            PG[2] = (float)Math.Sqrt(-1.0f / 2 / Pln[2]);
+            PG[2] = (double)Math.Sqrt(-1.0f / 2 / Pln[2]);
             PG[1] = Pln[1] * PG[2] * PG[2];
-            PG[0] = (float)Math.Exp(Pln[0] + PG[1] * PG[1] / PG[2] / PG[2] / 2) * k;
+            PG[0] = (double)Math.Exp(Pln[0] + PG[1] * PG[1] / PG[2] / PG[2] / 2) * k;
 
 
             //Init parameters for the Lorentzian
-            float[] PL = new float[3];
-            float[] ry = new float[X.Length];
+            double[] PL = new double[3];
+            double[] ry = new double[X.Length];
 
 
             for (int i = 0; i < X.Length; i++)
@@ -74,9 +74,9 @@ namespace FuncLib
 
             PL[1] = -Pln[1] / 2 / Pln[2];
             PL[0] = 1 / (Pln[0] - PL[1] * PL[1] * Pln[2]);
-            PL[2] = (float)Math.Sqrt(1 / Pln[2] / PL[0]);
+            PL[2] = (double)Math.Sqrt(1 / Pln[2] / PL[0]);
 
-            float[] P = new float[6];
+            double[] P = new double[6];
 
             //Take half Gaussian and half Lorentzian
             P[0] = PG[0] / 2;

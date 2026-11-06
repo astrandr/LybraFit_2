@@ -24,8 +24,8 @@ namespace Test
         {
             string[] parametersNames = new string[] { "Param1", "Param2", "Param3" };
             string[] derivedValueNames = new string[] { "ValueName1", "ValueName2", "ValueName3" };
-            float[] values = new float[3] { 1, 2, 3 };
-            float[] derivedValues = new float[3] { 4, 5, 6 };
+            double[] values = new double[3] { 1, 2, 3 };
+            double[] derivedValues = new double[3] { 4, 5, 6 };
             ModelLog log = new ModelLog("test log", parametersNames, derivedValueNames);
             Assert.AreEqual("test log", log.Name, "Invalid log name");
             Assert.AreEqual(0, log.Records.Count, "Invalid number of records");
@@ -45,8 +45,8 @@ namespace Test
         {
             string[] parametersNames = new string[] { "Param1", "Param2", "Param3" };
             string[] derivedValueNames = new string[] { "ValueName1", "ValueName2", "ValueName3" };
-            float[] values = new float[3] { 1, 2, 3 };
-            float[] derivedValues = new float[3] { 4, 5, 6 };
+            double[] values = new double[3] { 1, 2, 3 };
+            double[] derivedValues = new double[3] { 4, 5, 6 };
             ModelLog log = new ModelLog("test log", parametersNames, derivedValueNames);
             log.AddRecord("Record1", values, derivedValues);
 
@@ -71,8 +71,8 @@ namespace Test
         {
             string[] parametersNames = new string[] { "Param1", "Param2", "Param3" };
             string[] derivedValueNames = new string[] { "ValueName1", "ValueName2", "ValueName3" };
-            float[] values = new float[3] { 1, 2, 3 };
-            float[] derivedValues = new float[3] { 4, 5, 6 };
+            double[] values = new double[3] { 1, 2, 3 };
+            double[] derivedValues = new double[3] { 4, 5, 6 };
             ModelLog log = new ModelLog("test log", parametersNames, derivedValueNames);
             log.AddRecord("Record1", values, derivedValues);
 
@@ -99,12 +99,12 @@ namespace Test
             Assert.AreEqual(modelFitInfo.DerivedValues.Count, modelFitInfoRead.DerivedValues.Count, "Number of derived values not as expected");
             Assert.AreEqual(modelFitInfo.DerivedValues[0].Name, modelFitInfoRead.DerivedValues[0].Name, "Derived value name not as expected");
 
-            float[] result = new float[3];
+            double[] result = new double[3];
 
             modelFitInfoRead.ModelFunction = UserFunction.Create(modelFitInfoRead.ModelName, modelFitInfoRead.ModelFunction.Description, out compilerErrors);
             Assert.IsNotNull(modelFitInfoRead.ModelFunction, "Cannot recreate model function");
             Assert.IsTrue(string.IsNullOrEmpty(compilerErrors));
-            modelFitInfoRead.ModelFunction.CalcProcedure(new float[] { 1, 2, 3 }, new float[] { 1, 2 }, ref result);
+            modelFitInfoRead.ModelFunction.CalcProcedure(new double[] { 1, 2, 3 }, new double[] { 1, 2 }, ref result);
             Assert.AreEqual(4, result[0], "Result not calculated as expected. UserFunction is wrong");
             Assert.AreEqual(6, result[1], "Result not calculated as expected. UserFunction is wrong");
             Assert.AreEqual(8, result[2], "Result not calculated as expected. UserFunction is wrong");
@@ -118,8 +118,8 @@ namespace Test
         {
             string[] parametersNames = new string[] { "Param1", "Param2", "Param3" };
             string[] derivedValueNames = new string[] { "ValueName1", "ValueName2", "ValueName3" };
-            float[] values = new float[3] { 1, 2, 3 };
-            float[] derivedValues = new float[3] { 4, 5, 6 };
+            double[] values = new double[3] { 1, 2, 3 };
+            double[] derivedValues = new double[3] { 4, 5, 6 };
             ModelLog log = new ModelLog("test log", parametersNames, derivedValueNames);
             log.AddRecord("Record1", values, derivedValues);
 
@@ -179,7 +179,7 @@ namespace Test
             DerivedValueInfo derivedValueRead = (DerivedValueInfo)formatter.Deserialize(f);
             f.Close();
 
-            derivedValueRead.UpdateValue(new float[] { 1, 2 });
+            derivedValueRead.UpdateValue(new double[] { 1, 2 });
             Assert.AreEqual(0.5f, derivedValueRead.Value, "Result not calculated as expected. UserFunction is wrong");
         }
 
@@ -207,7 +207,7 @@ namespace Test
             //Verify the calcfunction can be used
             foreach (var dv in derivedValuesRead)
             {
-                dv.UpdateValue(new float[] { 1, 2 });
+                dv.UpdateValue(new double[] { 1, 2 });
                 Assert.AreEqual(0.5f, dv.Value, "Result not calculated as expected. UserFunction is wrong");
             }
         }
@@ -221,8 +221,8 @@ namespace Test
         {
             string[] parametersNames = new string[] { "Param1", "Param2", "Param3" };
             string[] derivedValueNames = new string[] { "ValueName1", "ValueName2", "ValueName3" };
-            float[] values = new float[3] { 1, 2, 3 };
-            float[] derivedValues = new float[3] { 4, 5, 6 };
+            double[] values = new double[3] { 1, 2, 3 };
+            double[] derivedValues = new double[3] { 4, 5, 6 };
             ModelLog log = new ModelLog("test log", parametersNames, derivedValueNames);
             log.AddRecord("Record1", values, derivedValues);
 
@@ -251,11 +251,11 @@ namespace Test
             Assert.AreEqual(modelFitInfo.DerivedValues.Count, modelFitInfoRead.DerivedValues.Count, "Number of derived values not as expected");
             Assert.AreEqual(modelFitInfo.DerivedValues[0].Name, modelFitInfoRead.DerivedValues[0].Name, "Derived value name not as expected");
 
-            float[] result = new float[3];
+            double[] result = new double[3];
 
             Assert.IsNotNull(modelFitInfoRead.ModelFunction, "Model function is not created");
 
-            modelFitInfoRead.ModelFunction.CalcProcedure(new float[] { 1, 2, 3 }, new float[] { 1, 2 }, ref result);
+            modelFitInfoRead.ModelFunction.CalcProcedure(new double[] { 1, 2, 3 }, new double[] { 1, 2 }, ref result);
             Assert.AreEqual(3, result[0], "Result not calculated as expected. UserFunction is wrong");
             Assert.AreEqual(4, result[1], "Result not calculated as expected. UserFunction is wrong");
             Assert.AreEqual(5, result[2], "Result not calculated as expected. UserFunction is wrong");
@@ -264,7 +264,7 @@ namespace Test
             //Verify the calcfunction can be used
             foreach (var dv in modelFitInfo.DerivedValues)
             {
-                dv.UpdateValue(new float[] { 1, 2 });
+                dv.UpdateValue(new double[] { 1, 2 });
                 Assert.AreEqual(0.5f, dv.Value, "Result not calculated as expected. UserFunction is wrong");
             }
         }

@@ -21,12 +21,12 @@ namespace MathLib
         /// <summary>
         /// Optimize - refines a,b and c parameters to least square fit of provided data X and Y
         /// </summary>
-        /// <param name="X">X data float[]</param>
-        /// <param name="Y">Y data float[]</param>
+        /// <param name="X">X data double[]</param>
+        /// <param name="Y">Y data double[]</param>
         /// <param name="a">initial and output value of 'a' parameter</param>
         /// <param name="b">initial and output value of 'b' parameter</param>
         /// <param name="c">initial and output value of 'c' parameter</param>
-        public static void Optimize(double[] X, double[] Y, ref double a, ref double b, ref double c, float dampingFactor = 1)
+        public static void Optimize(double[] X, double[] Y, ref double a, ref double b, ref double c, double dampingFactor = 1)
         {
             double[] P = new double[] { a, b, c };
             LeastSquare ls = new LeastSquare(

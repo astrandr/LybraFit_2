@@ -117,7 +117,7 @@ namespace LybraFit.Common
                     ds += dv * dv;
                 }
 
-                Sigma = (float)Math.Sqrt(ds);
+                Sigma = (double)Math.Sqrt(ds);
             }
             else
             {
@@ -129,8 +129,8 @@ namespace LybraFit.Common
         {
             Name = info.GetString("Name");
             mathExpression = info.GetString("MathExpression");
-            Value = (float)info.GetValue("Value", typeof(float));
-            Sigma = (float)info.GetValue("Sigma", typeof(float));
+            Value = (double)info.GetValue("Value", typeof(double));
+            Sigma = (double)info.GetValue("Sigma", typeof(double));
             PostSerializationProcess(context);
         }
 

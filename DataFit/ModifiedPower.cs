@@ -31,33 +31,33 @@ namespace FuncLib
         {
             CheckNumberOfPointsForInitialization(X);
 
-            float[] P = new float[2];
+            double[] P = new double[2];
 
-            float[] lny = new float[X.Length];
+            double[] lny = new double[X.Length];
 
             if (X.Length > 2)
             {
-                float k = 1;
+                double k = 1;
 
                 for (int i = 0; i < X.Length; i++)
                 {
                     if (Y[i] < 0)
                     {
                         k = -1;
-                        lny[i] = (float)Math.Log(-Y[i]);
+                        lny[i] = (double)Math.Log(-Y[i]);
                     }
                     else
                     {
-                        lny[i] = (float)Math.Log(Y[i]);
+                        lny[i] = (double)Math.Log(Y[i]);
                     }
                 }
 
                 FilterData(X, lny);
 
-                float[] Pln = LinearFit.LinearFitSolveLine(filteredX, filteredY);
+                double[] Pln = LinearFit.LinearFitSolveLine(filteredX, filteredY);
 
-                P[0] = (float)Math.Exp(Pln[0])*k;
-                P[1] = (float)Math.Exp(Pln[1]);
+                P[0] = (double)Math.Exp(Pln[0])*k;
+                P[1] = (double)Math.Exp(Pln[1]);
             }
 
             return P;

@@ -30,10 +30,10 @@ namespace FuncLib
         {
             CheckNumberOfPointsForInitialization(X);
 
-            float[] P = new float[2];
+            double[] P = new double[2];
 
-            float[] ry = new float[X.Length];
-            float[] dry = new float[X.Length - 1];
+            double[] ry = new double[X.Length];
+            double[] dry = new double[X.Length - 1];
 
             if (X.Length > 2)
             {
@@ -42,7 +42,7 @@ namespace FuncLib
                     ry[i] = 1 / Y[i]; //TODO What if Y[i] = 0
                 }
 
-                float b = 0;
+                double b = 0;
                 for (int i = 1; i < X.Length - 1; i++)
                 {
                     dry[i] = (ry[i + 1] - ry[i]) / (X[i + 1] - X[i]);
@@ -50,10 +50,10 @@ namespace FuncLib
                 }
                 b /= (X.Length - 1);
 
-                float a = 0;
+                double a = 0;
                 for (int i = 1; i < X.Length - 1; i++)
                 {
-                    a += (ry[i] - b * (float)Math.Log(X[i]));
+                    a += (ry[i] - b * (double)Math.Log(X[i]));
                 }
                 a /= (X.Length - 1);
 

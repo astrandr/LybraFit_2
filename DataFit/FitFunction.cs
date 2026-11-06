@@ -11,7 +11,7 @@ namespace FuncLib
     [Serializable]
     public class FitFunction : BaseFunction
     {
-        public static float PI = (float)Math.PI;
+        public static double PI = (double)Math.PI;
 
         protected double[] filteredX, filteredY;
 
@@ -34,7 +34,7 @@ namespace FuncLib
 
         }
 
-        protected float Abs(float x) { return (float)Math.Abs(x); }
+        protected double Abs(double x) { return (double)Math.Abs(x); }
 
         public bool CanInitParameters { get { return canInitParameters; } }
 

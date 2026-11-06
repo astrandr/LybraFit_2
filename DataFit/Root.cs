@@ -30,21 +30,21 @@ namespace FuncLib
         {
             CheckNumberOfPointsForInitialization(X);
 
-            float[] P = new float[2];
+            double[] P = new double[2];
 
-            float[] lny = new float[X.Length];
-            float[] xx = new float[X.Length];
+            double[] lny = new double[X.Length];
+            double[] xx = new double[X.Length];
 
             for (int i = 0; i < X.Length; i++)
             {
-                lny[i] = (float)Math.Log(Y[i]); //TODO What if Y[i] <= 0
+                lny[i] = (double)Math.Log(Y[i]); //TODO What if Y[i] <= 0
                 xx[i] = 1 / X[i]; //TODO what X is 0
             }
 
-            float[] pln = new LinearFunction().InitParameters(xx, lny);
+            double[] pln = new LinearFunction().InitParameters(xx, lny);
 
-            P[0] = (float)Math.Exp(pln[0]);
-            P[1] = (float)Math.Exp(pln[1]);
+            P[0] = (double)Math.Exp(pln[0]);
+            P[1] = (double)Math.Exp(pln[1]);
 
             return P;
         }

@@ -77,8 +77,8 @@ namespace LybraFit.Forms
 
         private void txtMin_Validating(object sender, CancelEventArgs e)
         {
-            float v = 0;
-            if (float.TryParse(txtMin.Text, out v))
+            double v = 0;
+            if (double.TryParse(txtMin.Text, out v))
             {
                 currentFilter.Min = v;
                 errorProvider.SetError((Control)txtMin, "");
@@ -94,8 +94,8 @@ namespace LybraFit.Forms
 
         private void txtMax_Validating(object sender, CancelEventArgs e)
         {
-            float v = 0;
-            if (float.TryParse(txtMax.Text, out v))
+            double v = 0;
+            if (double.TryParse(txtMax.Text, out v))
             {
                 currentFilter.Max = v;
                 errorProvider.SetError((Control)txtMax, "");
@@ -159,8 +159,8 @@ namespace LybraFit.Forms
             {
                 if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
                 {
-                    float v = 0;
-                    if (float.TryParse(txtMin.Text, out v))
+                    double v = 0;
+                    if (double.TryParse(txtMin.Text, out v))
                     {
                         currentFilter.Min = v;
                         errorProvider.SetError((Control)txtMin, "");
@@ -173,7 +173,7 @@ namespace LybraFit.Forms
                         return;
                     }
 
-                    if (float.TryParse(txtMax.Text, out v))
+                    if (double.TryParse(txtMax.Text, out v))
                     {
                         currentFilter.Max = v;
                         errorProvider.SetError((Control)txtMax, "");

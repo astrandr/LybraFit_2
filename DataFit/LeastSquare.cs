@@ -22,10 +22,10 @@ namespace MathLib
         private int[] paramToVary = null;
         private int nPoints = 0;
         private int nParams = 0;
-        private float eps = 0;
-        private float lastStdError = 0;
+        private double eps = 0;
+        private double lastStdError = 0;
         private int lastIterations = 0;
-        private float lastChiSquare = 0;
+        private double lastChiSquare = 0;
         private CalculateValuesDalegate calcProcedure = null;
         private NewApproximationResultCallback resultCallback = null;
         #endregion
@@ -35,7 +35,7 @@ namespace MathLib
         /// <summary>
         /// LastStdError - returns the Std Error for the last fit
         /// </summary>
-        public float LastStdError
+        public double LastStdError
         {
             get { return lastStdError; }
         }
@@ -43,7 +43,7 @@ namespace MathLib
         /// <summary>
         /// LastIterations - returns the number of iterations for the last optimizaiton process
         /// </summary>
-        public float LastIterations
+        public double LastIterations
         {
             get { return lastIterations; }
         }
@@ -51,7 +51,7 @@ namespace MathLib
         /// <summary>
         /// LastChiSquare - returns the Chi-squared test for the last optimization process
         /// </summary>
-        public float LastChiSquare
+        public double LastChiSquare
         {
             get { return lastChiSquare; }
         }
@@ -72,7 +72,7 @@ namespace MathLib
         /// </summary>
         /// <param name="eps">last iteration error</param>
         /// <param name="stop">set to true if process should stop</param>
-        public delegate void NewApproximationResultCallback(float eps, ref bool stop, LeastSquare leastSquareObject = null);
+        public delegate void NewApproximationResultCallback(double eps, ref bool stop, LeastSquare leastSquareObject = null);
 
         /// <summary>
         /// LeastSquare - finds best least square approximation for a function to provided data
@@ -141,18 +141,18 @@ namespace MathLib
             return eps;
         }
 
-        public float CalculateChiSquared()
+        public double CalculateChiSquared()
         {
-            float[] newY = new float[nPoints];
-            float[] deltaY = new float[nPoints];
+            double[] newY = new double[nPoints];
+            double[] deltaY = new double[nPoints];
             calcProcedure(dataX, P, ref newY);
-            float eps = 0;
+            double eps = 0;
             for (int i = 0; i < nPoints; i++)
             {
                 deltaY[i] = dataY[i] - newY[i];
                 if (dataY[i] != 0)
                 {
-                    eps = eps + deltaY[i] * deltaY[i] / (float)Math.Abs(dataY[i]);
+                    eps = eps + deltaY[i] * deltaY[i] / (double)Math.Abs(dataY[i]);
                 }
             }
 
@@ -165,25 +165,25 @@ namespace MathLib
         /// <returns></returns>
         public void CalculateFitGoodness()
         {
-            float[] newY = new float[nPoints];
-            float[] deltaY = new float[nPoints];
+            double[] newY = new double[nPoints];
+            double[] deltaY = new double[nPoints];
             calcProcedure(dataX, P, ref newY);
             lastChiSquare = 0; lastStdError = 0; int n = 0;
             for (int i = 0; i < nPoints; i++)
             {
-                float delta = dataY[i] - newY[i];
+                double delta = dataY[i] - newY[i];
                 if (dataY[i] != 0)
                 {
-                    lastChiSquare = lastChiSquare + delta * delta / (float)Math.Abs(dataY[i]);
+                    lastChiSquare = lastChiSquare + delta * delta / (double)Math.Abs(dataY[i]);
                     n++;
                 }
 
                 lastStdError = lastStdError + delta * delta;
             }
 
-            lastStdError = (nPoints - paramToVary.Length) > 0 ? (float)(lastStdError / (nPoints - paramToVary.Length)) : lastStdError;
+            lastStdError = (nPoints - paramToVary.Length) > 0 ? (double)(lastStdError / (nPoints - paramToVary.Length)) : lastStdError;
 
-            lastStdError = (float)Math.Sqrt(lastStdError);
+            lastStdError = (double)Math.Sqrt(lastStdError);
 
             lastChiSquare = lastChiSquare / n;
         }
@@ -193,28 +193,28 @@ namespace MathLib
         /// CalculateStdError - calculates standard error
         /// </summary>
         /// <returns></returns>
-        public float CalculateStdError()
+        public double CalculateStdError()
         {
-            return (float)Math.Sqrt(CalculateRSS());
+            return (double)Math.Sqrt(CalculateRSS());
         }
 
         /// <summary>
         /// CalculateRSS - calculates standard error
         /// </summary>
         /// <returns></returns>
-        public float CalculateRSS()
+        public double CalculateRSS()
         {
-            float[] newY = new float[nPoints];
-            float[] deltaY = new float[nPoints];
+            double[] newY = new double[nPoints];
+            double[] deltaY = new double[nPoints];
             calcProcedure(dataX, P, ref newY);
-            float eps = 0;
+            double eps = 0;
             for (int i = 0; i < nPoints; i++)
             {
                 deltaY[i] = dataY[i] - newY[i];
-                eps = eps + (float)(deltaY[i] * deltaY[i]);
+                eps = eps + (double)(deltaY[i] * deltaY[i]);
             }
 
-            return (nPoints - paramToVary.Length) > 0 ? (float)(eps / (nPoints - paramToVary.Length)) : eps;
+            return (nPoints - paramToVary.Length) > 0 ? (double)(eps / (nPoints - paramToVary.Length)) : eps;
         }
 
         /// <summary>
@@ -224,23 +224,23 @@ namespace MathLib
         /// <param name="maxIterations">max number of iterations</param>
         /// <param name="dampingFactor">Marquardt factor</param>
         /// <returns></returns>
-        public float Optimize(float paramDerivativeDelta = 0.01f, int maxIterations = 10, float dampingFactor = 0)
+        public double Optimize(double paramDerivativeDelta = 0.01f, int maxIterations = 10, double dampingFactor = 0)
         {
             Matrix YP = new Matrix(nPoints, nParams);
             Matrix J = new Matrix(nParams, nParams);
 
             Matrix DY = new Matrix(nParams, 1);
 
-            float[] newY = new float[nPoints];
-            float[] newY2 = new float[nPoints];
-            float[] deltaY = new float[nPoints];
-            float[] deltaP = new float[nParams];
+            double[] newY = new double[nPoints];
+            double[] newY2 = new double[nPoints];
+            double[] deltaY = new double[nPoints];
+            double[] deltaP = new double[nParams];
 
             bool stop = false;
             int iter = 0;
-            float lastEps = CalculateError();
+            double lastEps = CalculateError();
 
-            float[] bestParameters = new float[P.Length];
+            double[] bestParameters = new double[P.Length];
             P.CopyTo(bestParameters, 0);
 
             for (int j = 0; j < nParams; j++)
@@ -264,7 +264,7 @@ namespace MathLib
 
                     P[paramToVary[j]] = P[paramToVary[j]] + deltaP[j];
 
-                    hasInfinity = newY.Where(y => float.IsNaN(y) || float.IsInfinity(y)).Any() || newY2.Where(y => float.IsNaN(y) || float.IsInfinity(y)).Any();
+                    hasInfinity = newY.Where(y => double.IsNaN(y) || double.IsInfinity(y)).Any() || newY2.Where(y => double.IsNaN(y) || double.IsInfinity(y)).Any();
                     if (hasInfinity) deltaP[j] /= 10;
                     if (deltaP[j] == 0) return lastStdError = CalculateStdError(); //Cannot find proper delta for the parameter, exit
 
@@ -345,7 +345,7 @@ namespace MathLib
                     }
 
                     //Matrix newP = Matrix.Product(JInv, DY);//Old version
-                    float[] diffP = Matrix.SolveLinearSystem(J, DY);
+                    double[] diffP = Matrix.SolveLinearSystem(J, DY);
                     for (int k = 0; k < nParams; k++)
                     {
                         //P[paramToVary[k]] = P[paramToVary[k]] + newP.Values[0][k];
@@ -358,7 +358,7 @@ namespace MathLib
                     if (resultCallback != null) resultCallback(eps, ref stop, this);
                     iter++;
 
-                    if (float.IsNaN(eps) || eps > lastEps)
+                    if (double.IsNaN(eps) || eps > lastEps)
                     {
                         //Revert parameters and find the minima along the direction
                         for (int k = 0; k < nParams; k++)
@@ -366,13 +366,13 @@ namespace MathLib
                             P[paramToVary[k]] = P[paramToVary[k]] - diffP[k];
                         }
                         eps = CalculateError();
-                        float[] oldP = new float[P.Length];
+                        double[] oldP = new double[P.Length];
                         Array.Copy(P, oldP, P.Length);
-                        float stepT = 0.1f;
-                        float t = 0.0f;
+                        double stepT = 0.1f;
+                        double t = 0.0f;
                         do
                         {
-                            float prevEps;
+                            double prevEps;
                             do
                             {
                                 prevEps = eps;
@@ -412,7 +412,7 @@ namespace MathLib
 
                 } while (!stop && iter < maxIterations);
             }
-            catch (Exception es)
+            catch
             {
 
             }
@@ -431,7 +431,7 @@ namespace MathLib
         /// <param name="paramDerivativeDelta"></param>
         /// <param name="maxIterations"></param>
         /// <param name="dampingFactor"></param>
-        public void OptimizeAsync(float paramDerivativeDelta = 0.01f, int maxIterations = 10, float dampingFactor = 0)
+        public void OptimizeAsync(double paramDerivativeDelta = 0.01f, int maxIterations = 10, double dampingFactor = 0)
         {
             Task.Run(() => Optimize(paramDerivativeDelta, maxIterations, dampingFactor));
         }
@@ -559,12 +559,12 @@ namespace MathLib
             //Inverse of the Jacobian
             JInv = Matrix.Inverse(J);
 
-            float rss = CalculateRSS();
+            double rss = CalculateRSS();
 
             //Fill the parameters error
             for (int i = 0; i < paramToVary.Length; i++)
             {
-                sigmaParameters[paramToVary[i]] = (float)Math.Sqrt(Math.Abs(JInv.Values[i][i] * rss));
+                sigmaParameters[paramToVary[i]] = (double)Math.Sqrt(Math.Abs(JInv.Values[i][i] * rss));
             }
 
             for (int i = 0; i < nPoints; i++)
@@ -574,7 +574,7 @@ namespace MathLib
                     sigmaY[i] += (YP.Values[i][j] * YP.Values[i][j] * sigmaParameters[paramToVary[j]] * sigmaParameters[paramToVary[j]]);
                 }
 
-                sigmaY[i] = (float)Math.Sqrt(sigmaY[i]);
+                sigmaY[i] = (double)Math.Sqrt(sigmaY[i]);
             }
 
             CalculateFitGoodness();
@@ -652,13 +652,13 @@ namespace MathLib
                                 J.Values[j][k] += (YP.Values[i][j] * YP.Values[i][k]);
                             }
 
-                            if (float.IsNegativeInfinity(J.Values[j][k]))
+                            if (double.IsNegativeInfinity(J.Values[j][k]))
                             {
-                                J.Values[j][k] = float.MinValue;
+                                J.Values[j][k] = double.MinValue;
                             }
-                            else if (float.IsPositiveInfinity(J.Values[j][k]))
+                            else if (double.IsPositiveInfinity(J.Values[j][k]))
                             {
-                                J.Values[j][k] = float.MaxValue;
+                                J.Values[j][k] = double.MaxValue;
                             }
 
                         }
@@ -666,14 +666,14 @@ namespace MathLib
                 }
             }
 
-            float rss = CalculateRSS();
+            double rss = CalculateRSS();
 
             //Inverse of the Jacobian
             JInv = Matrix.Inverse(J);
             //Fill the parameters error
             for (int i = 0; i < nParams; i++)
             {
-                sigmaParameters[i] = (float)Math.Sqrt(Math.Abs(JInv.Values[i][i] * rss));
+                sigmaParameters[i] = (double)Math.Sqrt(Math.Abs(JInv.Values[i][i] * rss));
             }
 
             for (int i = 0; i < nPoints; i++)
@@ -683,7 +683,7 @@ namespace MathLib
                     sigmaY[i] += (YP.Values[i][j] * YP.Values[i][j] * sigmaParameters[j] * sigmaParameters[j]);
                 }
 
-                sigmaY[i] = (float)Math.Sqrt(sigmaY[i]);
+                sigmaY[i] = (double)Math.Sqrt(sigmaY[i]);
             }
         }
 

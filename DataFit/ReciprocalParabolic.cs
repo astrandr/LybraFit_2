@@ -30,9 +30,9 @@ namespace FuncLib
         {
             CheckNumberOfPointsForInitialization(X);
 
-            float[] P = new float[3];
+            double[] P = new double[3];
 
-            float[] ry = new float[X.Length];
+            double[] ry = new double[X.Length];
 
 
             for (int i = 0; i < X.Length; i++)

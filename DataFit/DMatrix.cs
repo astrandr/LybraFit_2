@@ -185,7 +185,7 @@ namespace MathLib
         }
 
         /// <summary>
-        /// Subtract float operator
+        /// Subtract double operator
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
@@ -207,7 +207,7 @@ namespace MathLib
 
 
         /// <summary>
-        /// Add float operator
+        /// Add double operator
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
@@ -230,7 +230,7 @@ namespace MathLib
 
 
         /// <summary>
-        /// Multiply with float operator
+        /// Multiply with double operator
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
@@ -359,7 +359,7 @@ namespace MathLib
                             throw new System.InvalidOperationException("No inverse matrix exists. Zeros raw");
                         }
                     }
-                    float t = -(float)(m.Values[i][k] / m.Values[k][k]);
+                    double t = -(double)(m.Values[i][k] / m.Values[k][k]);
                     for (int j = 0; j < size; j++)
                     {
                         m.Values[i][j] = m.Values[i][j] + t * m.Values[k][j];
@@ -401,7 +401,7 @@ namespace MathLib
                             throw new System.InvalidOperationException("No inverse matrix exists. Zeros raw");
                         }
                     }
-                    float t = -(float)(m.Values[i][k] / m.Values[k][k]);
+                    double t = -(double)(m.Values[i][k] / m.Values[k][k]);
                     for (int j = 0; j < size; j++)
                     {
                         m.Values[i][j] = m.Values[i][j] + t * m.Values[k][j];
@@ -475,7 +475,7 @@ namespace MathLib
 
                 for (int i = k + 1; i < size; i++)
                 {
-                    float t = -(float)(m.Values[i][k] / m.Values[k][k]);
+                    double t = -(double)(m.Values[i][k] / m.Values[k][k]);
                     for (int j = 0; j < size; j++)
                     {
                         m.Values[i][j] = m.Values[i][j] + t * m.Values[k][j];
@@ -494,7 +494,7 @@ namespace MathLib
 
                 for (int i = k - 1; i >= 0; i--)
                 {
-                    float t = -(float)(m.Values[i][k] / m.Values[k][k]);
+                    double t = -(double)(m.Values[i][k] / m.Values[k][k]);
                     for (int j = 0; j < size; j++)
                     {
                         m.Values[i][j] = m.Values[i][j] + t * m.Values[k][j];

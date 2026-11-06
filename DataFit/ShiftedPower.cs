@@ -30,27 +30,27 @@ namespace FuncLib
         {
             CheckNumberOfPointsForInitialization(X);
 
-            float[] P = new float[3];
+            double[] P = new double[3];
 
-            float[] lny = new float[X.Length];
-            float[] rdlny = new float[X.Length - 1];
-            float[] xx = new float[X.Length - 1];
-            float a = 0, b, c;
+            double[] lny = new double[X.Length];
+            double[] rdlny = new double[X.Length - 1];
+            double[] xx = new double[X.Length - 1];
+            double a = 0, b, c;
 
             if (X.Length > 2)
             {
-                float k = 1;
+                double k = 1;
 
                 for (int i = 0; i < X.Length; i++)
                 {
                     if (Y[i] < 0)
                     {
                         k = -1;
-                        lny[i] = (float)Math.Log(-Y[i]);
+                        lny[i] = (double)Math.Log(-Y[i]);
                     }
                     else
                     {
-                        lny[i] = (float)Math.Log(Y[i]);
+                        lny[i] = (double)Math.Log(Y[i]);
                     }
                 }
 
@@ -60,13 +60,13 @@ namespace FuncLib
                     xx[i] = (X[i + 1] + X[i]) / 2;
                 }
 
-                float[] pln = new LinearFunction().InitParameters(xx, rdlny);
+                double[] pln = new LinearFunction().InitParameters(xx, rdlny);
                 c = 1 / pln[1];
                 b = -c * pln[0];
 
                 for (int i = 0; i < X.Length; i++)
                 {
-                    a += (Y[i] / (float)Math.Pow(X[i] - b, c));
+                    a += (Y[i] / (double)Math.Pow(X[i] - b, c));
                 }
                 a /= X.Length;
 

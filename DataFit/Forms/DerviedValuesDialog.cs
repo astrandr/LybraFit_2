@@ -34,7 +34,7 @@ namespace LybraFit.Forms
             return p;
         }
 
-        public new DialogResult ShowDialog(string modelName, Document doc, Control parent = null)
+        public DialogResult ShowDialog(string modelName, Document doc, Control parent = null)
         {
             this.doc = doc;
             this.modelName = modelName;

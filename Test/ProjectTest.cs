@@ -27,10 +27,10 @@ namespace Test
             project.DataYName = "Y1";
             project.ErrDataName = "Err1";
 
-            project.Data = new List<float[]>();
-            project.Data.Add(new float[] { 1, 1, 0, 0, 0 });
-            project.Data.Add(new float[] { 2, 1.2f, 0, 1, 0 });
-            project.Data.Add(new float[] { 3, 1.3f, 0, 2, 0 });
+            project.Data = new List<double[]>();
+            project.Data.Add(new double[] { 1, 1, 0, 0, 0 });
+            project.Data.Add(new double[] { 2, 1.2f, 0, 1, 0 });
+            project.Data.Add(new double[] { 3, 1.3f, 0, 2, 0 });
 
             project.GridColumnSettings = new ColumnSettings[]{
                                                                 new ColumnSettings(){ Name = "TX1", Alignment="Center", CustomFormat="", Format="Numeric", Digits=1,AutoWidth=true, TableFont = new Font("Arial", 9)},
@@ -109,7 +109,7 @@ namespace Test
             derivedValue.Name = "Value1";
             derivedValue.Value = 3;
             derivedValue.SetCalcFunction("A+2", out compileErrors);
-            derivedValue.UpdateValue(new float[] { 2 });
+            derivedValue.UpdateValue(new double[] { 2 });
             Assert.AreEqual(4, derivedValue.Value, "Derived fvalu is not correctly calculated");
             derivedValues.Add(derivedValue);
             project.Models = new ModelFitInfo[1];
@@ -121,8 +121,8 @@ namespace Test
                 ValueNames = new string[] { "Val1", "Val2" },
                 Records = new List<LogRecord>()
                                                     {
-                                                        new LogRecord(){Key = "Record1", StdError=0.1f,Values= new float[]{ 1.0f, 2.0f}},
-                                                        new LogRecord(){Key = "Record2", StdError=0.1f,Values= new float[]{ 1.1f, 2.3f}},
+                                                        new LogRecord(){Key = "Record1", StdError=0.1f,Values= new double[]{ 1.0f, 2.0f}},
+                                                        new LogRecord(){Key = "Record2", StdError=0.1f,Values= new double[]{ 1.1f, 2.3f}},
                                                     }
             };
 
@@ -140,10 +140,10 @@ namespace Test
             Assert.AreEqual(project.Models[0].DerivedValues[0].Value, projectRead.Models[0].DerivedValues[0].Value, "Derived value not as expected");
 
             //Verify model function and derived value functions can be used
-            float[] result = new float[1];
-            projectRead.Models[0].ModelFunction.CalcProcedure(new float[] { 2 }, new float[1] { 2 }, ref result);
+            double[] result = new double[1];
+            projectRead.Models[0].ModelFunction.CalcProcedure(new double[] { 2 }, new double[1] { 2 }, ref result);
             Assert.AreEqual(6, result[0], "Model function does not calculate properly");
-            projectRead.Models[0].DerivedValues[0].UpdateValue(new float[] { 2 });
+            projectRead.Models[0].DerivedValues[0].UpdateValue(new double[] { 2 });
             Assert.AreEqual(4, projectRead.Models[0].DerivedValues[0].Value, "Derived value is not correctly calcualted");
 
             Assert.IsNotNull(projectRead.Models[0].Log, "Models log is null");

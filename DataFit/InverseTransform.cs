@@ -20,21 +20,21 @@ namespace FuncLib
         /// <param name="stepY"></param>
         /// <param name="eps"></param>
         /// <returns></returns>
-        public static bool InverseData(ref float[] X, ref float[] Y, ref float[] Err, UserFunction function, float minY, float maxY, float stepY, float eps)
+        public static bool InverseData(ref double[] X, ref double[] Y, ref double[] Err, UserFunction function, double minY, double maxY, double stepY, double eps)
         {
             bool success = false;
-            float[] P = new float[0];
+            double[] P = new double[0];
             int length = (int)((maxY - minY) / stepY);
-            float y = (int)(minY / stepY) * stepY;
-            float x = 0;
-            float[] newX = new float[length];
-            float[] newY = new float[length];
-            float[] newErr = new float[length];
+            double y = (int)(minY / stepY) * stepY;
+            double x = 0;
+            double[] newX = new double[length];
+            double[] newY = new double[length];
+            double[] newErr = new double[length];
             for (int i = 0; i < length; i++)
             {
                 int j = 0;
 
-                float loX = 0, hiX = 0, loY = 0, hiY = 0;
+                double loX = 0, hiX = 0, loY = 0, hiY = 0;
                 for (j = 0; j < Y.Length-1; j++)
                 {
                     if (Y[j + 1] >= Y[j])
@@ -56,7 +56,7 @@ namespace FuncLib
                     }
                 }
 
-                float xn, yn;
+                double xn, yn;
                 do{
                 xn = (loX + hiX) / 2;
                 yn = function.Calculate(xn, P);

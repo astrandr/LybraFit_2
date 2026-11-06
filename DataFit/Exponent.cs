@@ -57,17 +57,17 @@ namespace FuncLib
                 if (dy[i] * k > 0)
                 {
                     xx.Add(X[i]);
-                    yy.Add((float)Math.Log(dy[i] * k));
+                    yy.Add((double)Math.Log(dy[i] * k));
                 }
             }
 
             double[] pf = LinearFit.LinearFitSolveLine(xx.ToArray(), yy.ToArray());
             P[1] = pf[1];
-            P[0] = (float)Math.Exp(pf[0]) / P[1] * k;
+            P[0] = (double)Math.Exp(pf[0]) / P[1] * k;
 
             for (int i = 0; i < X.Length; i++)
             {
-                P[2] += Y[i] - P[0] * (float)Math.Exp(P[1] * X[i]);
+                P[2] += Y[i] - P[0] * (double)Math.Exp(P[1] * X[i]);
             }
 
             P[2] /= X.Length;

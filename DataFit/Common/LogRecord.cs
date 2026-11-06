@@ -22,8 +22,8 @@ namespace LybraFit.Common
         public LogRecord(SerializationInfo info, StreamingContext context)
         {
             Key = info.GetString("Key");
-            Values = (double[])info.GetValue("Values", typeof(float[]));
-            StdError = (double)info.GetValue("StdError", typeof(float));
+            Values = (double[])info.GetValue("Values", typeof(double[]));
+            StdError = (double)info.GetValue("StdError", typeof(double));
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)

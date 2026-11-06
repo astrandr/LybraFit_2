@@ -643,7 +643,7 @@ namespace Test
         }
 
         /// <summary>
-        /// FloatData - test parsing float data
+        /// FloatData - test parsing double data
         /// </summary>
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
         public void FloatData()

@@ -19,16 +19,16 @@ namespace MathLib
         /// <param name="y">Y</param>
         /// <param name="R">Radius</param>
         /// <param name="a">angle in radians from -Pi to +Pi</param>
-        public static void CertesianToPolar(float x, float y, out float R, out float a)
+        public static void CertesianToPolar(double x, double y, out double R, out double a)
         {
-            R = (float)Math.Sqrt(x * x + y * y);
-            a = (float)Math.Atan(y / x);
+            R = (double)Math.Sqrt(x * x + y * y);
+            a = (double)Math.Atan(y / x);
             if (x < 0)
             {
                 if (y < 0)
-                    a -= (float)Math.PI;
+                    a -= (double)Math.PI;
                 else
-                    a += (float)Math.PI;
+                    a += (double)Math.PI;
             }
            
         }

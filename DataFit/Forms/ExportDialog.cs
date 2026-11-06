@@ -123,7 +123,7 @@ namespace LybraFit.Forms
             return sb.ToString();
         }
 
-        private string GetStringForNumber(float number, int columnIndex)
+        private string GetStringForNumber(double number, int columnIndex)
         {
             if (chkFormat.Checked)
             {
@@ -162,7 +162,7 @@ namespace LybraFit.Forms
                     {
                         file = File.CreateText(txtOutputFile.Text);
                     }
-                    catch (Exception ex)
+                    catch
                     {
                         //TODO Log exception if debug
                         InfoBox.ShowMessage("Cannot create file", "Failure", this);

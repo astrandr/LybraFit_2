@@ -33,8 +33,8 @@ namespace FuncLib
         public double[] InitParameters2(double[] X, double[] Y)
         {
             CheckNumberOfPointsForInitialization(X);
-            float[] P = new float[4];
-            float[] A, Ph; //Amlitudes and phases of fourier transform
+            double[] P = new double[4];
+            double[] A, Ph; //Amlitudes and phases of fourier transform
             FourierTransform.GetModulePhase2(Y, out A, out Ph);
 
             int maxAIndex = 1;
@@ -48,7 +48,7 @@ namespace FuncLib
 
             P[0] = A[maxAIndex];
             P[2] = Ph[maxAIndex];
-            P[1] = X.Length * (X[1] - X[0]) / (float)maxAIndex; //Normalized to data spacing
+            P[1] = X.Length * (X[1] - X[0]) / (double)maxAIndex; //Normalized to data spacing
             P[3] = A[0];
             return P;
         }

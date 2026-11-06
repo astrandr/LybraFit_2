@@ -221,12 +221,12 @@ namespace FFTLibrary
                     u1 = z;
                 }
 
-                c2 = (float)Math.Sqrt((1.0 - c1) / 2.0);
+                c2 = (double)Math.Sqrt((1.0 - c1) / 2.0);
 
                 if (dir == 1)
                     c2 = -c2;
 
-                c1 = (float)Math.Sqrt((1.0 + c1) / 2.0);
+                c1 = (double)Math.Sqrt((1.0 + c1) / 2.0);
             }
 
             // Scaling for forward transform

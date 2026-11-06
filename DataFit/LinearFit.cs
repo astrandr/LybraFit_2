@@ -25,7 +25,7 @@ namespace MathLib
     public class LinearFit
     {
 
-        private static void SimpleLinearFunc(float[] X, float[] P, ref float[] Y)
+        private static void SimpleLinearFunc(double[] X, double[] P, ref double[] Y)
         {
             for (int i = 0; i < X.Length; i++)
             {
@@ -36,13 +36,13 @@ namespace MathLib
         /// <summary>
         /// Optimize - refines a and b parameters to least square fit of provided data X and Y
         /// </summary>
-        /// <param name="X">X data float[]</param>
-        /// <param name="Y">Y data float[]</param>
+        /// <param name="X">X data double[]</param>
+        /// <param name="Y">Y data double[]</param>
         /// <param name="a">initial and output value of 'a' parameter</param>
         /// <param name="b">initial and output value of 'b' parameter</param>
-        public static void Optimize(float[] X, float[] Y, ref float a, ref float b, float dampingFactor = 0)
+        public static void Optimize(double[] X, double[] Y, ref double a, ref double b, double dampingFactor = 0)
         {
-            float[] P = new float[] { a, b };
+            double[] P = new double[] { a, b };
             LeastSquare ls = new LeastSquare(
                                                 X, Y, P,
                                                 new int[] { 0, 1 },
@@ -62,7 +62,7 @@ namespace MathLib
         /// <param name="Y">Y - func value data</param>
         /// <param name="N">Nth order of the polynomial fit</param>
         /// <returns></returns>
-        public static float[] DLinearFitSolve(float[] X, float[] Y, int N)
+        public static double[] DLinearFitSolve(double[] X, double[] Y, int N)
         {
             Debug.Assert(X != null && Y != null, "Null arrays in LinearFitSolve");
             Debug.Assert(X.Length == Y.Length, "Arrays are not equal size in LinearFitSolve");
@@ -77,7 +77,7 @@ namespace MathLib
                 throw new System.ArgumentException("Invalid data passed to LinearFitSolve");
             }
 
-            float[] P = new float[N];
+            double[] P = new double[N];
 
             DMatrix A = new DMatrix(N, N);
             DMatrix B = new DMatrix(N, 1);
@@ -101,16 +101,16 @@ namespace MathLib
                     S += Math.Pow(X[i], p) * Y[i];
                 }
 
-                B.Values[p][0] = (float)S;
+                B.Values[p][0] = (double)S;
             }
 
-            float[] result = new float[N];
+            double[] result = new double[N];
 
             double[] dR = DMatrix.SolveLinearSystem(A, B);
 
             for (int i = 0; i < dR.Length; i++)
             {
-                result[i] = (float)dR[i];
+                result[i] = (double)dR[i];
             }
 
             return result;
@@ -153,7 +153,7 @@ namespace MathLib
                         S += Math.Pow(X[i], p) * Math.Pow(X[i], n);
                     }
 
-                    A.Values[p][n] = (float)S;
+                    A.Values[p][n] = (double)S;
                 }
 
                 S = 0;
@@ -162,10 +162,10 @@ namespace MathLib
                     S += Math.Pow(X[i], p) * Y[i];
                 }
 
-                B.Values[p][0] = (float)S;
+                B.Values[p][0] = (double)S;
             }
 
-            float[] result = new float[N];
+            double[] result = new double[N];
 
             return Matrix.SolveLinearSystem(A, B);
         }
@@ -194,7 +194,7 @@ namespace MathLib
                 throw new System.ArgumentException("Invalid data passed to LinearFitSolve");
             }
 
-            float[] P = new float[N];
+            double[] P = new double[N];
 
             double S0 = X.Length, S1 = 0, S2 = 0, F = 0, L = 0;
 
@@ -206,8 +206,8 @@ namespace MathLib
                 F += Y[i];
             }
 
-            P[0] = (float)((L * S1 - F * S2) / (S1 * S1 - S0 * S2));
-            P[1] = (float)((F * S1 - L * S0) / (S1 * S1 - S0 * S2));
+            P[0] = (double)((L * S1 - F * S2) / (S1 * S1 - S0 * S2));
+            P[1] = (double)((F * S1 - L * S0) / (S1 * S1 - S0 * S2));
 
             return P;
         }

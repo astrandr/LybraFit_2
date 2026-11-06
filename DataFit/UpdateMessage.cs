@@ -31,5 +31,10 @@ namespace UIBase
             UpdateMessage message = (UpdateMessage)obj;
             return this.Type == message.Type;
         }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

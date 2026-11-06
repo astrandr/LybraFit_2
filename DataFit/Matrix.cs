@@ -164,12 +164,12 @@ namespace MathLib
         }
 
         /// <summary>
-        /// Subtract float operator
+        /// Subtract double operator
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <returns></returns>
-        public static Matrix operator -(Matrix a, float b)
+        public static Matrix operator -(Matrix a, double b)
         {
             Matrix result = new Matrix(a.sizeX, a.sizeY);
 
@@ -185,12 +185,12 @@ namespace MathLib
         }
 
         /// <summary>
-        /// Add float operator
+        /// Add double operator
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <returns></returns>
-        public static Matrix operator +(Matrix a, float b)
+        public static Matrix operator +(Matrix a, double b)
         {
             Matrix result = new Matrix(a.sizeX, a.sizeY);
 
@@ -206,12 +206,12 @@ namespace MathLib
         }
 
         /// <summary>
-        /// Multiply with float operator
+        /// Multiply with double operator
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <returns></returns>
-        public static Matrix operator *(Matrix a, float b)
+        public static Matrix operator *(Matrix a, double b)
         {
             Matrix result = new Matrix(a.sizeX, a.sizeY);
 
@@ -278,7 +278,7 @@ namespace MathLib
             return result;
         }
 
-        private static bool IsZero(float a)
+        private static bool IsZero(double a)
         {
             //return Math.Abs(a) < minFloatNumber;
             return a == 0;
@@ -292,7 +292,7 @@ namespace MathLib
         public static Matrix Inverse(Matrix a)
         {
             if (a.sizeX != a.sizeY) return null;
-            float b;
+            double b;
             Matrix m = a.Clone();
             int size = a.sizeX;
             Matrix res = new Matrix(size, size);
@@ -335,7 +335,7 @@ namespace MathLib
                             throw new System.InvalidOperationException("No inverse matrix exists. Zeros raw");
                         }
                     }
-                    float t = -(float)(m.Values[i][k] / m.Values[k][k]);
+                    double t = -(double)(m.Values[i][k] / m.Values[k][k]);
                     for (int j = 0; j < size; j++)
                     {
                         m.Values[i][j] = m.Values[i][j] + t * m.Values[k][j];
@@ -377,7 +377,7 @@ namespace MathLib
                             throw new System.InvalidOperationException("No inverse matrix exists. Zeros raw");
                         }
                     }
-                    float t = -(float)(m.Values[i][k] / m.Values[k][k]);
+                    double t = -(double)(m.Values[i][k] / m.Values[k][k]);
                     for (int j = 0; j < size; j++)
                     {
                         m.Values[i][j] = m.Values[i][j] + t * m.Values[k][j];
@@ -391,7 +391,7 @@ namespace MathLib
                 for (int j = 0; j < size; j++)
                 {
                     res.Values[i][j] = res.Values[i][j] / m.Values[i][i];
-                    //if (float.IsInfinity(res.Values[i][j]))
+                    //if (double.IsInfinity(res.Values[i][j]))
                     //{
                     //    throw new System.InvalidOperationException("No inverse matrix exists.");
                     //}
@@ -407,13 +407,13 @@ namespace MathLib
         /// <param name="a"></param>
         /// <param name="Y"></param>
         /// <returns></returns>
-        public static float[] SolveLinearSystem(Matrix A, Matrix B)
+        public static double[] SolveLinearSystem(Matrix A, Matrix B)
         {
             if (A.sizeX != A.sizeY) return null;
-            float b;
+            double b;
             Matrix m = A.Clone();
             int size = A.sizeX;
-            float[] res = new float[B.sizeY];
+            double[] res = new double[B.sizeY];
 
             for (int i = 0; i < B.sizeY; i++)
             {
@@ -451,7 +451,7 @@ namespace MathLib
 
                 for (int i = k + 1; i < size; i++)
                 {
-                    float t = -(float)(m.Values[i][k] / m.Values[k][k]);
+                    double t = -(double)(m.Values[i][k] / m.Values[k][k]);
                     for (int j = 0; j < size; j++)
                     {
                         m.Values[i][j] = m.Values[i][j] + t * m.Values[k][j];
@@ -470,7 +470,7 @@ namespace MathLib
 
                 for (int i = k - 1; i >= 0; i--)
                 {
-                    float t = -(float)(m.Values[i][k] / m.Values[k][k]);
+                    double t = -(double)(m.Values[i][k] / m.Values[k][k]);
                     for (int j = 0; j < size; j++)
                     {
                         m.Values[i][j] = m.Values[i][j] + t * m.Values[k][j];
@@ -483,7 +483,7 @@ namespace MathLib
             for (int j = 0; j < size; j++)
             {
                 res[j] = res[j] / m.Values[j][j];
-                if (float.IsInfinity(res[j]) || float.IsNaN(res[j]))
+                if (double.IsInfinity(res[j]) || double.IsNaN(res[j]))
                 {
                     throw new System.InvalidOperationException("No inverse matrix exists.");
                 }
@@ -529,7 +529,7 @@ namespace MathLib
             {
                 for (int j = 0; j < result.sizeX; j++)
                 {
-                    float s = 0;
+                    double s = 0;
                     for (int k = 0; k < b.sizeY; k++)
                     {
                         s = s + a.Values[i][k] * b.Values[k][j];
@@ -542,10 +542,10 @@ namespace MathLib
             return result;
         }
 
-        public void GetRange(out float minValue, out float maxValue)
+        public void GetRange(out double minValue, out double maxValue)
         {
-            minValue = float.MaxValue;
-            maxValue = float.MinValue;
+            minValue = double.MaxValue;
+            maxValue = double.MinValue;
             for (int x = 0; x < sizeX; x++)
             {
                 for (int y = 0; y < sizeY; y++)

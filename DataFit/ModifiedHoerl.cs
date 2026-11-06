@@ -23,7 +23,7 @@ namespace FuncLib
         {
             for (int i = 0; i < X.Length; i++)
             {
-                Y[i] = P[0] * Math.Pow(P[1], 1 / X[i]) * (float)Math.Pow(X[i], P[2]);
+                Y[i] = P[0] * Math.Pow(P[1], 1 / X[i]) * (double)Math.Pow(X[i], P[2]);
             }
         }
 
@@ -31,33 +31,33 @@ namespace FuncLib
         {
             CheckNumberOfPointsForInitialization(X);
 
-            float[] P = new float[3];
+            double[] P = new double[3];
 
-            float[] lny = new float[X.Length];
-            float[] dlny = new float[X.Length];
-            float[] rx = new float[X.Length];
+            double[] lny = new double[X.Length];
+            double[] dlny = new double[X.Length];
+            double[] rx = new double[X.Length];
 
-            float k = 1;
+            double k = 1;
 
             for (int i = 0; i < X.Length; i++)
             {
                 if (Y[i] < 0)
                 {
                     k = -1;
-                    lny[i] = (float)Math.Log(-Y[i]);
+                    lny[i] = (double)Math.Log(-Y[i]);
                 }
                 else
                 {
-                    lny[i] = (float)Math.Log(Y[i]);
+                    lny[i] = (double)Math.Log(Y[i]);
                 }
             }
 
             int N = X.Length >= 5 ? 5 : X.Length;
 
-            float[] Pln = LinearFit.LinearFitSolve(X, lny, N);
+            double[] Pln = LinearFit.LinearFitSolve(X, lny, N);
 
-            List<float> xx = new List<float>();
-            List<float> yy = new List<float>();
+            List<double> xx = new List<double>();
+            List<double> yy = new List<double>();
 
             for (int i = 0; i < X.Length; i++)
             {
@@ -70,14 +70,14 @@ namespace FuncLib
 
             Pln = LinearFit.LinearFitSolve(filteredX, filteredY, 3);
             P[2] = Pln[1];
-            P[1] = (float)Math.Exp(-Pln[2]);
+            P[1] = (double)Math.Exp(-Pln[2]);
 
-            float q = 0;
+            double q = 0;
             int n = 0;
             for (int i = 0; i < X.Length; i++)
             {
                 if (X[i] == 0) continue;
-                q += Y[i] / (float)Math.Pow(P[1], 1 / X[i]) / (float)Math.Pow(X[i], P[2]);
+                q += Y[i] / (double)Math.Pow(P[1], 1 / X[i]) / (double)Math.Pow(X[i], P[2]);
                 n++;
             }
 

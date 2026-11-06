@@ -81,18 +81,18 @@ namespace FuncLib
                  @" using System;
                     public class CustomFunction
                    {
-                    public static float GetValue(float X, float[] P)
+                    public static double GetValue(double X, double[] P)
                     {
-                        return (float)(" + funcString + @");
+                        return (double)(" + funcString + @");
                     }
 
-                    public static float[] GetValues(float[] arrX, float[] P)
+                    public static double[] GetValues(double[] arrX, double[] P)
                     {
-                        float[] Y = new float[arrX.Length];
+                        double[] Y = new double[arrX.Length];
                         for(int i = 0; i < arrX.Length; i++)
                         {
-                            float X = arrX[i];
-                            Y[i] = (float)(" + funcString +@");
+                            double X = arrX[i];
+                            Y[i] = (double)(" + funcString +@");
                         }
                         return Y;
                     }
@@ -118,13 +118,13 @@ namespace FuncLib
             return Y;
         }
 
-        public float[] Calculate(float[] X, float[] P)
+        public double[] Calculate(double[] X, double[] P)
         {
             // Execute
             Assembly assembly = compilerResults.CompiledAssembly;
             Type program = assembly.GetType("CustomFunction");
             MethodInfo execute = program.GetMethod("GetValues");
-            float[] Y = (float[])execute.Invoke(this, new object[] { X, P });
+            double[] Y = (double[])execute.Invoke(this, new object[] { X, P });
             return Y;
         }
 

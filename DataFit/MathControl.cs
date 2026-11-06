@@ -86,10 +86,10 @@ namespace MathLib
             image.SetResolution(resolution, resolution);
 
             RectangleF boundingBox = mathTree.CalculateLayout(Graphics.FromImage(image), font);
-            bool scaled = false;
+
             int imageWidth = (int)(boundingBox.Width / Settings.Scaling);
             int imageHeight = (int)(boundingBox.Height / Settings.Scaling);
-            float k = 1;
+            double k = 1;
             if (imageWidth < width && imageHeight < height)
             {
                 image = new Bitmap((int)boundingBox.Width, (int)boundingBox.Height);
@@ -99,14 +99,12 @@ namespace MathLib
             {
                 if (imageWidth > width)
                 {
-                    k = (float)width / imageWidth;
-                    scaled = true;
+                    k = (double)width / imageWidth;
                 }
 
                 if (imageHeight > height)
                 {
-                    k = (float)height/imageHeight;
-                    scaled = true;
+                    k = (double)height/imageHeight;
                 }
             }
 
@@ -130,10 +128,10 @@ namespace MathLib
             image.SetResolution(resolution, resolution);
 
             RectangleF boundingBox = mathTree.CalculateLayout(Graphics.FromImage(image), font);
-            bool scaled = false;
+
             int imageWidth = (int)(boundingBox.Width / Settings.Scaling);
             int imageHeight = (int)(boundingBox.Height / Settings.Scaling);
-            float k = 1;
+            double k = 1;
             if (imageWidth < width && imageHeight < height)
             {
                 image = new Bitmap((int)boundingBox.Width, (int)boundingBox.Height);
@@ -143,14 +141,12 @@ namespace MathLib
             {
                 if (imageWidth > width)
                 {
-                    k = (float)width / imageWidth;
-                    scaled = true;
+                    k = (double)width / imageWidth;
                 }
 
                 if (imageHeight > height)
                 {
-                    k = (float)height / imageHeight;
-                    scaled = true;
+                    k = (double)height / imageHeight;
                 }
             }
 

@@ -31,9 +31,9 @@ namespace FuncLib
         {
             CheckNumberOfPointsForInitialization(X);
 
-            float[] P = new float[2];
+            double[] P = new double[2];
 
-            float[] ry = new float[X.Length];
+            double[] ry = new double[X.Length];
 
             for (int i = 0; i < X.Length; i++)
             {
@@ -42,7 +42,7 @@ namespace FuncLib
 
             FilterData(X, ry);
 
-            float[] Pln = LinearFit.LinearFitSolveLine(filteredX, filteredY);
+            double[] Pln = LinearFit.LinearFitSolveLine(filteredX, filteredY);
 
             P[0] = Pln[0];
             P[1] = Pln[1];

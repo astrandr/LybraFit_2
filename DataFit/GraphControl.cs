@@ -21,13 +21,13 @@ namespace GraphControlLib
         private Font xAxisLabelsFont = new Font("Arial", 7);
         private float xAxisMin = 0;
         private float xAxisMax = 0;
-        private float xAxisStep = 0;
+
         private float xAxisLabelsMin = 0;
         private float xAxisLabelsMax = 0;
         private float xAxisLabelsStep = 0;
         private float yAxisMin = 0;
         private float yAxisMax = 0;
-        private float yAxisStep = 0;
+
         private float yAxisLabelsMin = 0;
         private float yAxisLabelsMax = 0;
         private float yAxisLabelsStep = 0;
@@ -59,10 +59,9 @@ namespace GraphControlLib
         private Size minSelectionSize = new Size(5, 5);
 
         private Dictionary<string, PlotData> data = new Dictionary<string, PlotData>();
-        private Dictionary<string, double[]> dataError = new Dictionary<string, double[]>();
+        private Dictionary<string, float[]> dataError = new Dictionary<string, float[]>();
 
         //Mouse and selection related members
-        private bool isInSelectMode = false;
         private Point pointStart = Point.Empty, pointEnd = Point.Empty;
         private Color selectionColor = Color.Black;
         private int selectionPenWidth = 1;
@@ -162,7 +161,7 @@ namespace GraphControlLib
             if (showXAxisLabels && xAxisLabelsStep != 0)
             {
                 int m = (int)((xAxisLabelsMax - xAxisLabelsMin + 0.1 * xAxisLabelsStep) / xAxisLabelsStep);
-                float v = xAxisLabelsMin;
+                double v = xAxisLabelsMin;
 
                 Brush brush = new SolidBrush(axisLabelsColor);
                 Pen axPen = new Pen(frameColor, frameThickness * drawScale);
@@ -233,7 +232,7 @@ namespace GraphControlLib
             if (showYAxisLabels && yAxisLabelsStep != 0)
             {
                 int m = (int)((yAxisLabelsMax - yAxisLabelsMin + 0.1 * yAxisLabelsStep) / yAxisLabelsStep); //Adding 0.1*step to account for rounding errors
-                float v = yAxisLabelsMin;
+                double v = yAxisLabelsMin;
 
                 Brush brush = new SolidBrush(axisLabelsColor);
                 Pen axPen = new Pen(frameColor, frameThickness * drawScale);
@@ -448,13 +447,13 @@ namespace GraphControlLib
             pictureBox.Refresh();
             if (OnSelectionChange != null)
             {
-                float minX = SelectionStart.X < SelectionEnd.X ? SelectionStart.X : SelectionEnd.X;
-                float maxX = SelectionEnd.X < SelectionStart.X ? SelectionStart.X : SelectionEnd.X;
-                float minY = SelectionStart.Y < SelectionEnd.Y ? SelectionStart.Y : SelectionEnd.Y;
-                float maxY = SelectionEnd.Y < SelectionStart.Y ? SelectionStart.Y : SelectionEnd.Y;
+                double minX = SelectionStart.X < SelectionEnd.X ? SelectionStart.X : SelectionEnd.X;
+                double maxX = SelectionEnd.X < SelectionStart.X ? SelectionStart.X : SelectionEnd.X;
+                double minY = SelectionStart.Y < SelectionEnd.Y ? SelectionStart.Y : SelectionEnd.Y;
+                double maxY = SelectionEnd.Y < SelectionStart.Y ? SelectionStart.Y : SelectionEnd.Y;
 
-                float minWidthReal = (float)MinSelectionSize.Width / plotArea.Width * (xAxisMax - xAxisMin);
-                float minHeightReal = (float)MinSelectionSize.Height / plotArea.Height * (yAxisMax - yAxisMin);
+                double minWidthReal = (double)MinSelectionSize.Width / plotArea.Width * (xAxisMax - xAxisMin);
+                double minHeightReal = (double)MinSelectionSize.Height / plotArea.Height * (yAxisMax - yAxisMin);
                 if (maxX - minX < minWidthReal || maxY - minY < minHeightReal)
                 {
                     //TODO Add call here to point click only, may be selecting closest data point

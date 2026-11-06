@@ -60,7 +60,7 @@ namespace LybraFit
                 stream.Close();
                 return p;
             }
-            catch (Exception exc)
+            catch
             {
                 return null;
             }
@@ -77,7 +77,7 @@ namespace LybraFit
                 stream.Close();
 
             }
-            catch (Exception exc)
+            catch
             {
 
                 return;
@@ -96,7 +96,7 @@ namespace LybraFit
 
                 return (Project)b;
             }
-            catch (Exception exc)
+            catch
             {
                 return null;
             }
@@ -110,7 +110,7 @@ namespace LybraFit
             this.DataXName = info.GetString("DataXName");
             this.DataYName = info.GetString("DataYName");
             this.ErrDataName = info.GetString("ErrDataName");
-            this.Data = (List<float[]>)info.GetValue("Data", typeof(List<float[]>));
+            this.Data = (List<double[]>)info.GetValue("Data", typeof(List<double[]>));
             this.GridColumnSettings = (ColumnSettings[])info.GetValue("GridColumnSettings", typeof(ColumnSettings[]));
             this.Models = (ModelFitInfo[])info.GetValue("Models", typeof(ModelFitInfo[]));
         }
@@ -133,6 +133,6 @@ namespace LybraFit
     [Serializable]
     public class DataRow
     {
-        public float X, Y, ErrY;
+        public double X, Y, ErrY;
     }
 }

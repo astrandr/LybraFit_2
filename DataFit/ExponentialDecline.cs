@@ -35,17 +35,17 @@ namespace FuncLib
 
             double[] lny = new double[X.Length];
             double[] rx = new double[X.Length];
-            float k = 1;
+            double k = 1;
             for (int i = 0; i < X.Length; i++)
             {
                 if (Y[i] >= 0)
                 {
-                    lny[i] = (float)Math.Log(Y[i]);
+                    lny[i] = (double)Math.Log(Y[i]);
                 }
                 else
                 {
                     k = -1;
-                    lny[i] = (float)Math.Log(-Y[i]);
+                    lny[i] = (double)Math.Log(-Y[i]);
                 }
                 rx[i] = 1 / X[i];
             }
@@ -57,9 +57,9 @@ namespace FuncLib
                 throw new InvalidDataForInitializationError();
             }
 
-            float[] Pln = LinearFit.LinearFitSolveLine(filteredX, filteredY);
+            double[] Pln = LinearFit.LinearFitSolveLine(filteredX, filteredY);
 
-            P[0] = (float)Math.Exp(Pln[0])*k;
+            P[0] = (double)Math.Exp(Pln[0])*k;
             P[1] = -Pln[1];
 
             return P;

@@ -22,7 +22,7 @@ namespace FuncLib
         {
             for (int i = 0; i < X.Length; i++)
             {
-                Y[i] = P[0] / (1 + (float)Math.Exp(P[1] - X[i] * P[2]));
+                Y[i] = P[0] / (1 + (double)Math.Exp(P[1] - X[i] * P[2]));
             }
         }
 
@@ -30,12 +30,12 @@ namespace FuncLib
         {
             CheckNumberOfPointsForInitialization(X);
 
-            float[] P = new float[3];
+            double[] P = new double[3];
 
-            float[] ry = new float[X.Length];
-            float[] dry = new float[X.Length - 1];
-            float[] xx = new float[X.Length - 1];
-            float a = 0, b = 0, c;
+            double[] ry = new double[X.Length];
+            double[] dry = new double[X.Length - 1];
+            double[] xx = new double[X.Length - 1];
+            double a = 0, b = 0, c;
 
             if (X.Length > 2)
             {
@@ -50,13 +50,13 @@ namespace FuncLib
                     xx[i] = (ry[i + 1] + ry[i]) / 2;
                 }
 
-                float[] pln = new LinearFunction().InitParameters(xx, dry);
+                double[] pln = new LinearFunction().InitParameters(xx, dry);
                 c = -pln[1];
                 a = c / pln[0];
 
                 for (int i = 0; i < X.Length; i++)
                 {
-                    b += ((float)Math.Log(a / Y[i] - 1) + c * X[i]);
+                    b += ((double)Math.Log(a / Y[i] - 1) + c * X[i]);
                 }
                 b /= X.Length;
 

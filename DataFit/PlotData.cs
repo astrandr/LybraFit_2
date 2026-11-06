@@ -95,7 +95,7 @@ namespace GraphControlLib
             this.pointType = pointType;
         }
 
-        public void Plot(Graphics g, float minX, float maxX, float minY, float maxY, Rectangle area, float drawScale = 1, double[] dataError = null)
+        public void Plot(Graphics g, double minX, double maxX, double minY, double maxY, Rectangle area, float drawScale = 1, float[] dataError = null)
         {
             if (dataX != null)
             {

@@ -74,7 +74,7 @@ namespace LybraFit
 
         BackgroundWorker worker = null;
 
-        float eps = 0;
+        double eps = 0;
         int margins = 15;
 
         public MainForm()
@@ -576,7 +576,7 @@ namespace LybraFit
             }
         }
 
-        private float EnhancedOptimize(double[] X, double[] Y, double[] P, int[] flagsArr, LeastSquare.CalculateValuesDalegate calcFunc)
+        private double EnhancedOptimize(double[] X, double[] Y, double[] P, int[] flagsArr, LeastSquare.CalculateValuesDalegate calcFunc)
         {
             LeastSquare lsAllParms = new LeastSquare(X, Y, doc.ErrY, doc.Parameters, flagsArr, calcFunc, null);
 
@@ -604,13 +604,13 @@ namespace LybraFit
                 prevMinEps = minEps;
                 foundBetterFit = false;
                 //TODO: Experiment with performance moving this into parallel processing
-                var paramCopy = new float[doc.Parameters.Length];
+                var paramCopy = new double[doc.Parameters.Length];
                 Array.Copy(doc.Parameters, paramCopy, doc.Parameters.Length);
                 for (int i = 0; i < flagsArr.Length; i++)
                 {
                     Array.Copy(paramCopy, doc.Parameters, doc.Parameters.Length);
                     var ls = new LeastSquare(X, Y, doc.ErrY, doc.Parameters, new int[] { flagsArr[i] }, calcFunc, null);
-                    float eps = ls.Optimize(0.1f, 100);
+                    double eps = ls.Optimize(0.1f, 100);
                     if (eps < minEps)
                     {
                         minEps = eps;
@@ -623,7 +623,7 @@ namespace LybraFit
                 {
                     Array.Copy(bestParameters, paramCopy, doc.Parameters.Length);
                     Array.Copy(paramCopy, doc.Parameters, doc.Parameters.Length);
-                    float cEps = lsAllParms.Optimize(0.01f, 100);
+                    double cEps = lsAllParms.Optimize(0.01f, 100);
                     if (cEps < minEps)
                     {
                         minEps = cEps;
@@ -651,7 +651,7 @@ namespace LybraFit
                 doc.CurrentModel.SigmaParameters = new double[doc.CurrentModel.LastFitParameters.Length];
                 for (int i = 0; i < doc.CurrentModel.SigmaParameters.Length; i++)
                 {
-                    doc.CurrentModel.SigmaParameters[i] = float.NaN;
+                    doc.CurrentModel.SigmaParameters[i] = double.NaN;
                 }
             };
 
@@ -700,7 +700,7 @@ namespace LybraFit
             LeastSquare ls = new LeastSquare(X, Y, doc.ErrY, doc.Parameters, flagsArr, calcFunc, null);
             try
             {
-                float eps = ls.CalculateStdError();
+                double eps = ls.CalculateStdError();
 
                 //Calculate sigma parameters and fit plot error
                 if (doc.CurrentModel.IsInitialized)
@@ -814,8 +814,8 @@ namespace LybraFit
                 doc.Parameters[i] = 0;
                 if (dataGridParameters[2, i].Value != null)
                 {
-                    float pValue = 0;
-                    if (!float.TryParse(dataGridParameters[2, i].Value.ToString(), out pValue))
+                    double pValue = 0;
+                    if (!double.TryParse(dataGridParameters[2, i].Value.ToString(), out pValue))
                     {
                         MessageBox.Show("Invalid parameter value");
                         return;
@@ -879,7 +879,7 @@ namespace LybraFit
 
         private void dataGridView_UserAddedRow(object sender, DataGridViewRowEventArgs e)
         {
-            float[] newRowValues = new float[doc.ColumnCount];
+            double[] newRowValues = new double[doc.ColumnCount];
             doc.Data.Insert(e.Row.Index - 1, newRowValues);
             if (doc.Data.Count > 0)
             {
@@ -949,7 +949,7 @@ namespace LybraFit
                     dataText = file.ReadToEnd();
                     file.Close();
                 }
-                catch (Exception exc)
+                catch
                 {
                     //TODO Log exception in log or system.applicaiton info logs
                     InfoBox.ShowMessage("Cannot read file. Check if file is not corrupted or not accessible", "Failure", this);
@@ -1176,11 +1176,11 @@ namespace LybraFit
 
                     if (settings.ErrDataCalculatedStd)
                     {
-                        err = (float)Math.Sqrt(Math.Abs(y));
+                        err = (double)Math.Sqrt(Math.Abs(y));
                     }
                 }
 
-                doc.Data.Add(new float[5] { x, y, err, 0, 0 });
+                doc.Data.Add(new double[5] { x, y, err, 0, 0 });
             }
             return Task.FromResult(0);
         }
@@ -1248,7 +1248,7 @@ namespace LybraFit
             }
             int index = dataGridView.CurrentCell.RowIndex;
             //dataGridView.Rows.Insert(index, new DataGridViewRow()); TODO Remove when well tested
-            doc.Data.Insert(index, new float[] { 0, 0, 0, 0, 0 });
+            doc.Data.Insert(index, new double[] { 0, 0, 0, 0, 0 });
             dataGridView.CurrentCell = dataGridView.Rows[index].Cells[0];
 
 
@@ -1300,7 +1300,7 @@ namespace LybraFit
             int index = dataGridView.CurrentCell.RowIndex;
 
             string errorMessage;
-            List<float[]> newData = Utility.RowsFromText(text, out errorMessage);
+            List<double[]> newData = Utility.RowsFromText(text, out errorMessage);
             if (newData == null)
             {
                 MessageBox.Show("Failed to parse data from clipboard:\r\n" + errorMessage);
@@ -1558,8 +1558,8 @@ namespace LybraFit
                 Program.IsFromUser = false;
                 for (int i = 0; i < dataGridView.Rows.Count - 1; i++)
                 {
-                    float x = dataGridView.Rows[i].Cells[0].Value == null ? 0 : float.Parse(dataGridView.Rows[i].Cells[0].Value.ToString());
-                    float y = dataGridView.Rows[i].Cells[1].Value != null ? float.Parse(dataGridView.Rows[i].Cells[1].Value.ToString()) : 0;
+                    double x = dataGridView.Rows[i].Cells[0].Value == null ? 0 : double.Parse(dataGridView.Rows[i].Cells[0].Value.ToString());
+                    double y = dataGridView.Rows[i].Cells[1].Value != null ? double.Parse(dataGridView.Rows[i].Cells[1].Value.ToString()) : 0;
                     if (dataGridView.Rows[i].Cells[0].Value != null && dataGridView.Rows[i].Cells[0].Value.ToString() == xSelectionMarker)
                     {
                         xSelectionMarker = String.Empty;
@@ -1904,7 +1904,7 @@ namespace LybraFit
             Size size = plotExportDialog.ShowDialog(new Size(graph.Width, graph.Height), ref title, ref subTitle, doc, out resolution, ref landScape, margins);
             if (size != Size.Empty)
             {
-                float resolutionScaling = (float)resolution / Constants.STANDARD_DPI; //96 dpi is the default resolution when the bitmap initialized
+                float resolutionScaling = resolution / Constants.STANDARD_DPI; //96 dpi is the default resolution when the bitmap initialized
                 Bitmap bmp = new Bitmap((int)(size.Width), (int)(size.Height));
                 bmp.SetResolution(resolution, resolution);
 
@@ -1914,7 +1914,7 @@ namespace LybraFit
                 graph.SubTitle = subTitle;
                 graph.SubTitleFont = new Font(graph.TitleFont.FontFamily, graph.TitleFont.Size - 2, graph.TitleFont.Style);
                 int graphMargins = graph.InternalMargins;
-                graph.InternalMargins = (int)((float)margins / resolutionScaling);
+                graph.InternalMargins = (int)((double)margins / resolutionScaling);
                 graph.DrawContent(ref bmp, resolutionScaling); //reslution scaling is need for all drawing. Setting bitmap resoultion takes care about the fonts
                 if (landScape)
                 {
@@ -2023,16 +2023,16 @@ namespace LybraFit
                             LeastSquare.CalculateValuesDalegate calcFunc = new LeastSquare.CalculateValuesDalegate(modelFitInfo.ModelFunction.CalcProcedure);
                             int[] flagsArr = new int[modelFitInfo.LastFitParameters.Length]; for (int i = 0; i < flagsArr.Length; i++) { flagsArr[i] = i; };
                             LeastSquare ls = new LeastSquare(X, Y, modelFitInfo.LastFitParameters, flagsArr, calcFunc, null);
-                            float eps = ls.CalculateStdError();
+                            double eps = ls.CalculateStdError();
                             modelFitInfo.FitResultStdError = eps;
                             modelFitInfo.IsInitialized = true;
                         }
-                        catch (InitializationException ine)
+                        catch (InitializationException)
                         {
                             LeastSquare.CalculateValuesDalegate calcFunc = new LeastSquare.CalculateValuesDalegate(modelFitInfo.ModelFunction.CalcProcedure);
                             modelFitInfo.LastFitParameters = new double[modelFitInfo.ModelFunction.Parameters.Length];
                             LeastSquare ls = new LeastSquare(X, Y, modelFitInfo.LastFitParameters, new int[0], calcFunc, null);
-                            float eps = ls.CalculateStdError();
+                            double eps = ls.CalculateStdError();
                             modelFitInfo.FitResultStdError = eps;
                         }
                         catch (Exception)
@@ -2061,10 +2061,10 @@ namespace LybraFit
             {
                 try
                 {
-                    float v1, v2;
-                    if (float.TryParse(e.CellValue1.ToString(), out v1))
+                    double v1, v2;
+                    if (double.TryParse(e.CellValue1.ToString(), out v1))
                     {
-                        if (float.TryParse(e.CellValue2.ToString(), out v2))
+                        if (double.TryParse(e.CellValue2.ToString(), out v2))
                         {
                             e.SortResult = v2 > v1 ? -1 : 1;
                         }
@@ -2216,9 +2216,9 @@ namespace LybraFit
                 new InfoBox().Show("\r\nProject saved", this);
                 AddProjectToRecentProjects(fileName);
             }
-            catch (Exception exc)
+            catch
             {
-                InfoBox.ShowMessage("Failure saving the project file.", "Internal Error", this);
+                InfoBox.ShowMessage("Failed to save the project file.", "Internal Error", this);
                 return;
             }
             finally
@@ -2245,7 +2245,7 @@ namespace LybraFit
                 project = (Project)serializer.Deserialize(stream);
                 stream.Close();
             }
-            catch (Exception ex)
+            catch
             {
                 try
                 {
@@ -2363,7 +2363,7 @@ namespace LybraFit
                 stream.Close();
                 new InfoBox().Show("Project saved", this);
             }
-            catch (Exception exc)
+            catch
             {
                 MessageBox.Show("Failure saving the project file.", "Internal Error");
                 return;
@@ -2502,8 +2502,8 @@ namespace LybraFit
         private void toolStripMenuUpdateStdErrors_Click(object sender, EventArgs e)
         {
 
-            float[] X = doc.X;
-            float[] Y = doc.Y;
+            double[] X = doc.X;
+            double[] Y = doc.Y;
             StringBuilder initializationFailures = new StringBuilder();
             initializationFailures.AppendLine("Failed to initialize parameters for:");
             initializationFailures.AppendLine("");
@@ -2520,7 +2520,7 @@ namespace LybraFit
                         {
                             LeastSquare.CalculateValuesDalegate calcFunc = new LeastSquare.CalculateValuesDalegate(modelFitInfo.ModelFunction.CalcProcedure);
                             LeastSquare ls = new LeastSquare(X, Y, modelFitInfo.LastFitParameters, new int[0], calcFunc, null);
-                            float eps = ls.CalculateStdError();
+                            double eps = ls.CalculateStdError();
                             modelFitInfo.FitResultStdError = eps;
                         }
                     }
@@ -2529,8 +2529,8 @@ namespace LybraFit
                         hasInitializationFaiures = true;
                         initializationFailures.AppendLine(modelFitInfo.ModelFunction.Name);
                         LeastSquare.CalculateValuesDalegate calcFunc = new LeastSquare.CalculateValuesDalegate(modelFitInfo.ModelFunction.CalcProcedure);
-                        LeastSquare ls = new LeastSquare(X, Y, new float[modelFitInfo.ModelFunction.Parameters.Length], new int[0], calcFunc, null);
-                        float eps = ls.CalculateStdError();
+                        LeastSquare ls = new LeastSquare(X, Y, new double[modelFitInfo.ModelFunction.Parameters.Length], new int[0], calcFunc, null);
+                        double eps = ls.CalculateStdError();
                         modelFitInfo.FitResultStdError = eps;
                     }
                 }
@@ -2624,10 +2624,10 @@ namespace LybraFit
 
         private void toolStripMenuItemInverseTransform_Click(object sender, EventArgs e)
         {
-            float[] X = doc.X;
-            float[] Y = doc.Y;
-            float minY = float.MaxValue;
-            float maxY = float.MinValue;
+            double[] X = doc.X;
+            double[] Y = doc.Y;
+            double minY = double.MaxValue;
+            double maxY = double.MinValue;
             for (int i = 0; i < Y.Length; i++)
             {
                 if (Y[i] > maxY) maxY = Y[i];
@@ -2652,7 +2652,7 @@ namespace LybraFit
                 toolStripButtonUndo.ToolTipText = undoInverseTransformCommand.Name;
                 SetState("K9");
 
-                float[] Err = new float[X.Length];
+                double[] Err = new double[X.Length];
                 InverseTransform.InverseData(ref X, ref Y, ref Err, doc.yCalculationFunction, settings.MinY, settings.MaxY, settings.StepY, settings.Eps);
 
                 doc.Data.Clear();
@@ -2665,7 +2665,7 @@ namespace LybraFit
 
                 for (int i = 0; i < X.Length; i++)
                 {
-                    doc.Data.Add(new float[] { X[i], Y[i], Err[i], 0, 0 });
+                    doc.Data.Add(new double[] { X[i], Y[i], Err[i], 0, 0 });
                 }
 
                 doc.HasErrorY = true;
@@ -2893,8 +2893,8 @@ namespace LybraFit
                     if (tokens.Length == 2)
                     {
                         var name = tokens[0].Trim();
-                        float value;
-                        if (float.TryParse(tokens[1].Trim(), out value))
+                        double value;
+                        if (double.TryParse(tokens[1].Trim(), out value))
                         {
                             foreach (DataGridViewRow row in dataGridParameters.Rows)
                             {
@@ -2914,13 +2914,13 @@ namespace LybraFit
         private void dataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             if (!Program.IsFromUser) return;
-            float newValue;
+            double newValue;
             if (e.RowIndex < 0 || e.ColumnIndex < 0)
             {
                 return;
             }
             if (dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value == null ||
-                !float.TryParse(dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString(), out newValue))
+                !double.TryParse(dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString(), out newValue))
             {
                 MessageBox.Show("Invalid value");
                 dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = doc.Data[e.RowIndex][e.ColumnIndex];
@@ -2941,8 +2941,8 @@ namespace LybraFit
             {
                 if (Configuration.NewDataSetting.ErrDataCalculatedStd)
                 {
-                    dataGridView.Rows[e.RowIndex].Cells[2].Value = (float)Math.Sqrt(Math.Abs(newValue));
-                    doc.Data[e.RowIndex][2] = (float)Math.Sqrt(Math.Abs(newValue));
+                    dataGridView.Rows[e.RowIndex].Cells[2].Value = (double)Math.Sqrt(Math.Abs(newValue));
+                    doc.Data[e.RowIndex][2] = (double)Math.Sqrt(Math.Abs(newValue));
                 }
             }
             else if (dataGridView.Rows[e.RowIndex].Cells[2].Value == null || string.IsNullOrEmpty(dataGridView.Rows[e.RowIndex].Cells[2].Value.ToString()))
@@ -2956,8 +2956,8 @@ namespace LybraFit
             {
                 if (doc.YCalculated)
                 {
-                    float v1 = dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value == null ? 0 : float.Parse(dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
-                    float v2 = doc.yCalculationFunction.Calculate(v1, new float[0]);
+                    double v1 = dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value == null ? 0 : double.Parse(dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
+                    double v2 = doc.yCalculationFunction.Calculate(v1, new double[0]);
                     doc.Data[e.RowIndex][1] = v2;
                     dataGridView.Rows[e.RowIndex].Cells[1].Value = v2;
                 }
@@ -2969,8 +2969,8 @@ namespace LybraFit
 
                 if (Configuration.NewDataSetting.ErrDataCalculatedStd)
                 {
-                    dataGridView.Rows[e.RowIndex].Cells[2].Value = (float)Math.Sqrt(Math.Abs(doc.Data[e.RowIndex][1]));
-                    doc.Data[e.RowIndex][2] = (float)Math.Sqrt(Math.Abs(doc.Data[e.RowIndex][1]));
+                    dataGridView.Rows[e.RowIndex].Cells[2].Value = (double)Math.Sqrt(Math.Abs(doc.Data[e.RowIndex][1]));
+                    doc.Data[e.RowIndex][2] = (double)Math.Sqrt(Math.Abs(doc.Data[e.RowIndex][1]));
                 }
 
                 //Preserve sorting of the data with respect to first column
@@ -2980,11 +2980,11 @@ namespace LybraFit
                     if (e.RowIndex > 0)
                     {
                         var index = e.RowIndex;
-                        float rowFirstColumnValue = 0;
+                        double rowFirstColumnValue = 0;
                         do
                         {
                             index--;
-                            rowFirstColumnValue = dataGridView.Rows[index].Cells[e.ColumnIndex].Value == null || string.IsNullOrEmpty(dataGridView.Rows[index].Cells[e.ColumnIndex].Value.ToString()) ? 0 : float.Parse(dataGridView.Rows[index].Cells[e.ColumnIndex].Value.ToString());
+                            rowFirstColumnValue = dataGridView.Rows[index].Cells[e.ColumnIndex].Value == null || string.IsNullOrEmpty(dataGridView.Rows[index].Cells[e.ColumnIndex].Value.ToString()) ? 0 : double.Parse(dataGridView.Rows[index].Cells[e.ColumnIndex].Value.ToString());
                             inversedOrder |= rowFirstColumnValue > newValue;
                         } while (index > 0 && rowFirstColumnValue > newValue);
 
@@ -3006,12 +3006,12 @@ namespace LybraFit
                     if (!inversedOrder && e.RowIndex < dataGridView.RowCount - 2)
                     {
                         var index = e.RowIndex;
-                        float rowFirstColumnValue = 0;
+                        double rowFirstColumnValue = 0;
                         inversedOrder = false;
                         do
                         {
                             index++;
-                            rowFirstColumnValue = dataGridView.Rows[index].Cells[e.ColumnIndex].Value == null || string.IsNullOrEmpty(dataGridView.Rows[index].Cells[e.ColumnIndex].Value.ToString()) ? 0 : float.Parse(dataGridView.Rows[index].Cells[e.ColumnIndex].Value.ToString());
+                            rowFirstColumnValue = dataGridView.Rows[index].Cells[e.ColumnIndex].Value == null || string.IsNullOrEmpty(dataGridView.Rows[index].Cells[e.ColumnIndex].Value.ToString()) ? 0 : double.Parse(dataGridView.Rows[index].Cells[e.ColumnIndex].Value.ToString());
                             inversedOrder |= rowFirstColumnValue < newValue;
                         } while (index < dataGridView.RowCount - 2 && rowFirstColumnValue < newValue);
 
@@ -3020,7 +3020,7 @@ namespace LybraFit
                             int destinationRowIndex = index == dataGridView.RowCount - 2 && rowFirstColumnValue < newValue ? dataGridView.RowCount - 2 : index - 1;
                             if (destinationRowIndex == doc.Data.Count)
                             {
-                                float[] newRowValues = new float[doc.ColumnCount];
+                                double[] newRowValues = new double[doc.ColumnCount];
                                 doc.Data.Insert(destinationRowIndex, newRowValues);
                             }
                             doc.MoveRow(e.RowIndex, destinationRowIndex);
