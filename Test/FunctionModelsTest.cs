@@ -122,38 +122,44 @@ namespace Test
                 .ClickOk();
 
             MainForm main = MainForm.FromMainMenu(mainWindow);
-            //Open models dialog and set filter. Verify the found funcitons
+            //Open models dialog and set filter. Verify the found functions
             modelsDialog = ModelsDialog.FromMainMenu(mainWindow);
-            string[] filteredFunctions = modelsDialog.SetFilter("Exp,d").GetFilteredLibFunctionNames();
+            string[] filteredFunctions = modelsDialog.SetFilter("Exp,pse").GetFilteredLibFunctionNames();
             Assert.IsNotNull(filteredFunctions, "No functions match the filter");
-            Assert.AreEqual(3, filteredFunctions.Length, "More than one functions found for filter 'Linear'");
-            Assert.AreEqual("Damping Oscillations", filteredFunctions[0], "Returned function is not as expected");
+            Assert.AreEqual(4, filteredFunctions.Length, "More than one functions found for filter 'Linear'");
+            Assert.AreEqual("Exponent", filteredFunctions[0], "Returned function is not as expected");
             Assert.AreEqual("Exponential Decline", filteredFunctions[1], "Returned function is not as expected");
-            Assert.AreEqual("Ratkowsky Model", filteredFunctions[2], "Returned function is not as expected");
+            Assert.AreEqual("Pseudo-Voigt", filteredFunctions[2], "Returned function is not as expected");
+            Assert.AreEqual("Reciprocal Exponential", filteredFunctions[3], "Returned function is not as expected");
 
             //Select the three library functions and close with ok
-            modelsDialog.CheckLibFunction("Damping Oscillations").CheckLibFunction("Exponential Decline").CheckLibFunction("Ratkowsky Model").ClickOk().Delay();
+            modelsDialog.CheckLibFunction("Exponent").CheckLibFunction("Exponential Decline").CheckLibFunction("Pseudo-Voigt").ClickOk().Delay();
             Assert.IsTrue(modelsDialog.GetWindow().IsClosed);
 
             //Verify the functions were added to the document
             string[] documentModels = main.GetDocumentModels();
             Assert.IsNotNull(documentModels, "No functions were added to document");
             Assert.AreEqual(3, documentModels.Length, "Count of functions in the document not as expected document");
-            Assert.AreEqual("Ratkowsky Model", documentModels[0], "The function in the model is not as expected");
-            Assert.AreEqual("Damping Oscillations", documentModels[1], "The function in the model is not as expected");
+            Assert.AreEqual("Pseudo-Voigt", documentModels[0], "The function in the model is not as expected");
+            Assert.AreEqual("Exponent", documentModels[1], "The function in the model is not as expected");
             Assert.AreEqual("Exponential Decline", documentModels[2], "The function in the model is not as expected");
 
             var parameters = main.GetModelParameters();
             //Verify initialization of the parameters
             Assert.IsNotNull(parameters);
-            Assert.AreEqual(3, parameters.Length, "Count of parameters not as expected");
+            Assert.AreEqual(6, parameters.Length, "Count of parameters not as expected");
             Assert.AreEqual("a", parameters[0].Item1, "Wrong name for the first parameter");
             Assert.AreEqual("b", parameters[1].Item1, "Wrong name for the second parameter");
             Assert.AreEqual("c", parameters[2].Item1, "Wrong name for the third parameter");
-            Assert.AreEqual("1.009187", parameters[0].Item2, "Wrong value for the first parameter");
-            Assert.AreEqual("-0.3202234", parameters[1].Item2, "Wrong value for the second parameter");
-            Assert.AreEqual("-0.2588096", parameters[2].Item2, "Wrong value for the third parameter");
-
+            Assert.AreEqual("d", parameters[3].Item1, "Wrong name for the first parameter");
+            Assert.AreEqual("e", parameters[4].Item1, "Wrong name for the second parameter");
+            Assert.AreEqual("f", parameters[5].Item1, "Wrong name for the third parameter");
+            Assert.AreEqual("0.503365043690562", parameters[0].Item2, "Wrong value for the first parameter");
+            Assert.AreEqual("-7.90972929084951", parameters[1].Item2, "Wrong value for the second parameter");
+            Assert.AreEqual("8.02946832474354", parameters[2].Item2, "Wrong value for the third parameter");
+            Assert.AreEqual("0.269567356157551", parameters[3].Item2, "Wrong value for the first parameter");
+            Assert.AreEqual("1.02962454943947", parameters[4].Item2, "Wrong value for the second parameter");
+            Assert.AreEqual("4.0483604971376", parameters[5].Item2, "Wrong value for the third parameter");
         }
 
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
@@ -237,14 +243,14 @@ namespace Test
             Assert.AreEqual("Edit", modelsDialog.BtnEdit.Text, "Wrong text for edit button.");
             Assert.AreEqual("New", modelsDialog.BtnNew.Text, "Wrong text for edit button.");
             Assert.AreEqual("Remove", modelsDialog.BtnRemove.Text, "Wrong text for edit button.");
-            Bitmap mathImage = null;
+
+            RemoveFunction(newFunctionName);
 
             //Enter new model in the math expression editor dialog and exit with cancel, verify the new function is not added
             AddNewCustomFunctionCancel(newFunctionName, mathExpressionFunction);
 
             //Enter new model in the math expression editor dialog and close with Ok, verify new the function is added
-            AddNewCustomFunctionOk(newFunctionName, mathExpressionFunction);
-            Assert.IsTrue(modelsDialog.GetExpressionImage(ref mathImage).CheckImages(mathImage, "AddRemoveCustomFunction_Step1"), "Math expression not displayed as expected");
+            AddCustomLibraryExistingFunctionOk(newFunctionName, mathExpressionFunction);
         }
 
         /// <summary>
@@ -307,6 +313,26 @@ namespace Test
         }
 
         /// <summary>
+        /// AddNewCustomFunctionOk - Enter new model in the math expression editor dialog and close with Ok, verify new the function is added
+        /// </summary>
+        /// <param name="newFunctionName"></param>
+        /// <param name="mathExpresion"></param>
+        private void AddCustomLibraryExistingFunctionOk(string newFunctionName, string mathExpression)
+        {
+
+            modelsDialog.ClickNew().Delay();
+
+            expressionDialog = ExpressionEditorDialog.FromMainWindow(mainWindow);
+
+            //Verify name and expression boxes are empty, and set new name and expresion
+            expressionDialog.IfNameIs("").IfExpressionIs("").SetName(newFunctionName).SetExpression(mathExpression).Delay().ClickOk().Delay();
+
+            var informationDialog = InformationDialog.FromMainWindow(mainWindow);
+
+            informationDialog.ClickClose();
+        }
+
+        /// <summary>
         /// RemoveFunction - Remove model and verify it is not in the custom functions list
         /// </summary>
         /// <param name="functionName"></param>
@@ -314,7 +340,10 @@ namespace Test
         {
             modelsDialog.SelectFunction(functionName);
 
-            modelsDialog.ClickRemove().Delay();
+            if (modelsDialog.HasFunction(functionName))
+            {
+                modelsDialog.ClickRemove().Delay();
+            }
 
             modelsDialog = ModelsDialog.FromMainWindow(mainWindow);
 

@@ -216,10 +216,22 @@ namespace Test.Dialogs
         public ModelsDialog SelectFunction(string name)
         {
             var rows = customFuncGrid.Rows;
-            rows.Where(row => row.Cells["Name"].Value.ToString() == name).First().Select();
+            if (rows != null && rows.Count > 0)
+            {
+                rows.Where(row => row.Cells["Name"].Value.ToString() == name).First().Select();
+            }
             return this;
         }
-            
+        public bool HasFunction(string name)
+        {
+            var rows = customFuncGrid.Rows;
+            if (rows != null && rows.Count > 0)
+            {
+                return (rows.Where(row => row.Cells["Name"].Value.ToString() == name).Any());
+            }
+
+            return false;
+        }
 
         public ModelsDialog ClickNew()
         {

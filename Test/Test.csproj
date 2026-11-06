@@ -86,6 +86,8 @@
     <Compile Include="Common\ControlNotFoundException.cs" />
     <Compile Include="Common\MainForm.cs" />
     <Compile Include="Dialogs\ExpressionEditorDialog.cs" />
+    <Compile Include="Dialogs\InformationDialog.cs" />
+    <Compile Include="Dialogs\WarningDialog.cs" />
     <Compile Include="Dialogs\TransformDialog.cs" />
     <Compile Include="Dialogs\FilterDialog.cs" />
     <Compile Include="Dialogs\ImportDataDialog.cs" />
