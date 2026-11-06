@@ -9,7 +9,7 @@ namespace MathLib
     /// </summary>
     public class Matrix
     {
-        protected float[][] values;
+        protected double[][] values;
 
         /// <summary>
         /// sizeX
@@ -22,14 +22,14 @@ namespace MathLib
         /// <summary>
         /// Values
         /// </summary>
-        public float[][] Values
+        public double[][] Values
         {
             get { return this.values; }
             set { this.values = value; }
         }
 
 
-        public static float minFloatNumber = 1E-32f;
+        public static double minFloatNumber = double.MinValue;
 
         /// <summary>
         /// Matrix - default constructor
@@ -559,10 +559,10 @@ namespace MathLib
 
         protected void AllocateMatrix()
         {
-            values = new float[sizeY][];
+            values = new double[sizeY][];
             for (int i = 0; i < sizeY; i++)
             {
-                values[i] = new float[sizeX];
+                values[i] = new double[sizeX];
             }
         }
     }

@@ -45,12 +45,12 @@ namespace MathLib
         /// <param name="data"></param>
         /// <param name="A"></param>
         /// <param name="B"></param>
-        public static void GetAB2(float[] data, out float[] A, out float[] B)
+        public static void GetAB2(double[] data, out double[] A, out double[] B)
         {
-            A = new float[data.Length/2];
-            B = new float[data.Length/2];
+            A = new double[data.Length/2];
+            B = new double[data.Length/2];
             int N = data.Length;
-            float k = 2 * (float)Math.PI / N;
+            double k = 2 * Math.PI / N;
 
             for (int n = 0; n < N/2; n++)
             {
@@ -98,12 +98,12 @@ namespace MathLib
         /// <param name="data"></param>
         /// <param name="Modules"></param>
         /// <param name="Phases"></param>
-        public static void GetModulePhase2(float[] data, out float[] Modules, out float[] Phases)
+        public static void GetModulePhase2(double[] data, out double[] Modules, out double[] Phases)
         {
-            float[] A;
-            float[] B;
-            Modules = new float[data.Length/2];
-            Phases = new float[data.Length/2];
+            double[] A;
+            double[] B;
+            Modules = new double[data.Length/2];
+            Phases = new double[data.Length/2];
             int N = Modules.Length;
             GetAB2(data, out A, out B);
 

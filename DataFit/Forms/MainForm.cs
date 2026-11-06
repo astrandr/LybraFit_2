@@ -68,9 +68,9 @@ namespace LybraFit
 
         public static bool StopRegression = false;
 
-        private delegate void NewRegressionResultHandler(float stdError);
+        private delegate void NewRegressionResultHandler(double stdError);
 
-        private NewRegressionResultHandler OnNewRegressionResult = null;
+        private readonly NewRegressionResultHandler OnNewRegressionResult = null;
 
         BackgroundWorker worker = null;
 
@@ -489,8 +489,8 @@ namespace LybraFit
                     flags.Add(i);
                 }
             }
-            float[] X = doc.X;
-            float[] Y = doc.Y;
+            double[] X = doc.X;
+            double[] Y = doc.Y;
             LeastSquare.CalculateValuesDalegate calcFunc = new LeastSquare.CalculateValuesDalegate(doc.CurrentModel.ModelFunction.CalcProcedure);
             int[] flagsArr = flags.ToArray();
 
@@ -522,7 +522,7 @@ namespace LybraFit
         private void BackgroundRegression(object sender, DoWorkEventArgs args)
         {
             object[] prm = (object[])args.Argument;
-            eps = EnhancedOptimize((float[])prm[0], (float[])prm[1], (float[])prm[2], (int[])prm[3], (LeastSquare.CalculateValuesDalegate)prm[4]);
+            eps = EnhancedOptimize((double[])prm[0], (double[])prm[1], (double[])prm[2], (int[])prm[3], (LeastSquare.CalculateValuesDalegate)prm[4]);
         }
 
         private void RegressionCompleted(object sender, RunWorkerCompletedEventArgs args)
@@ -563,7 +563,7 @@ namespace LybraFit
             Program.IsFromUser = true;
         }
 
-        private void NewRegressionResult(float stdError)
+        private void NewRegressionResult(double stdError)
         {
             if (this.InvokeRequired)
             {
@@ -576,17 +576,17 @@ namespace LybraFit
             }
         }
 
-        private float EnhancedOptimize(float[] X, float[] Y, float[] P, int[] flagsArr, LeastSquare.CalculateValuesDalegate calcFunc)
+        private float EnhancedOptimize(double[] X, double[] Y, double[] P, int[] flagsArr, LeastSquare.CalculateValuesDalegate calcFunc)
         {
             LeastSquare lsAllParms = new LeastSquare(X, Y, doc.ErrY, doc.Parameters, flagsArr, calcFunc, null);
 
-            float[] bestParameters = new float[doc.Parameters.Length];
+            double[] bestParameters = new double[doc.Parameters.Length];
             doc.Parameters.CopyTo(bestParameters, 0);
-            float initialEps = lsAllParms.CalculateStdError();
+            double initialEps = lsAllParms.CalculateStdError();
 
-            float epsAllParameters = lsAllParms.Optimize(0.01f, 100);
+            double epsAllParameters = lsAllParms.Optimize(0.01f, 100);
 
-            float minEps, prevMinEps;
+            double minEps, prevMinEps;
             if (epsAllParameters < initialEps)
             {
                 doc.Parameters.CopyTo(bestParameters, 0);
@@ -637,7 +637,7 @@ namespace LybraFit
 
             if (doc.CurrentModel.LastFitParameters == null)
             {
-                doc.CurrentModel.LastFitParameters = new float[doc.Parameters.Length];
+                doc.CurrentModel.LastFitParameters = new double[doc.Parameters.Length];
             }
             doc.Parameters.CopyTo(doc.CurrentModel.LastFitParameters, 0);
             try
@@ -648,7 +648,7 @@ namespace LybraFit
             }
             catch
             {
-                doc.CurrentModel.SigmaParameters = new float[doc.CurrentModel.LastFitParameters.Length];
+                doc.CurrentModel.SigmaParameters = new double[doc.CurrentModel.LastFitParameters.Length];
                 for (int i = 0; i < doc.CurrentModel.SigmaParameters.Length; i++)
                 {
                     doc.CurrentModel.SigmaParameters[i] = float.NaN;
@@ -692,8 +692,8 @@ namespace LybraFit
             RefreshParametersGrid();
 
 
-            float[] X = doc.X;
-            float[] Y = doc.Y;
+            double[] X = doc.X;
+            double[] Y = doc.Y;
             LeastSquare.CalculateValuesDalegate calcFunc = new LeastSquare.CalculateValuesDalegate(doc.CurrentModel.ModelFunction.CalcProcedure);
             int[] flagsArr = new int[doc.CurrentModel.ModelFunction.Parameters.Length]; for (int i = 0; i < flagsArr.Length; i++) { flagsArr[i] = i; };
 
@@ -774,8 +774,8 @@ namespace LybraFit
 
         private void UpdateFitGoodness()
         {
-            float[] X = doc.X;
-            float[] Y = doc.Y;
+            double[] X = doc.X;
+            double[] Y = doc.Y;
             LeastSquare.CalculateValuesDalegate calcFunc = new LeastSquare.CalculateValuesDalegate(doc.CurrentModel.ModelFunction.CalcProcedure);
             int[] flagsArr = new int[doc.Parameters.Length]; for (int i = 0; i < flagsArr.Length; i++) { flagsArr[i] = i; };
 
@@ -808,7 +808,7 @@ namespace LybraFit
 
             string name = dataGridModels.SelectedRows[0].Cells["ModelName"].Value.ToString();
 
-            doc.Parameters = new float[doc.CurrentModel.ModelFunction.Parameters.Length];
+            doc.Parameters = new double[doc.CurrentModel.ModelFunction.Parameters.Length];
             for (int i = 0; i < doc.Parameters.Length; i++)
             {
                 doc.Parameters[i] = 0;
@@ -832,7 +832,7 @@ namespace LybraFit
         private void UpdateDocumentFit()
         {
             doc.FitDataX = doc.X;
-            doc.FitDataY = new float[doc.FitDataX.Length];
+            doc.FitDataY = new double[doc.FitDataX.Length];
             doc.CurrentModel.ModelFunction.CalcProcedure(doc.FitDataX, doc.Parameters, ref doc.FitDataY);
 
             //Calculate difference between the fit and original data
@@ -1165,11 +1165,11 @@ namespace LybraFit
 
         private Task PopulateDocumentData(NewDataSettings settings)
         {
-            float[] P = new float[0];
-            for (float x = settings.DataXMin; x <= settings.DataXMax; x += settings.DataXIncrement)
+            double[] P = new double[0];
+            for (double x = settings.DataXMin; x <= settings.DataXMax; x += settings.DataXIncrement)
             {
-                float y = 0;
-                float err = 0;
+                double y = 0;
+                double err = 0;
                 if (settings.CalculateYData && settings.YFunction != null)
                 {
                     y = settings.YFunction.Calculate(x, P);
@@ -1577,11 +1577,11 @@ namespace LybraFit
             transformDialog.LeftTopPos = CenterDialog(transformDialog);
             if (transformDialog.ShowDialog(new string[] { doc.ColumnNames[0], doc.ColumnNames[1] }) == DialogResult.OK)
             {
-                float[] source = transformDialog.ColumnIndex == 0 ? doc.X : doc.Y;
-                float[] transformed = new float[source.Length];
+                double[] source = transformDialog.ColumnIndex == 0 ? doc.X : doc.Y;
+                double[] transformed = new double[source.Length];
                 try
                 {
-                    transformDialog.TransformFunction.CalcProcedure(source, new float[0], ref transformed);
+                    transformDialog.TransformFunction.CalcProcedure(source, new double[0], ref transformed);
                 }
                 catch
                 {
@@ -1998,8 +1998,8 @@ namespace LybraFit
 
         private Task<List<string>> AddLibraryModelsAsync()
         {
-            float[] X = doc.X;
-            float[] Y = doc.Y;
+            double[] X = doc.X;
+            double[] Y = doc.Y;
             List<string> initializationFailures = new List<string>();
 
             Parallel.ForEach<string>(Program.LibraryModels.Keys, name =>
@@ -2030,7 +2030,7 @@ namespace LybraFit
                         catch (InitializationException ine)
                         {
                             LeastSquare.CalculateValuesDalegate calcFunc = new LeastSquare.CalculateValuesDalegate(modelFitInfo.ModelFunction.CalcProcedure);
-                            modelFitInfo.LastFitParameters = new float[modelFitInfo.ModelFunction.Parameters.Length];
+                            modelFitInfo.LastFitParameters = new double[modelFitInfo.ModelFunction.Parameters.Length];
                             LeastSquare ls = new LeastSquare(X, Y, modelFitInfo.LastFitParameters, new int[0], calcFunc, null);
                             float eps = ls.CalculateStdError();
                             modelFitInfo.FitResultStdError = eps;
@@ -2039,9 +2039,9 @@ namespace LybraFit
                         {
                             initializationFailures.Add(modelFitInfo.ModelFunction.Name);
                             LeastSquare.CalculateValuesDalegate calcFunc = new LeastSquare.CalculateValuesDalegate(modelFitInfo.ModelFunction.CalcProcedure);
-                            modelFitInfo.LastFitParameters = new float[modelFitInfo.ModelFunction.Parameters.Length];
+                            modelFitInfo.LastFitParameters = new double[modelFitInfo.ModelFunction.Parameters.Length];
                             LeastSquare ls = new LeastSquare(X, Y, modelFitInfo.LastFitParameters, new int[0], calcFunc, null);
-                            float eps = ls.CalculateStdError();
+                            double eps = ls.CalculateStdError();
                             modelFitInfo.FitResultStdError = eps;
                         }
                     }

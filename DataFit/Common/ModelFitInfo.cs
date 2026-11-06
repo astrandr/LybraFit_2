@@ -27,11 +27,11 @@ namespace LybraFit.Common
         [XmlIgnore]
         public bool IsInitialized = false;
 
-        public float[] LastFitParameters;
-        public float[] SigmaParameters;
-        public float[] SigmaY;
-        public float FitResultStdError;
-        public float FitResultChiSquare;
+        public double[] LastFitParameters;
+        public double[] SigmaParameters;
+        public double[] SigmaY;
+        public double FitResultStdError;
+        public double FitResultChiSquare;
         public List<DerivedValueInfo> DerivedValues;
         public ModelLog Log = null;
         public ModelFitInfo() { }
@@ -89,11 +89,11 @@ namespace LybraFit.Common
             modelFunctionDescription = info.GetString("modelFunctionDescription");
             modelFunctionParameters = (string[])info.GetValue("modelFunctionParameters", typeof(string[]));
             isUserFunction = info.GetBoolean("isUserFunction");
-            LastFitParameters = (float[])info.GetValue("LastFitParameters", typeof(float[]));
-            SigmaParameters = (float[])info.GetValue("SigmaParameters", typeof(float[]));
-            SigmaY = (float[])info.GetValue("SigmaY", typeof(float[]));
-            FitResultStdError = (float)info.GetValue("FitResultStdError", typeof(float));
-            FitResultChiSquare = (float)info.GetValue("FitResultStdError", typeof(float));
+            LastFitParameters = (double[])info.GetValue("LastFitParameters", typeof(double[]));
+            SigmaParameters = (double[])info.GetValue("SigmaParameters", typeof(double[]));
+            SigmaY = (double[])info.GetValue("SigmaY", typeof(double[]));
+            FitResultStdError = (double)info.GetValue("FitResultStdError", typeof(double));
+            FitResultChiSquare = (double)info.GetValue("FitResultStdError", typeof(double));
             DerivedValues = (List<DerivedValueInfo>)info.GetValue("DerivedValues", typeof(List<DerivedValueInfo>));
             Log = (ModelLog)info.GetValue("Log", typeof(ModelLog));
         }

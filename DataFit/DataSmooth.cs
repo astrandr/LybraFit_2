@@ -17,11 +17,11 @@ namespace MathLib
         /// <param name="Y"></param>
         /// <param name="n">cound of points to use in smoothing</param>
         /// <returns></returns>
-        public static float[] MovingAverage(float[] Y, int n)
+        public static double[] MovingAverage(double[] Y, int n)
         {
-            float[] r = new float[Y.Length];
-            float s = 0;
-            int l = (int)((float)n/2.0f);
+            double[] r = new double[Y.Length];
+            double s = 0;
+            int l = (int)((double)n/2.0f);
             for (int i = 0; i < r.Length; i++)
             {
                 int lo = i >= l ? i - l : 0;

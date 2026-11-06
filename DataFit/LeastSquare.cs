@@ -15,10 +15,10 @@ namespace MathLib
     public class LeastSquare
     {
         #region private members
-        private float[] dataX = null;
-        private float[] dataY = null;
-        private float[] errY = null;
-        private float[] P = null;
+        private double[] dataX = null;
+        private double[] dataY = null;
+        private double[] errY = null;
+        private double[] P = null;
         private int[] paramToVary = null;
         private int nPoints = 0;
         private int nParams = 0;
@@ -65,7 +65,7 @@ namespace MathLib
         /// <param name="X">array of data values</param>
         /// <param name="P">array of current parameters values</param>
         /// <param name="Y">array of function values to be returned</param>
-        public delegate void CalculateValuesDalegate(float[] X, float[] P, ref float[] Y);
+        public delegate void CalculateValuesDalegate(double[] X, double[] P, ref double[] Y);
 
         /// <summary>
         /// NewApproximationResultCallback
@@ -82,7 +82,7 @@ namespace MathLib
         /// <param name="P">parameters</param>
         /// <param name="PV">indexes of parameters to be varied</param>
         /// <param name="calcProcedure">function called to calculate Y values</param>
-        public LeastSquare(float[] X, float[] Y, float[] P, int[] paramToVary, CalculateValuesDalegate calcProcedure, NewApproximationResultCallback resultCallback)
+        public LeastSquare(double[] X, double[] Y, double[] P, int[] paramToVary, CalculateValuesDalegate calcProcedure, NewApproximationResultCallback resultCallback)
         {
             Debug.Assert(X != null && X.Length != 0, "Invalida data X provided");
             Debug.Assert(Y != null && Y.Length != 0, "Invalida data Y provided");
@@ -108,7 +108,7 @@ namespace MathLib
         /// <param name="P">parameters</param>
         /// <param name="PV">indexes of parameters to be varied</param>
         /// <param name="calcProcedure">function called to calculate Y values</param>
-        public LeastSquare(float[] X, float[] Y, float[] errY, float[] P, int[] paramToVary, CalculateValuesDalegate calcProcedure, NewApproximationResultCallback resultCallback)
+        public LeastSquare(double[] X, double[] Y, double[] errY, double[] P, int[] paramToVary, CalculateValuesDalegate calcProcedure, NewApproximationResultCallback resultCallback)
         {
             Debug.Assert(X != null && X.Length != 0, "Invalida data X provided");
             Debug.Assert(Y != null && Y.Length != 0, "Invalida data Y provided");
@@ -126,12 +126,12 @@ namespace MathLib
             this.nParams = paramToVary.Length;
         }
 
-        public float CalculateError()
+        public double CalculateError()
         {
-            float[] newY = new float[nPoints];
-            float[] deltaY = new float[nPoints];
+            double[] newY = new double[nPoints];
+            double[] deltaY = new double[nPoints];
             calcProcedure(dataX, P, ref newY);
-            float eps = 0;
+            double eps = 0;
             for (int i = 0; i < nPoints; i++)
             {
                 deltaY[i] = dataY[i] - newY[i];
@@ -442,20 +442,20 @@ namespace MathLib
         /// <param name="paramDerivativeDelta"></param>
         /// <param name="sigmaParameters"></param>
         /// <param name="sigmaY"></param>
-        public void GetFitError(float paramDerivativeDelta, out float[] sigmaParameters, out float[] sigmaY)
+        public void GetFitError(double paramDerivativeDelta, out double[] sigmaParameters, out double[] sigmaY)
         {
             Matrix YP = new Matrix(nPoints, paramToVary.Length);
             Matrix J = new Matrix(paramToVary.Length, paramToVary.Length);
             Matrix JInv;
             Matrix DY = new Matrix(1, paramToVary.Length);
 
-            float[] newY = new float[nPoints];
-            float[] newY1 = new float[nPoints];
-            float[] newY2 = new float[nPoints];
-            float[] deltaY = new float[nPoints];
-            float[] deltaP = new float[paramToVary.Length];
-            sigmaParameters = new float[P.Length];
-            sigmaY = new float[nPoints];
+            double[] newY = new double[nPoints];
+            double[] newY1 = new double[nPoints];
+            double[] newY2 = new double[nPoints];
+            double[] deltaY = new double[nPoints];
+            double[] deltaP = new double[paramToVary.Length];
+            sigmaParameters = new double[P.Length];
+            sigmaY = new double[nPoints];
 
             for (int j = 0; j < paramToVary.Length; j++)
             {
@@ -494,7 +494,7 @@ namespace MathLib
                     J.Values[j][k] = 0;
                     for (int i = 0; i < nPoints; i++)
                     {
-                        if (!float.IsNaN(YP.Values[i][j]) && !float.IsNaN(YP.Values[i][k]) && !float.IsInfinity(YP.Values[i][j]) && !float.IsInfinity(YP.Values[i][k]))
+                        if (!double.IsNaN(YP.Values[i][j]) && !double.IsNaN(YP.Values[i][k]) && !double.IsInfinity(YP.Values[i][j]) && !double.IsInfinity(YP.Values[i][k]))
                         {
                             if (errY != null && errY[i] != 0)
                             {
@@ -586,19 +586,19 @@ namespace MathLib
         /// <param name="paramDerivativeDelta"></param>
         /// <param name="sigmaParameters"></param>
         /// <param name="sigmaY"></param>
-        public void GetFitErrorAllParameters(float paramDerivativeDelta, out float[] sigmaParameters, out float[] sigmaY)
+        public void GetFitErrorAllParameters(double paramDerivativeDelta, out double[] sigmaParameters, out double[] sigmaY)
         {
             Matrix YP = new Matrix(nPoints, nParams);
             Matrix J = new Matrix(nParams, nParams);
             Matrix JInv;
             Matrix DY = new Matrix(1, nParams);
 
-            float[] newY = new float[nPoints];
-            float[] newY2 = new float[nPoints];
-            float[] deltaY = new float[nPoints];
-            float[] deltaP = new float[nParams];
-            sigmaParameters = new float[P.Length];
-            sigmaY = new float[nPoints];
+            double[] newY = new double[nPoints];
+            double[] newY2 = new double[nPoints];
+            double[] deltaY = new double[nPoints];
+            double[] deltaP = new double[nParams];
+            sigmaParameters = new double[P.Length];
+            sigmaY = new double[nPoints];
 
             for (int j = 0; j < nParams; j++)
             {
@@ -641,7 +641,7 @@ namespace MathLib
                     J.Values[j][k] = 0;
                     for (int i = 0; i < nPoints; i++)
                     {
-                        if (!float.IsNaN(YP.Values[i][j]) && !float.IsNaN(YP.Values[i][k]) && !float.IsInfinity(YP.Values[i][j]) && !float.IsInfinity(YP.Values[i][k]))
+                        if (!double.IsNaN(YP.Values[i][j]) && !double.IsNaN(YP.Values[i][k]) && !double.IsInfinity(YP.Values[i][j]) && !double.IsInfinity(YP.Values[i][k]))
                         {
                             if (errY != null && errY[i] != 0)
                             {

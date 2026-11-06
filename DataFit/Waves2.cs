@@ -19,11 +19,11 @@ namespace FuncLib
             this.parameters = new string[] { "a", "b", "c", "d", "e", "f", "g" };
         }
 
-        public override void CalcProcedure(float[] X, float[] P, ref float[] Y)
+        public override void CalcProcedure(double[] X, double[] P, ref double[] Y)
         {
             for (int i = 0; i < X.Length; i++)
             {
-                Y[i] = P[0] * (float)Math.Sin(P[1] * X[i] + P[2]) + P[3] * (float)Math.Sin(P[4] * X[i] + P[5]) + P[6];
+                Y[i] = P[0] * Math.Sin(P[1] * X[i] + P[2]) + P[3] * Math.Sin(P[4] * X[i] + P[5]) + P[6];
             }
         }
 
@@ -33,7 +33,7 @@ namespace FuncLib
         /// <param name="X"></param>
         /// <param name="Y"></param>
         /// <returns></returns>
-        public float[] InitParameters2(float[] X, float[] Y)
+        public double[] InitParameters2(double[] X, double[] Y)
         {
             CheckNumberOfPointsForInitialization(X);
             float[] P = new float[7];
@@ -86,11 +86,11 @@ namespace FuncLib
         /// <param name="X"></param>
         /// <param name="Y"></param>
         /// <returns></returns>
-        public override float[] InitParameters(float[] X, float[] Y)
+        public override double[] InitParameters(double[] X, double[] Y)
         {
             CheckNumberOfPointsForInitialization(X);
-            float[] P = new float[7];
-            float[] Re = X, Im = Y; //Amlitudes and phases of fourier transform
+            double[] P = new double[7];
+            double[] Re = X, Im = Y; //Amlitudes and phases of fourier transform
 
             //Check if length is of power of 2 and round to closes if needed
             int length = X.Length;
@@ -99,8 +99,8 @@ namespace FuncLib
 
             length = (int)Math.Pow(2, m);
 
-            Re = new float[length];
-            Im = new float[length];
+            Re = new double[length];
+            Im = new double[length];
 
             Array.Copy(Y, Re, Re.Length);
 
@@ -128,9 +128,9 @@ namespace FuncLib
             }
 
             P[0] = 2 * (float)Math.Sqrt(Re[maxAmplIndex] * Re[maxAmplIndex] + Im[maxAmplIndex] * Im[maxAmplIndex]);
-            float period = length / maxAmplIndex * (X[1] - X[0]);
+            double period = length / maxAmplIndex * (X[1] - X[0]);
             P[1] = 2 * PI / period; //Normalized to data spacing
-            P[2] = (float)Math.Atan2(Re[maxAmplIndex], -Im[maxAmplIndex]);
+            P[2] = Math.Atan2(Re[maxAmplIndex], -Im[maxAmplIndex]);
             P[2] += (X[0] / period) * 2 * PI; // account for the shift
             P[2] = (P[2] - (int)P[2]);
 

@@ -352,7 +352,7 @@ namespace GraphControlLib
             }
         }
 
-        public void SetPlotDataError(string name, float[] plotData)
+        public void SetPlotDataError(string name, double[] plotData)
         {
             if (this.dataError.ContainsKey(name))
             {

@@ -13,7 +13,7 @@ namespace FuncLib
     {
         public static float PI = (float)Math.PI;
 
-        protected float[] filteredX, filteredY;
+        protected double[] filteredX, filteredY;
 
         protected bool canInitParameters = false;
 
@@ -25,7 +25,7 @@ namespace FuncLib
             set { uniqueDescription = value; }
         }
 
-        protected void CheckNumberOfPointsForInitialization(float[] X)
+        protected void CheckNumberOfPointsForInitialization(double[] X)
         {
             if (X.Length < parameters.Length)
             {
@@ -38,14 +38,14 @@ namespace FuncLib
 
         public bool CanInitParameters { get { return canInitParameters; } }
 
-        public virtual float[] InitParameters(float[] X, float[] Y) { return null; }
+        public virtual double[] InitParameters(double[] X, double[] Y) { return null; }
 
         public void SetUniqueDescription()
         {
             this.uniqueDescription = Parser.GetUniqueExpression(this.description, this.parameters);
         }
 
-        public override void CalcProcedure(float[] X, float[] P, ref float[] Y)
+        public override void CalcProcedure(double[] X, double[] P, ref double[] Y)
         {
             throw new NotImplementedException();
         }
@@ -57,14 +57,14 @@ namespace FuncLib
         /// <param name="Y"></param>
         /// <param name="filteredX"></param>
         /// <param name="filteredY"></param>
-        public void FilterData(float[] X, float[] Y)
+        public void FilterData(double[] X, double[] Y)
         {
-            List<float> fX = new List<float>();
-            List<float> fY = new List<float>();
+            List<double> fX = new List<double>();
+            List<double> fY = new List<double>();
 
             for (int i = 0; i < X.Length; i++)
             {
-                if (!float.IsInfinity(X[i]) && !float.IsInfinity(Y[i]) && !float.IsNaN(X[i]) && !float.IsNaN(Y[i]))
+                if (!double.IsInfinity(X[i]) && !double.IsInfinity(Y[i]) && !double.IsNaN(X[i]) && !double.IsNaN(Y[i]))
                 {
                     fX.Add(X[i]);
                     fY.Add(Y[i]);

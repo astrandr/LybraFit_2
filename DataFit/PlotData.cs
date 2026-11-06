@@ -18,17 +18,17 @@ namespace GraphControlLib
 
     public class PlotData
     {
-        private float[] dataX;
+        private double[] dataX;
 
-        public float[] DataX
+        public double[] DataX
         {
             get { return dataX; }
             set { dataX = value; }
         }
 
-        private float[] dataY;
+        private double[] dataY;
 
-        public float[] DataY
+        public double[] DataY
         {
             get { return dataY; }
             set { dataY = value; }
@@ -84,7 +84,7 @@ namespace GraphControlLib
 
 
 
-        public PlotData(float[] dataX, float[] dataY, Color color, DashStyle lineStyle, int pointSize, uint penWidth, PlotDataPointType pointType)
+        public PlotData(double[] dataX, double[] dataY, Color color, DashStyle lineStyle, int pointSize, uint penWidth, PlotDataPointType pointType)
         {
             this.dataX = dataX;
             this.dataY = dataY;
@@ -95,7 +95,7 @@ namespace GraphControlLib
             this.pointType = pointType;
         }
 
-        public void Plot(Graphics g, float minX, float maxX, float minY, float maxY, Rectangle area, float drawScale = 1, float[] dataError = null)
+        public void Plot(Graphics g, float minX, float maxX, float minY, float maxY, Rectangle area, float drawScale = 1, double[] dataError = null)
         {
             if (dataX != null)
             {
@@ -156,7 +156,7 @@ namespace GraphControlLib
                     else
                     {
                         hasPrevPoint = false;
-                        if (float.IsInfinity(dataY[i]))
+                        if (double.IsInfinity(dataY[i]))
                         {
                             Pen errPen = new Pen(color, width * drawScale); errPen.DashStyle = DashStyle.Dot;
                             int x = (int)((dataX[i] - minX) / (maxX - minX) * area.Width + area.Left);

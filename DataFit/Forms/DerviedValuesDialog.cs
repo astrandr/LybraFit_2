@@ -86,8 +86,8 @@ namespace LybraFit.Forms
             //Calculate the value
             if (derivedValue.CalcFunction != null)
             {
-                float[] pv = new float[derivedValue.CalcFunction.Parameters.Length];
-                float[] sigmas = new float[derivedValue.CalcFunction.Parameters.Length];
+                double[] pv = new double[derivedValue.CalcFunction.Parameters.Length];
+                double[] sigmas = new double[derivedValue.CalcFunction.Parameters.Length];
                 //Set values for the derived value function from the model best fit parameters
                 for (int i = 0; i < derivedValue.CalcFunction.Parameters.Length; i++)
                 {

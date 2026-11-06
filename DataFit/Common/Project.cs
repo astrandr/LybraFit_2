@@ -16,7 +16,7 @@ namespace LybraFit
     {
         public string Title;
         public bool HasErrorY;
-        public List<float[]> Data;
+        public List<double[]> Data;
         public string DataXName = "X";
         public string DataYName = "Y";
         public string ErrDataName = "Err";

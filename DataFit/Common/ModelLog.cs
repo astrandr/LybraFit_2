@@ -48,14 +48,14 @@ namespace LybraFit.Common
             records = new List<LogRecord>();
         }
 
-        public void AddRecord(string key, float[] parametersValues, float[] derivedValues, float stdError = 0)
+        public void AddRecord(string key, double[] parametersValues, double[] derivedValues, double stdError = 0)
         {
             if (valuesCount != parametersValues.Length + derivedValues.Length)
             {
                 throw new ArgumentException("Cannot insert log record, different values count");
             }
 
-            float[] values = new float[this.valuesCount];
+            double[] values = new double[this.valuesCount];
             int i = 0;
             for (; i < parametersValues.Length; i++)
             {

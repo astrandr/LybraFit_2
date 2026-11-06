@@ -8,11 +8,11 @@ namespace LybraFit.Common
     public class LogRecord : ISerializable
     {
         public string Key { get; set; }
-        public float[] Values { get; set; }
-        public float StdError { get; set; }
+        public double[] Values { get; set; }
+        public double StdError { get; set; }
         public LogRecord(){}
 
-        public LogRecord(string key, float[] values, float stdError)
+        public LogRecord(string key, double[] values, double stdError)
         {
             this.Key = key;
             this.Values = values;
@@ -22,8 +22,8 @@ namespace LybraFit.Common
         public LogRecord(SerializationInfo info, StreamingContext context)
         {
             Key = info.GetString("Key");
-            Values = (float[])info.GetValue("Values", typeof(float[]));
-            StdError = (float)info.GetValue("StdError", typeof(float));
+            Values = (double[])info.GetValue("Values", typeof(float[]));
+            StdError = (double)info.GetValue("StdError", typeof(float));
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)

@@ -19,22 +19,22 @@ namespace FuncLib
             this.parameters = new string[] { "a", "b" };
         }
 
-        public override void CalcProcedure(float[] X, float[] P, ref float[] Y)
+        public override void CalcProcedure(double[] X, double[] P, ref double[] Y)
         {
             for (int i = 0; i < X.Length; i++)
             {
-                Y[i] = P[0] * (float)Math.Exp(-P[1] / X[i] );
+                Y[i] = P[0] * Math.Exp(-P[1] / X[i] );
             }
         }
 
-        public override float[] InitParameters(float[] X, float[] Y)
+        public override double[] InitParameters(double[] X, double[] Y)
         {
             CheckNumberOfPointsForInitialization(X);
 
-            float[] P = new float[2];
+            double[] P = new double[2];
 
-            float[] lny = new float[X.Length];
-            float[] rx = new float[X.Length];
+            double[] lny = new double[X.Length];
+            double[] rx = new double[X.Length];
             float k = 1;
             for (int i = 0; i < X.Length; i++)
             {

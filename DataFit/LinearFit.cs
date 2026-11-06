@@ -123,7 +123,7 @@ namespace MathLib
         /// <param name="Y">Y - func value data</param>
         /// <param name="N">Nth order of the polynomial fit</param>
         /// <returns></returns>
-        public static float[] LinearFitSolve(float[] X, float[] Y, int N)
+        public static double[] LinearFitSolve(double[] X, double[] Y, int N)
         {
             Debug.Assert(X != null && Y != null, "Null arrays in LinearFitSolve");
             Debug.Assert(X.Length == Y.Length, "Arrays are not equal size in LinearFitSolve");
@@ -138,7 +138,7 @@ namespace MathLib
                 throw new System.ArgumentException("Invalid data passed to LinearFitSolve");
             }
 
-            float[] P = new float[N];
+            double[] P = new double[N];
 
             Matrix A = new Matrix(N, N);
             Matrix B = new Matrix(N, 1);
@@ -177,7 +177,7 @@ namespace MathLib
         /// <param name="Y">Y - func value data</param>
         /// <param name="N">Nth order of the polynomial fit</param>
         /// <returns></returns>
-        public static float[] LinearFitSolveLine(float[] X, float[] Y)
+        public static double[] LinearFitSolveLine(double[] X, double[] Y)
         {
             Debug.Assert(X != null && Y != null, "Null arrays in LinearFitSolve");
             Debug.Assert(X.Length == Y.Length, "Arrays are not equal size in LinearFitSolve");

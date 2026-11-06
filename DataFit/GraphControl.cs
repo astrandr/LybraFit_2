@@ -59,7 +59,7 @@ namespace GraphControlLib
         private Size minSelectionSize = new Size(5, 5);
 
         private Dictionary<string, PlotData> data = new Dictionary<string, PlotData>();
-        private Dictionary<string, float[]> dataError = new Dictionary<string, float[]>();
+        private Dictionary<string, double[]> dataError = new Dictionary<string, double[]>();
 
         //Mouse and selection related members
         private bool isInSelectMode = false;

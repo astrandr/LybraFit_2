@@ -15,11 +15,11 @@ namespace FuncLib
             this.parameters = new string[] { "a", "b", "c", "d", "e", "f" };
         }
 
-        public override void CalcProcedure(float[] X, float[] P, ref float[] Y)
+        public override void CalcProcedure(double[] X, double[] P, ref double[] Y)
         {
             for (int i = 0; i < X.Length; i++)
             {
-                Y[i] = P[0] * (float)Math.Sin(P[1] * X[i] + P[2]) * (float)Math.Cos(P[3] * X[i] + P[4]) + P[5];
+                Y[i] = P[0] * Math.Sin(P[1] * X[i] + P[2]) * Math.Cos(P[3] * X[i] + P[4]) + P[5];
             }
         }
 
@@ -29,15 +29,15 @@ namespace FuncLib
         /// <param name="X"></param>
         /// <param name="Y"></param>
         /// <returns></returns>
-        public override float[] InitParameters(float[] X, float[] Y)
+        public override double[] InitParameters(double[] X, double[] Y)
         {
             CheckNumberOfPointsForInitialization(X);
 
             //we use here 2*Sin(A)*Cos(B) = Sin(A+B)+Sin(A-B)
             Waves2 waves2 = new Waves2();
-            float[] pW = waves2.InitParameters(X, Y);
-            float AB1 = pW[1], AB2 = pW[4]; //AB1 = A+B, AB2 = A-B;
-            float[] p = new float[6];
+            double[] pW = waves2.InitParameters(X, Y);
+            double AB1 = pW[1], AB2 = pW[4]; //AB1 = A+B, AB2 = A-B;
+            double[] p = new double[6];
 
             //The following code assumes frequencies and phases are positive numbers. 
             //The uncertainty comes from the fact that beating wave is represented as sum of two sine wave which is symmetrical expression

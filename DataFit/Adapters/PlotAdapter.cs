@@ -20,7 +20,7 @@ namespace LybraFit
         {
             GraphControl graph = (GraphControl)this.control;
 
-            float min = 0, max = 0, minFit = 0, maxFit = 0, step = 0;
+            double min = 0, max = 0, minFit = 0, maxFit = 0, step = 0;
             int pow = 0, minPow = 2, count = 10;
 
             pow = minPow;
@@ -29,9 +29,9 @@ namespace LybraFit
             {
                 Utility.GetArrayLimits(doc.X, ref min, ref max);
                 Utility.GetRoundedLimits2(ref min, ref max, ref count, ref step, ref pow);
-                Configuration.GraphSettings.XMin = min;
-                Configuration.GraphSettings.XMax = max;
-                Configuration.GraphSettings.XStep = step;
+                Configuration.GraphSettings.XMin = (float)min;
+                Configuration.GraphSettings.XMax = (float)max;
+                Configuration.GraphSettings.XStep = (float)step;
                 Configuration.GraphSettings.XPow = pow;
             }
             graph.XAxisLabelsFont = Configuration.GraphSettings.TickLabelsFont;
@@ -53,9 +53,9 @@ namespace LybraFit
                     max = max > maxFit ? max : maxFit;
                 }
                 Utility.GetRoundedLimits2(ref min, ref max, ref count, ref step, ref pow);
-                Configuration.GraphSettings.YMin = min;
-                Configuration.GraphSettings.YMax = max;
-                Configuration.GraphSettings.YStep = step;
+                Configuration.GraphSettings.YMin = (float)min;
+                Configuration.GraphSettings.YMax = (float)max;
+                Configuration.GraphSettings.YStep = (float)step;
                 Configuration.GraphSettings.YPow = pow;
             }
             graph.YAxisLabelsFont = Configuration.GraphSettings.TickLabelsFont;
@@ -181,7 +181,7 @@ namespace LybraFit
         private void NewFilter(Document doc)
         {
             GraphControl graph = (GraphControl)this.control;
-
+ 
             plotData = new PlotData(doc.X, doc.Y, Configuration.GraphSettings.DataColor, Configuration.GraphSettings.DataLineStyle, (int)Configuration.GraphSettings.DataPointSize, (uint)Configuration.GraphSettings.DataLineWidth, PlotDataPointType.Point);
             graph.SetPlotData("Data", plotData);
             if (doc.HasErrorY)
@@ -226,18 +226,18 @@ namespace LybraFit
                 return;
             }
 
-            float min = filterMessage.FilterItems[0].Min;
-            float max = filterMessage.FilterItems[0].Max;
+            double min = filterMessage.FilterItems[0].Min;
+            double max = filterMessage.FilterItems[0].Max;
 
-            float step = 0;
+            double step = 0;
             int pow = 0, minPow = 2, count = 10;
 
             pow = minPow;
 
             Utility.GetRoundedLimits2(ref min, ref max, ref count, ref step, ref pow);
-            graph.XAxisLabelsMin = min;
-            graph.XAxisLabelsMax = max;
-            graph.XAxisLabelsStep = step;
+            graph.XAxisLabelsMin = (float)min;
+            graph.XAxisLabelsMax = (float)max;
+            graph.XAxisLabelsStep = (float)step;
             graph.XAxisLabelsPow = pow;
             string s = step.ToString();
             graph.XAxisLabelsDigits = s.IndexOf(".") < 0 ? 0 : s.Length - s.IndexOf(".") - 1;
@@ -248,9 +248,9 @@ namespace LybraFit
                 max = filterMessage.FilterItems[1].Max;
                 Utility.GetRoundedLimits2(ref min, ref max, ref count, ref step, ref pow);
 
-                graph.YAxisLabelsMin = min;
-                graph.YAxisLabelsMax = max;
-                graph.YAxisLabelsStep = step;
+                graph.YAxisLabelsMin = (float)min;
+                graph.YAxisLabelsMax = (float)max;
+                graph.YAxisLabelsStep = (float)step;
                 graph.YAxisLabelsPow = pow;
                 s = step.ToString();
                 graph.YAxisLabelsDigits = s.IndexOf(".") < 0 ? 0 : s.Length - s.IndexOf(".") - 1;

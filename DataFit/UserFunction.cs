@@ -108,13 +108,13 @@ namespace FuncLib
             return icc.CompileAssemblyFromSource(parameters, SourceString);
         }
 
-        public float Calculate(float X, float[] P)
+        public double Calculate(double X, double[] P)
         {            
             // Execute
             Assembly assembly = compilerResults.CompiledAssembly;
             Type program = assembly.GetType("CustomFunction");
             MethodInfo execute = program.GetMethod("GetValue");
-            float Y = (float)execute.Invoke(this, new object[] { X, P });
+            double Y = (double)execute.Invoke(this, new object[] { X, P });
             return Y;
         }
 
@@ -128,7 +128,7 @@ namespace FuncLib
             return Y;
         }
 
-        public override void CalcProcedure(float[] X, float[] P, ref float[] Y)
+        public override void CalcProcedure(double[] X, double[] P, ref double[] Y)
         {
             for (int i = 0; i < X.Length; i++)
             {

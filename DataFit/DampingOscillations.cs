@@ -16,11 +16,11 @@ namespace FuncLib
             this.parameters = new string[] { "a", "\u03b2", "\u03c9", "d", "e" };
         }
 
-        public override void CalcProcedure(float[] X, float[] P, ref float[] Y)
+        public override void CalcProcedure(double[] X, double[] P, ref double[] Y)
         {
             for (int i = 0; i < X.Length; i++)
             {
-                Y[i] = P[0] * (float)Math.Exp(-P[1] * X[i]) * (float)Math.Sin(P[2] * X[i] + P[3]) + P[4];
+                Y[i] = P[0] * Math.Exp(-P[1] * X[i]) * Math.Sin(P[2] * X[i] + P[3]) + P[4];
             }
         }
 
@@ -30,14 +30,15 @@ namespace FuncLib
         /// <param name="X"></param>
         /// <param name="Y"></param>
         /// <returns></returns>
-        public override float[] InitParameters(float[] X, float[] Y)
+        public override double[] InitParameters(double[] X, double[] Y)
         {
             CheckNumberOfPointsForInitialization(X);
-            float PI = (float)Math.PI;
-            float[] P = new float[5];
+
+            double[] P = new double[5];
+
             P = new SinFunction().InitParameters(X, Y);
 
-            return new float[] { P[0], 0, P[1], P[2], P[3] };
+            return new double[] { P[0], 0, P[1], P[2], P[3] };
         }
     }
 }

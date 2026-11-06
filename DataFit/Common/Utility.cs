@@ -40,13 +40,13 @@ namespace LybraFit
         /// <param name="data">data array</param>
         /// <param name="min">min value returned</param>
         /// <param name="max">max value returned</param>
-        public static void GetArrayLimits(float[] data, ref float min, ref float max)
+        public static void GetArrayLimits(double[] data, ref double min, ref double max)
         {
-            min = float.MaxValue;
-            max = float.MinValue;
+            min = double.MaxValue;
+            max = double.MinValue;
             for (int i = 0; i < data.Length; i++)
             {
-                if (float.IsInfinity(data[i]) || float.IsNaN(data[i]) || float.IsNegativeInfinity(data[i]) || float.IsPositiveInfinity(data[i])) continue;
+                if (double.IsInfinity(data[i]) || double.IsNaN(data[i]) || double.IsNegativeInfinity(data[i]) || double.IsPositiveInfinity(data[i])) continue;
                 if (min > data[i]) min = data[i];
                 if (max < data[i]) max = data[i];
             }
@@ -112,7 +112,7 @@ namespace LybraFit
         /// <param name="count">initial count of intervals between min and max</param>
         /// <param name="step">initial step</param>
         /// <param name="pow">the 10 pow of the result</param>
-        public static void GetRoundedLimits2(ref float min, ref float max, ref int count, ref float step, ref int pow)
+        public static void GetRoundedLimits2(ref double min, ref double max, ref int count, ref double step, ref int pow)
         {
             RangeLabelsInfo rangeInfo = null;
 

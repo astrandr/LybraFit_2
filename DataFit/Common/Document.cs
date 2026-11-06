@@ -16,18 +16,18 @@ namespace LybraFit
     {
         public ColumnSettings[] GridColumnSettings;
         public string DataFile = "";
-        public List<float[]> Data = null;
-        private List<float[]> unfilteredData = null;
+        public List<double[]> Data = null;
+        private List<double[]> unfilteredData = null;
         public string[] ColumnNames = new string[] { "X", "Y", "Err", "Model", "Difference" };
         public int ColumnCount = 5;
         public string ErrMessage = "";
         public bool HasErrorY = false;
         public bool YCalculated = false;
         public UserFunction yCalculationFunction = null;
-        public float[] Parameters;
+        public double[] Parameters;
 
-        public float[] FitDataX;
-        public float[] FitDataY;
+        public double[] FitDataX;
+        public double[] FitDataY;
         public string XDataName = "X";
         public string YDataName = "Y";
         public Dictionary<string, ModelFitInfo> Models = new Dictionary<string, ModelFitInfo>();
@@ -37,7 +37,7 @@ namespace LybraFit
 
         public Document(int coumnCount = 5, string[] columnNames = null)
         {
-            Data = new List<float[]>();
+            Data = new List<double[]>();
 
             ColumnCount = coumnCount;
             if (columnNames != null) ColumnNames = columnNames;
@@ -63,12 +63,12 @@ namespace LybraFit
             GridColumnSettings[2].ReadOnly = false;
         }
 
-        public float[] X
+        public double[] X
         {
             //TODO this can be optimized with dirty flag for the data
             get
             {
-                float[] X = new float[Data.Count];
+                double[] X = new double[Data.Count];
                 for (int i = 0; i < X.Length; i++)
                 {
                     X[i] = Data[i][0];
@@ -77,12 +77,12 @@ namespace LybraFit
             }
         }
 
-        public float[] Y
+        public double[] Y
         {
             //TODO this can be optimized with dirty flag for the data
             get
             {
-                float[] Y = new float[Data.Count];
+                double[] Y = new double[Data.Count];
                 for (int i = 0; i < Y.Length; i++)
                 {
                     Y[i] = Data[i][1];
@@ -91,13 +91,13 @@ namespace LybraFit
             }
         }
 
-        public float[] ErrY
+        public double[] ErrY
         {
             //TODO this can be optimized with dirty flag for the data
             get
             {
                 if (!HasErrorY) return null;
-                float[] errY = new float[Data.Count];
+                double[] errY = new double[Data.Count];
                 for (int i = 0; i < Y.Length; i++)
                 {
                     errY[i] = Data[i][2];
@@ -386,7 +386,7 @@ namespace LybraFit
             return true;
         }
 
-        public void UpdateX(float[] newX)
+        public void UpdateX(double[] newX)
         {
             for (int i = 0; i < newX.Length; i++)
             {
@@ -394,7 +394,7 @@ namespace LybraFit
             }
         }
 
-        public void UpdateY(float[] newY)
+        public void UpdateY(double[] newY)
         {
             for (int i = 0; i < newY.Length; i++)
             {

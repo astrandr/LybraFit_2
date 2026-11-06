@@ -34,7 +34,7 @@ namespace LybraFit
         public static Dictionary<string, UserFunction> UserModels = new Dictionary<string, UserFunction>();
         public static Dictionary<string, FitFunction> LibraryModels = new Dictionary<string, FitFunction>();
 
-        public static Dictionary<string, float[]> UserModelsInitialParameter = new Dictionary<string, float[]>();
+        public static Dictionary<string, double[]> UserModelsInitialParameter = new Dictionary<string, float[]>();
 
         public static Dictionary<string, string> RecentFiles = new Dictionary<string, string>(7);
         public static Dictionary<string, string> RecentProjects = new Dictionary<string, string>(7);
