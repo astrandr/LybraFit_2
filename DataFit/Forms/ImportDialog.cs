@@ -179,6 +179,8 @@ namespace LybraFit
             columnCount = 0;
             listParsedData.Items.Clear();
             txt1stColumnName.Text = ""; txt2ndColumnName.Text = ""; txt3rdColumnName.Text = "";
+            chkHasErrColumn.Enabled = false;
+            num3rdColumnIndex.Enabled = false;
 
             if (numHeaderLinesCount.Value > 0 && lines.Length > (int)numHeaderLinesCount.Value - 1 && (int)num1stColumnIndex.Value > 0)
             {
@@ -186,12 +188,17 @@ namespace LybraFit
 
                 if (tokens.Length > 0 && tokens.Length >= (int)num1stColumnIndex.Value) txt1stColumnName.Text = tokens[(int)num1stColumnIndex.Value - 1];
                 if (tokens.Length > 1 && tokens.Length >= (int)num2ndColumnIndex.Value) txt2ndColumnName.Text = tokens[(int)num2ndColumnIndex.Value - 1];
-                if (tokens.Length > 2 && tokens.Length >= (int)num3rdColumnIndex.Value) txt3rdColumnName.Text = tokens[(int)num3rdColumnIndex.Value - 1];
-
-                if (tokens.Length < columnCount)
-                {
-                    columnCount = tokens.Length;
+                if (tokens.Length > 2 && tokens.Length >= (int)num3rdColumnIndex.Value) 
+                { 
+                    txt3rdColumnName.Text = tokens[(int)num3rdColumnIndex.Value - 1]; 
+                    chkHasErrColumn.Enabled = true;
+                    num3rdColumnIndex.Enabled = true;
                 }
+
+                columnCount = tokens.Length;
+                num1stColumnIndex.Maximum = columnCount;
+                num2ndColumnIndex.Maximum = columnCount;
+                num3rdColumnIndex.Maximum = columnCount;
             }
             else
             {

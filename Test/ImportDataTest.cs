@@ -19,6 +19,8 @@ namespace Test
     [TestClass]
     public class ImportDataTest 
     {
+        private const string testDataDirectory = @"..\..\Test\TestData";
+
         TestStack.White.Application app = null;
         Window mainWindow = null;
 
@@ -52,7 +54,7 @@ namespace Test
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
         public void OpenSimpleFileNoHeaders()
         {
-            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "NoHeaderNoError.txt", @"C:\Users\ANDREY\Documents\Visual Studio 2013\Projects\DataFit\Test\TestData");
+            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "NoHeaderNoError.txt", testDataDirectory);
             
             Assert.AreEqual("NoHeaderNoError", importDialog.TxtTitle.Text, "Title not set as expected");
             Assert.AreEqual("1\t2\r\n3\t4\r\n5\t6", importDialog.TxtOriginal.Text, "File content not as expected");
@@ -82,7 +84,7 @@ namespace Test
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
         public void OpenSimpleFileNoHeadersSetColumnNames()
         {
-            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "NoHeaderNoError.txt", @"C:\Users\ANDREY\Documents\Visual Studio 2013\Projects\DataFit\Test\TestData");
+            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "NoHeaderNoError.txt", testDataDirectory);
 
             Assert.AreEqual("1\t2\r\n3\t4\r\n5\t6", importDialog.TxtOriginal.Text, "File content not as expected");
             importDialog.SetColumnName(1, "t").SetColumnName(2, "V").ClickOk();
@@ -100,7 +102,7 @@ namespace Test
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
         public void OpenSimpleFileNoHeadersRemoveAllRowsAsHeaderLines()
         {
-            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "NoHeaderNoError.txt", @"C:\Users\ANDREY\Documents\Visual Studio 2013\Projects\DataFit\Test\TestData");
+            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "NoHeaderNoError.txt", testDataDirectory);
 
             Assert.AreEqual("1\t2\r\n3\t4\r\n5\t6", importDialog.TxtOriginal.Text, "File content not as expected");
             importDialog.SetHeaderLinesCount(3).ClickOk();
@@ -117,7 +119,7 @@ namespace Test
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
         public void OpenSimpleFileNoHeadersHeaderLinesMoreThanRowsCount()
         {
-            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "NoHeaderNoError.txt", @"C:\Users\ANDREY\Documents\Visual Studio 2013\Projects\DataFit\Test\TestData");
+            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "NoHeaderNoError.txt", testDataDirectory);
             importDialog.SetHeaderLinesCount(6).ClickOk(); 
             Assert.IsTrue(importDialog.GetWindow().IsClosed);
         }
@@ -128,9 +130,9 @@ namespace Test
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
         public void OpenSimpleFileColumnHeaders()
         {
-            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "SimpleColumnNames.txt", @"C:\Users\ANDREY\Documents\Visual Studio 2013\Projects\DataFit\Test\TestData");
+            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "SimpleColumnNames.txt", testDataDirectory);
 
-            Assert.AreEqual("X1\tY1\te\r\n0\t1\t0\r\n3\t4\t0\r\n5\t7\t1\r\n6\t9\t1", importDialog.TxtOriginal.Text, "File content not as expected");
+            Assert.AreEqual("X1\tY1 Err\r\n0\t1   0.2\r\n3\t4   0.1\r\n5\t7   1.0\r\n6\t9   1.3", importDialog.TxtOriginal.Text, "File content not as expected");
 
             //Skip one line from the header
             importDialog.SetHeaderLinesCount(1);
@@ -160,9 +162,9 @@ namespace Test
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
         public void OpenSimpleFileColumnHeaderSkipHeaderLine()
         {
-            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "SimpleColumnNames.txt", @"C:\Users\ANDREY\Documents\Visual Studio 2013\Projects\DataFit\Test\TestData");
+            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "SimpleColumnNames.txt", testDataDirectory);
 
-            Assert.AreEqual("X1\tY1\te\r\n0\t1\t0\r\n3\t4\t0\r\n5\t7\t1\r\n6\t9\t1", importDialog.TxtOriginal.Text, "File content not as expected");
+            Assert.AreEqual("X1\tY1 Err\r\n0\t1   0.2\r\n3\t4   0.1\r\n5\t7   1.0\r\n6\t9   1.3", importDialog.TxtOriginal.Text, "File content not as expected");
 
             //Skip one line from the header
             importDialog.SetHeaderLinesCount(2);
@@ -190,7 +192,7 @@ namespace Test
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
         public void OpenFile4HeaderLineSkipProperly()
         {
-            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "Header4Raws.txt", @"C:\Users\ANDREY\Documents\Visual Studio 2013\Projects\DataFit\Test\TestData");
+            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "Header4Raws.txt", testDataDirectory);
             Assert.AreEqual("Header4Raws", importDialog.TxtTitle.Text, "Title not set as expected");
 
             Assert.AreEqual("This is an example of more complex data file\r\n#Intended to test veriety of data files\r\n//Created by Andrey Batchjvarov\r\nXM\tYM\tErr\t\t\tX2\t\tY2\t\tErr2\tX3\t\tY3\t\tErr3\r\n1\t21\t0.12\t\t1.3\t\t2.3\t\t0.14\t1\t\t3\t\t1\r\n2\t42\t0.12\t\t2.3\t\t2.3\t\t0.14\t1\t\t3\t\t1\r\n3\t63\t0.12\t\t3.3\t\t2.3\t\t0.14\t1\t\t3\t\t1\r\n4\t84\t0.12\t\t4.3\t\t2.3\t\t0.14\t1\t\t3\t\t1\r\n5\t105\t0.12\t\t5.3\t\t2.3\t\t0.14\t1\t\t3\t\t1\r\n6\t126\t0.12\t\t6.3\t\t2.3\t\t0.14\t1\t\t3\t\t1\r\n7\t147\t0.12\t\t7.3\t\t2.3\t\t0.14\t1\t\t3\t\t1\r\n8\t168\t0.12\t\t8.3\t\t2.3\t\t0.14\t1\t\t3\t\t1\r\n", importDialog.TxtOriginal.Text, "File content not as expected");
@@ -223,7 +225,7 @@ namespace Test
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
         public void OpenSimpleFileColumnHeadersSwapColumns()
         {
-            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "SimpleColumnNames.txt", @"C:\Users\ANDREY\Documents\Visual Studio 2013\Projects\DataFit\Test\TestData");
+            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "SimpleColumnNames.txt", testDataDirectory);
             Assert.AreEqual("SimpleColumnNames", importDialog.TxtTitle.Text, "Title not set as expected");
             //Skip one line from the header
             importDialog.SetHeaderLinesCount(1).Txt1stColumnName.Focus();
@@ -259,7 +261,7 @@ namespace Test
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
         public void OpenSimpleFileColumnHeaderssetSameColumnIndex1()
         {
-            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "SimpleColumnNames.txt", @"C:\Users\ANDREY\Documents\Visual Studio 2013\Projects\DataFit\Test\TestData");
+            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "SimpleColumnNames.txt", testDataDirectory);
             Assert.AreEqual("SimpleColumnNames", importDialog.TxtTitle.Text, "Title not set as expected");
             //Skip one line from the header
             importDialog.SetHeaderLinesCount(1).Txt1stColumnName.Focus();
@@ -294,7 +296,7 @@ namespace Test
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
         public void OpenSimpleFileColumnHeadersSetSameColumnIndex2()
         {
-            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "SimpleColumnNames.txt", @"C:\Users\ANDREY\Documents\Visual Studio 2013\Projects\DataFit\Test\TestData");
+            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "SimpleColumnNames.txt", testDataDirectory);
             Assert.AreEqual("SimpleColumnNames", importDialog.TxtTitle.Text, "Title not set as expected");
             //Skip one line from the header
             importDialog.SetHeaderLinesCount(1).Txt1stColumnName.Focus();
@@ -329,7 +331,7 @@ namespace Test
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
         public void OpenSimpleFileChangeTitle()
         {
-            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "NoHeaderNoError.txt", @"C:\Users\ANDREY\Documents\Visual Studio 2013\Projects\DataFit\Test\TestData");
+            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "NoHeaderNoError.txt", testDataDirectory);
 
             Assert.AreEqual("NoHeaderNoError", importDialog.TxtTitle.Text, "Title not set as expected");
 
@@ -346,7 +348,7 @@ namespace Test
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
         public void OpenSimpleFileColumnHeadersSetSameColumnIndexOutOfLimits()
         {
-            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "SimpleColumnNames.txt", @"C:\Users\ANDREY\Documents\Visual Studio 2013\Projects\DataFit\Test\TestData");
+            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "SimpleColumnNames.txt", testDataDirectory);
             Assert.AreEqual("SimpleColumnNames", importDialog.TxtTitle.Text, "Title not set as expected");
             //Skip one line from the header
             importDialog.SetHeaderLinesCount(1).Txt1stColumnName.Focus();
@@ -389,7 +391,7 @@ namespace Test
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
         public void OpenSimpleFileColumnHeadersSetSameColumnIndexOutOfLimits2()
         {
-            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "SimpleColumnNames.txt", @"C:\Users\ANDREY\Documents\Visual Studio 2013\Projects\DataFit\Test\TestData");
+            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "SimpleColumnNames.txt", testDataDirectory);
             Assert.AreEqual("SimpleColumnNames", importDialog.TxtTitle.Text, "Title not set as expected");
             //Skip one line from the header
             importDialog.SetHeaderLinesCount(1).Txt1stColumnName.Focus();
@@ -439,7 +441,7 @@ namespace Test
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
         public void OpenEmptyFile()
         {
-            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "Empty.txt", @"C:\Users\ANDREY\Documents\Visual Studio 2013\Projects\DataFit\Test\TestData");
+            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "Empty.txt", testDataDirectory);
             Assert.AreEqual("Empty", importDialog.TxtTitle.Text, "Title not set as expected");
 
             Assert.AreEqual("X", importDialog.Txt1stColumnName.Text, "First column name not updated as expected");
@@ -463,7 +465,7 @@ namespace Test
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
         public void OpenFileDifferentColumnCount()
         {
-            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "DifferentColumnCounts.txt", @"C:\Users\ANDREY\Documents\Visual Studio 2013\Projects\DataFit\Test\TestData");
+            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "DifferentColumnCounts.txt", testDataDirectory);
             Assert.AreEqual("DifferentColumnCounts", importDialog.TxtTitle.Text, "Title not set as expected");
             
             importDialog.SetHeaderLinesCount(1).TxtTitle.Focus();
@@ -499,7 +501,7 @@ namespace Test
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
         public void OpenFileDifferentDelimiters()
         {
-            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "DifferentDelimiters.txt", @"C:\Users\ANDREY\Documents\Visual Studio 2013\Projects\DataFit\Test\TestData");
+            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "DifferentDelimiters.txt", testDataDirectory);
             Assert.AreEqual("DifferentDelimiters", importDialog.TxtTitle.Text, "Title not set as expected");
 
             importDialog.SetHeaderLinesCount(1).TxtTitle.Focus();
@@ -539,7 +541,7 @@ namespace Test
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
         public void OpenSimpleFileVaryHeaderLines()
         {
-            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "SimpleColumnNames.txt", @"C:\Users\ANDREY\Documents\Visual Studio 2013\Projects\DataFit\Test\TestData");
+            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "SimpleColumnNames.txt", testDataDirectory);
             Assert.AreEqual("SimpleColumnNames", importDialog.TxtTitle.Text, "Title not set as expected");
             //Skip one line from the header
             importDialog.SetHeaderLinesCount(1).Txt1stColumnName.Focus();
@@ -574,12 +576,12 @@ namespace Test
         }
 
         /// <summary>
-        /// OpenSimpleFileSetErrorColumn - open file with one header line and no error data column, set error column to nothing and to one of the other columns
+        /// OpenSimpleFileSetErrorColumn - open file with one header line and error data column, set error column to nothing and to one of the other columns
         /// </summary>
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
         public void OpenSimpleFileSetErrorColumn()
         {
-            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "SimpleColumnNames.txt", @"C:\Users\ANDREY\Documents\Visual Studio 2013\Projects\DataFit\Test\TestData");
+            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "SimpleColumnNames.txt", testDataDirectory);
             Assert.AreEqual("SimpleColumnNames", importDialog.TxtTitle.Text, "Title not set as expected");
             //Skip one line from the header
             importDialog.SetHeaderLinesCount(1).Txt1stColumnName.Focus();
@@ -606,7 +608,7 @@ namespace Test
             //Verify column names are imported correctly from the file
             Assert.AreEqual("TestError", table.ColumnName(2), "Invalid error column name column name");
 
-            importDialog = ImportDataDialog.FromMainMenu(mainWindow, "SimpleColumnNames.txt", @"C:\Users\ANDREY\Documents\Visual Studio 2013\Projects\DataFit\Test\TestData");
+            importDialog = ImportDataDialog.FromMainMenu(mainWindow, "SimpleColumnNames.txt", testDataDirectory);
             importDialog.SetColumnIndex(3, 2).ClickOk();
 
             table = new DataTable(mainWindow);
@@ -617,12 +619,42 @@ namespace Test
         }
 
         /// <summary>
+        /// OpenSimpleFileSetNoErrorColumn - open file with one header line and no error data column, verify error column cannot be set
+        /// </summary>
+        [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
+        public void OpenSimpleFileSetNoErrorColumn()
+        {
+            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "SimpleColumnNamesNoErrorColumn.txt", testDataDirectory);
+            Assert.AreEqual("SimpleColumnNamesNoErrorColumn", importDialog.TxtTitle.Text, "Title not set as expected");
+            //Skip one line from the header
+            importDialog.SetHeaderLinesCount(1).Txt1stColumnName.Focus();
+            Assert.AreEqual("X1", importDialog.Txt1stColumnName.Text, "First column name not updated as expected");
+            Assert.AreEqual("Y1", importDialog.Txt2ndColumnName.Text, "Second column name not updated as expected");
+
+            Assert.IsFalse(importDialog.ChkHasErrColumn.Enabled, "Error column check should not be enabled");
+            Assert.IsFalse(importDialog.Txt3rdColumnName.Enabled, "Caption for error column should not be enabled");
+
+            importDialog.ClickOk();
+
+            Assert.IsTrue(importDialog.GetWindow().IsClosed, "Failed to close import dialog");
+
+            //Verify data in the grid
+            DataTable table = new DataTable(mainWindow);
+
+            table = new DataTable(mainWindow);
+
+            Assert.AreEqual("1.00E+000", table.Cell(0, 1), "Cell value not as expected (0,2)");
+            Assert.AreEqual("4.00E+000", table.Cell(1, 1), "Cell value not as expected (1,2)");
+            Assert.AreEqual("7.00E+000", table.Cell(2, 1), "Cell value not as expected (2,2)");
+        }
+
+        /// <summary>
         /// OpenSimpleFileRemoveLinesAsHeaderDeleteColumnNames - remove all files as header and verify the column names are still verified against empty strings
         /// </summary>
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
         public void OpenSimpleFileRemoveLinesAsHeaderDeleteColumnNames()
         {
-            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "SimpleColumnNames.txt", @"C:\Users\ANDREY\Documents\Visual Studio 2013\Projects\DataFit\Test\TestData");
+            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "SimpleColumnNames.txt", testDataDirectory);
             Assert.AreEqual("SimpleColumnNames", importDialog.TxtTitle.Text, "Title not set as expected");
             //Skip one line from the header
             importDialog.SetHeaderLinesCount(6).Txt1stColumnName.Focus();
@@ -648,7 +680,7 @@ namespace Test
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
         public void FloatData()
         {
-            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "FloatData.txt", @"C:\Users\ANDREY\Documents\Visual Studio 2013\Projects\DataFit\Test\TestData");
+            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "FloatData.txt",testDataDirectory);
             Assert.AreEqual("FloatData", importDialog.TxtTitle.Text, "Title not set as expected");
             //Skip one line from the header
             importDialog.SetHeaderLinesCount(1).Txt1stColumnName.Focus();
@@ -672,7 +704,7 @@ namespace Test
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
         public void MissingDataCancel()
         {
-            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "MissingData.txt", @"C:\Users\ANDREY\Documents\Visual Studio 2013\Projects\DataFit\Test\TestData");
+            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "MissingData.txt", testDataDirectory);
             Assert.AreEqual("MissingData", importDialog.TxtTitle.Text, "Title not set as expected");
             //Skip one line from the header
             importDialog.SetHeaderLinesCount(1).Txt1stColumnName.Focus();
@@ -696,7 +728,7 @@ namespace Test
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
         public void MissingDataOk()
         {
-            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "MissingData.txt", @"C:\Users\ANDREY\Documents\Visual Studio 2013\Projects\DataFit\Test\TestData");
+            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "MissingData.txt", testDataDirectory);
             Assert.AreEqual("MissingData", importDialog.TxtTitle.Text, "Title not set as expected");
             //Skip one line from the header
             importDialog.SetHeaderLinesCount(1).Txt1stColumnName.Focus();
@@ -733,7 +765,7 @@ namespace Test
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
         public void WrongDataOk()
         {
-            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "WrongData.txt", @"C:\Users\ANDREY\Documents\Visual Studio 2013\Projects\DataFit\Test\TestData");
+            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "WrongData.txt", testDataDirectory);
             Assert.AreEqual("WrongData", importDialog.TxtTitle.Text, "Title not set as expected");
             //Skip one line from the header
             importDialog.SetHeaderLinesCount(1).Txt1stColumnName.Focus();
@@ -768,7 +800,7 @@ namespace Test
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
         public void HeaderAutodetect()
         {
-            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "Header4Raws.txt", @"C:\Users\ANDREY\Documents\Visual Studio 2013\Projects\DataFit\Test\TestData");
+            ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "Header4Raws.txt", testDataDirectory);
             Assert.AreEqual(4, importDialog.NumHeaderLinesCount.Value, "Header lines are not detected correctly");
             importDialog.ClickCancel();
         }
