@@ -256,7 +256,7 @@ namespace LybraFit.Forms
             this.groupBox1.Controls.Add(this.rdoPortrait);
             this.groupBox1.Location = new System.Drawing.Point(280, 48);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(165, 30);
+            this.groupBox1.Size = new System.Drawing.Size(173, 30);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             // 
