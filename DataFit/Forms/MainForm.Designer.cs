@@ -116,6 +116,7 @@ namespace LybraFit
             this.toolStripModelSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonZoomOut = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonReport = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonGraphicalReport = new System.Windows.Forms.ToolStripButton();
             this.toolStripHelpSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonHelp = new System.Windows.Forms.ToolStripButton();
             this.panelMain = new System.Windows.Forms.Panel();
@@ -578,7 +579,7 @@ namespace LybraFit
             this.toolStripMenuGraphicalReport.Size = new System.Drawing.Size(219, 22);
             this.toolStripMenuGraphicalReport.Tag = "K5";
             this.toolStripMenuGraphicalReport.Text = "&Graphical Report";
-            this.toolStripMenuGraphicalReport.Click += new System.EventHandler(this.graphicalReportToolStripMenuItem_Click);
+            this.toolStripMenuGraphicalReport.Click += new System.EventHandler(this.toolStripButtonGraphicalReport_Click);
             // 
             // toolStripMenuLogReport
             // 
@@ -735,6 +736,7 @@ namespace LybraFit
             this.toolStripModelSeparator,
             this.toolStripButtonZoomOut,
             this.toolStripButtonReport,
+            this.toolStripButtonGraphicalReport,
             this.toolStripHelpSeparator,
             this.toolStripButtonHelp});
             this.toolStripMain.Location = new System.Drawing.Point(0, 0);
@@ -990,6 +992,18 @@ namespace LybraFit
             this.toolStripButtonReport.Text = "Generate results report";
             this.toolStripButtonReport.ToolTipText = "Generate results report";
             this.toolStripButtonReport.Click += new System.EventHandler(this.toolStripButtonReport_Click);
+            // 
+            // toolStripButtonGraphicalReport
+            // 
+            this.toolStripButtonGraphicalReport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonGraphicalReport.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonGraphicalReport.Image")));
+            this.toolStripButtonGraphicalReport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonGraphicalReport.Name = "toolStripButtonGraphicalReport";
+            this.toolStripButtonGraphicalReport.Size = new System.Drawing.Size(40, 47);
+            this.toolStripButtonGraphicalReport.Tag = "K5";
+            this.toolStripButtonGraphicalReport.Text = "toolStripButtonGraphicalReport";
+            this.toolStripButtonGraphicalReport.ToolTipText = "Generate graphical report";
+            this.toolStripButtonGraphicalReport.Click += new System.EventHandler(this.toolStripButtonGraphicalReport_Click);
             // 
             // toolStripHelpSeparator
             // 
@@ -1583,7 +1597,7 @@ namespace LybraFit
             this.MainMenuStrip = this.mainMenu;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(1097, 784);
-            //this.Name = "MainForm";
+            this.Name = "MainForm";
             this.Text = "LybraFit";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
@@ -1747,6 +1761,7 @@ namespace LybraFit
         private System.Windows.Forms.ToolStripSeparator toolStripSettingsSeparator;
         private System.Windows.Forms.ToolStripSeparator toolStripModelSeparator;
         private System.Windows.Forms.ToolStripSeparator toolStripHelpSeparator;
+        private System.Windows.Forms.ToolStripButton toolStripButtonGraphicalReport;
     }
 }
 

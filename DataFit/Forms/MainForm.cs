@@ -1891,44 +1891,7 @@ namespace LybraFit
                 graph.DrawContent(ref bmp);
                 bmp.Save(savePlotImageFileDialog.FileName);
             }
-        }
-
-        private void graphicalReportToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string title = String.IsNullOrEmpty(graph.Title) ? Configuration.GraphSettings.Title : graph.Title;
-            string subTitle = String.Empty;
-            Single resolution = 300;
-            plotExportDialog.LeftTopPos = CenterDialog(plotExportDialog);
-            bool landScape = false;
-
-            Size size = plotExportDialog.ShowDialog(new Size(graph.Width, graph.Height), ref title, ref subTitle, doc, out resolution, ref landScape, margins);
-            if (size != Size.Empty)
-            {
-                float resolutionScaling = resolution / Constants.STANDARD_DPI; //96 dpi is the default resolution when the bitmap initialized
-                Bitmap bmp = new Bitmap((int)(size.Width), (int)(size.Height));
-                bmp.SetResolution(resolution, resolution);
-
-                string oldTitle = graph.Title;
-                graph.ShowTitle = true;
-                graph.Title = title;
-                graph.SubTitle = subTitle;
-                graph.SubTitleFont = new Font(graph.TitleFont.FontFamily, graph.TitleFont.Size - 2, graph.TitleFont.Style);
-                int graphMargins = graph.InternalMargins;
-                graph.InternalMargins = (int)((double)margins / resolutionScaling);
-                graph.DrawContent(ref bmp, resolutionScaling); //reslution scaling is need for all drawing. Setting bitmap resoultion takes care about the fonts
-                if (landScape)
-                {
-                    bmp.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                }
-                GraphicalReport graphicalReport = new GraphicalReport();
-                graphicalReport.LeftTopPos = CenterDialog(graphicalReport);
-                graphicalReport.ShowDialog(bmp);
-                graph.Title = oldTitle;
-                graph.InternalMargins = graphMargins;
-                graph.ShowTitle = false;
-                graph.SubTitle = String.Empty;
-            }
-        }
+        }                
 
         private void dataGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
@@ -3053,6 +3016,43 @@ namespace LybraFit
             doc.Sort();
             SendDataChangedMessage(null);
             Program.IsFromUser = true;
+        }
+
+        private void toolStripButtonGraphicalReport_Click(object sender, EventArgs e)
+        {
+            string title = String.IsNullOrEmpty(graph.Title) ? Configuration.GraphSettings.Title : graph.Title;
+            string subTitle = String.Empty;
+            Single resolution = 300;
+            plotExportDialog.LeftTopPos = CenterDialog(plotExportDialog);
+            bool landScape = false;
+
+            Size size = plotExportDialog.ShowDialog(new Size(graph.Width, graph.Height), ref title, ref subTitle, doc, out resolution, ref landScape, margins);
+            if (size != Size.Empty)
+            {
+                float resolutionScaling = (float)resolution / Constants.STANDARD_DPI; //96 dpi is the default resolution when the bitmap initialized
+                Bitmap bmp = new Bitmap((int)(size.Width), (int)(size.Height));
+                bmp.SetResolution(resolution, resolution);
+
+                string oldTitle = graph.Title;
+                graph.ShowTitle = true;
+                graph.Title = title;
+                graph.SubTitle = subTitle;
+                graph.SubTitleFont = new Font(graph.TitleFont.FontFamily, graph.TitleFont.Size - 2, graph.TitleFont.Style);
+                int graphMargins = graph.InternalMargins;
+                graph.InternalMargins = (int)((float)margins / resolutionScaling);
+                graph.DrawContent(ref bmp, resolutionScaling); //reslution scaling is need for all drawing. Setting bitmap resoultion takes care about the fonts
+                if (landScape)
+                {
+                    bmp.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                }
+                GraphicalReport graphicalReport = new GraphicalReport();
+                graphicalReport.LeftTopPos = CenterDialog(graphicalReport);
+                graphicalReport.ShowDialog(bmp);
+                graph.Title = oldTitle;
+                graph.InternalMargins = graphMargins;
+                graph.ShowTitle = false;
+                graph.SubTitle = String.Empty;
+            }
         }
     }
 }
