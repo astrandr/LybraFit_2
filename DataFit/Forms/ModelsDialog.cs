@@ -69,23 +69,20 @@ namespace LybraFit.Forms
 
             foreach (DataGridViewRow row in dataGridFitFunctions.Rows)
             {
-                bool found = true;
+                bool found = false;
                 foreach (string keyWord in keyWords)
                 {
                     if (row.Cells["LibName"].Value != null && row.Cells["Description"].Value != null)
                     {
-                        if (!row.Cells["LibName"].Value.ToString().ToUpper().Contains(keyWord) &&
-                            !row.Cells["Description"].Value.ToString().ToUpper().Contains(keyWord))
+                        if (row.Cells["LibName"].Value.ToString().ToUpper().Contains(keyWord))
                         {
-                            found = false;
+                            found = true;
                             break;
                         }
                     }
                 }
-                if (!row.IsNewRow)
-                {
-                    row.Visible = keyWords.Length == 0 || found;
-                }
+ 
+                row.Visible = row.IsNewRow || keyWords.Length == 0 || found;
             }
         }
 
@@ -178,7 +175,7 @@ namespace LybraFit.Forms
             {
                 if (Program.LibraryModels[functionName].UniqueDescription == function.UniqueDescription)
                 {
-                    new InfoBox().Show(new string[] { "Model with equivalent math expression", "exists in library: " + functionName }, "Warning", this);
+                    new InfoBox().Show(new string[] { "Model with equivalent math expression", "exists in library: " + functionName }, "Information", this);
                     {
                         Program.IsFromUser = true;
                         dataGridCustomFunctions_SelectionChanged(this, null);
@@ -284,7 +281,7 @@ namespace LybraFit.Forms
             {
                 if (Program.LibraryModels[functionName].UniqueDescription == function.UniqueDescription)
                 {
-                    new InfoBox().Show("Model with equivalent math expression already exists in library:" + functionName, this);
+                    new InfoBox().Show("Model with equivalent math expression already exists in library:" + functionName, "Information", this);
                     dataGridCustomFunctions_SelectionChanged(this, null);
                     Program.IsFromUser = true;
                     return;
@@ -298,7 +295,7 @@ namespace LybraFit.Forms
                 {
 
                     if (messageDialog.Show("Warning ",
-                        new string[]{"Model with equivalent math expression","exists in user functions:",functionName,
+                        new string[]{"Model with equivalent math expression","exists in user functions:", functionName,
                         "Do you want to replace it?"}, this) == DialogResult.No)
                     {
                         Program.IsFromUser = true;
