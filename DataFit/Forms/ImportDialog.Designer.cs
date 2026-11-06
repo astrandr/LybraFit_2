@@ -134,7 +134,7 @@ namespace LybraFit
             this.txt1stColumnName.Location = new System.Drawing.Point(119, 421);
             this.txt1stColumnName.MaxLength = 52;
             this.txt1stColumnName.Name = "txt1stColumnName";
-            this.txt1stColumnName.Size = new System.Drawing.Size(62, 20);
+            this.txt1stColumnName.Size = new System.Drawing.Size(78, 20);
             this.txt1stColumnName.TabIndex = 2;
             this.txt1stColumnName.TextChanged += new System.EventHandler(this.txt1stColumnName_TextChanged);
             // 
@@ -143,7 +143,7 @@ namespace LybraFit
             this.txt2ndColumnName.Location = new System.Drawing.Point(312, 421);
             this.txt2ndColumnName.MaxLength = 52;
             this.txt2ndColumnName.Name = "txt2ndColumnName";
-            this.txt2ndColumnName.Size = new System.Drawing.Size(56, 20);
+            this.txt2ndColumnName.Size = new System.Drawing.Size(78, 20);
             this.txt2ndColumnName.TabIndex = 3;
             this.txt2ndColumnName.TextChanged += new System.EventHandler(this.txt2ndColumnName_TextChanged);
             // 
