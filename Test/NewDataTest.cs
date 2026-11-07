@@ -393,16 +393,20 @@ namespace Test
         public void NewDataAutoIncrementXAutoCalculateError()
         {
             //Start new data, Set auto increment and auto set error data, enter data in first column and verify the second one is calculated correctly
-            NewDataDialog newDataDialog = NewDataDialog.FromMainMenu(mainWindow).SetTitle("Sample").ClickAutoIncrement().SetMinX("0").SetMaxX("10").SetDataXIncrement("1")
+            NewDataDialog newDataDialog = NewDataDialog.FromMainMenu(mainWindow).SetTitle("Sample")
+                .ClickAutoIncrement().SetMinX("0").SetMaxX("10").SetDataXIncrement("1")
                 .ClickCheckErrorData().ClickCheckErrorDataCalculated();
             newDataDialog.ClickOk();
 
             DataTable table = new DataTable(mainWindow);
-            int i;
-            for (i = 0; i <= 5; i++)
+
+            for (int i = 0; i <= 5; i++)
             {
                 table.SetValue(i, 1, (i * i).ToString());
-                table = new DataTable(mainWindow); //Table must be updated otherwise it doesn't work for some reason, click event make ui element not actual
+            }
+
+            for (int i = 0; i <= 5; i++)
+            {
                 string s3 = String.Format("{0:E2}", i);
                 Assert.AreEqual(s3, table.Cell(i, 2), String.Format("Cell value not as expected in ({0},2)", i));
             }
@@ -481,7 +485,19 @@ namespace Test
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
         public void NewDataAutoIncrementXRowNumbers()
         {
-            Assert.Fail("This is to be tested manually. Check row numbering");
+            //Start new data, Set auto increment with step 1
+            NewDataDialog.FromMainMenu(mainWindow).SetTitle("Sample").ClickAutoIncrement().SetDataXIncrement("1").ClickOk();
+
+            DataTable table = new DataTable(mainWindow);
+
+            for (int i = 0; i <= 1; i++)
+            {
+                table.SetValue(i, 1, (i * i).ToString());
+                table.Delay();
+            }
+
+            string s2 = String.Format("{0:E2}", 1);
+            Assert.AreEqual(s2, table.Cell(1, 1), String.Format("Cell value not as expected in ({0},1)", 1));
         }
     }
 }
