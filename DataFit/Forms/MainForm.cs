@@ -872,6 +872,10 @@ namespace LybraFit
             Program.IsFromUser = true;
         }
 
+        private void dataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
 
         private void dataGridView_UserAddedRow(object sender, DataGridViewRowEventArgs e)
         {
@@ -1115,7 +1119,7 @@ namespace LybraFit
             var currentModels = doc.Models;
             var currentModel = doc.CurrentModel;
             this.doc = new Document(5,
-                                        new string[] {
+                                        new string[] { 
                                                         settings.DataXName,
                                                         settings.DataYName,
                                                         settings.ErrDataName,
@@ -1694,19 +1698,19 @@ namespace LybraFit
             }
             else
                 if (doc.Models.Count > e.RowIndex)
-            {
-                doc.CurrentModel = doc.Models[dataGridModels.Rows[e.RowIndex].Cells[0].Value.ToString()];
-            }
-            else
-            {
-                doc.CurrentModel = null;
-                doc.GridColumnSettings[3].Visible = false;
-                doc.GridColumnSettings[4].Visible = false;
-                doc.FitDataY = null;
-                doc.FitDataY = null;
-                //lblChiSquared.Text = "";
-                lblStdError.Text = "";
-            }
+                {
+                    doc.CurrentModel = doc.Models[dataGridModels.Rows[e.RowIndex].Cells[0].Value.ToString()];
+                }
+                else
+                {
+                    doc.CurrentModel = null;
+                    doc.GridColumnSettings[3].Visible = false;
+                    doc.GridColumnSettings[4].Visible = false;
+                    doc.FitDataY = null;
+                    doc.FitDataY = null;
+                    //lblChiSquared.Text = "";
+                    lblStdError.Text = "";
+                }
             //Program.IsFromUser = true;
             controller.UpdateAllUI(this, UpdateMessages.NEW_FIT, doc);
         }
@@ -1887,7 +1891,7 @@ namespace LybraFit
                 graph.DrawContent(ref bmp);
                 bmp.Save(savePlotImageFileDialog.FileName);
             }
-        }
+        }                
 
         private void dataGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
@@ -1912,29 +1916,29 @@ namespace LybraFit
             }
             else
                 if (e.ColumnIndex == -1)
-            {
-                e.PaintBackground(e.CellBounds, true);
-
-                Rectangle cellRect = e.CellBounds;
-
-                e.Graphics.FillRectangle(
-                         new LinearGradientBrush(
-                            new Point(cellRect.Left, cellRect.Top),
-                             new Point(cellRect.Left, cellRect.Bottom),
-                             Color.FromArgb(255, 200, 200, 200),
-                             Color.FromArgb(255, 230, 230, 230)
-                             ),
-                            e.CellBounds);
-                e.Graphics.DrawLine(new Pen(Color.FromArgb(255, 200, 200, 200), 1), cellRect.Left, cellRect.Bottom - 1, cellRect.Right, cellRect.Bottom - 1);
-                if (e.RowIndex >= 0)
                 {
-                    e.Graphics.DrawString((e.RowIndex + 1).ToString(), dataGridView.ColumnHeadersDefaultCellStyle.Font, new SolidBrush(Color.Black),
-                                            e.CellBounds.Right - e.Graphics.MeasureString((e.RowIndex + 1).ToString(), dataGridView.ColumnHeadersDefaultCellStyle.Font).Width - 4,
-                                           (e.CellBounds.Top + e.CellBounds.Bottom) / 2 - e.Graphics.MeasureString(e.ColumnIndex.ToString(), dataGridView.ColumnHeadersDefaultCellStyle.Font).Height / 2);
-                }
+                    e.PaintBackground(e.CellBounds, true);
 
-                e.Handled = true;
-            }
+                    Rectangle cellRect = e.CellBounds;
+
+                    e.Graphics.FillRectangle(
+                             new LinearGradientBrush(
+                                new Point(cellRect.Left, cellRect.Top),
+                                 new Point(cellRect.Left, cellRect.Bottom),
+                                 Color.FromArgb(255, 200, 200, 200),
+                                 Color.FromArgb(255, 230, 230, 230)
+                                 ),
+                                e.CellBounds);
+                    e.Graphics.DrawLine(new Pen(Color.FromArgb(255, 200, 200, 200), 1), cellRect.Left, cellRect.Bottom - 1, cellRect.Right, cellRect.Bottom - 1);
+                    if (e.RowIndex >= 0)
+                    {
+                        e.Graphics.DrawString((e.RowIndex + 1).ToString(), dataGridView.ColumnHeadersDefaultCellStyle.Font, new SolidBrush(Color.Black),
+                                                e.CellBounds.Right - e.Graphics.MeasureString((e.RowIndex + 1).ToString(), dataGridView.ColumnHeadersDefaultCellStyle.Font).Width - 4,
+                                               (e.CellBounds.Top + e.CellBounds.Bottom) / 2 - e.Graphics.MeasureString(e.ColumnIndex.ToString(), dataGridView.ColumnHeadersDefaultCellStyle.Font).Height / 2);
+                    }
+
+                    e.Handled = true;
+                }
         }
 
         private async void toolStripButtonFitAll_Click(object sender, EventArgs e)
