@@ -606,7 +606,7 @@ namespace LybraFit
             this.formatPlotToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("formatPlotToolStripMenuItem.Image")));
             this.formatPlotToolStripMenuItem.Name = "formatPlotToolStripMenuItem";
             this.formatPlotToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.P)));
-            this.formatPlotToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.formatPlotToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.formatPlotToolStripMenuItem.Tag = "K2";
             this.formatPlotToolStripMenuItem.Text = "&Graph";
             this.formatPlotToolStripMenuItem.Click += new System.EventHandler(this.formatGraphToolStripMenuItem_Click);
@@ -616,9 +616,9 @@ namespace LybraFit
             this.formatColumnsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("formatColumnsToolStripMenuItem.Image")));
             this.formatColumnsToolStripMenuItem.Name = "formatColumnsToolStripMenuItem";
             this.formatColumnsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.C)));
-            this.formatColumnsToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.formatColumnsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.formatColumnsToolStripMenuItem.Tag = "K1";
-            this.formatColumnsToolStripMenuItem.Text = "&Table Columns";
+            this.formatColumnsToolStripMenuItem.Text = "&Table";
             this.formatColumnsToolStripMenuItem.Click += new System.EventHandler(this.editColumnsToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
@@ -807,7 +807,7 @@ namespace LybraFit
             this.toolStripButtonNewData.Size = new System.Drawing.Size(40, 47);
             this.toolStripButtonNewData.Tag = "K0";
             this.toolStripButtonNewData.Text = "Generate Data";
-            this.toolStripButtonNewData.ToolTipText = "Generate Data";
+            this.toolStripButtonNewData.ToolTipText = "New Data";
             this.toolStripButtonNewData.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // toolStripButtonPasteAll
@@ -1598,7 +1598,7 @@ namespace LybraFit
             this.MainMenuStrip = this.mainMenu;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(1097, 784);
-            //this.Name = "MainForm";
+            this.Name = "MainForm";
             this.Text = "LybraFit";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);

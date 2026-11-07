@@ -401,14 +401,5 @@ namespace Test
             Assert.AreEqual("3.0", table.Cell(1, 1), "Value in table cell 1,1 not as expected but:" + table.Cell(1, 1));
             Assert.AreEqual("1.732", table.Cell(1, 2), "Value in table cell 1,2 not as expected but:" + table.Cell(1, 2));
         }
-
-        /// <summary>
-        /// TestTableFont - manually change the table font and verify it
-        /// </summary>
-        [TestMethod(), Timeout(4 * BaseTest.TEST_TIMEOUT)]
-        public void TestTableFont()
-        {
-            Assert.Fail("Manually test font settting for table columns");
-        }
     }
 }

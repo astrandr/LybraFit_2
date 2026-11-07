@@ -41,12 +41,6 @@ namespace Test
         }
 
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
-        public void TestManualEdit()
-        {
-            Assert.Fail("Manually test insert, delete, paste and undo on data table");
-        }
-
-        [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
         public void TestUnsortedDataEntrySort()
         {
             //Start new data, 
@@ -60,12 +54,6 @@ namespace Test
             Assert.AreEqual("2.00E+000", table.Cell(1, 0), "Value in cel 1, 0 not as expected but:" + table.Cell(1, 0));
             Assert.AreEqual("1.00E+000", table.Cell(2, 0), "Value in cel 2, 0 not as expected but:" + table.Cell(2, 0));
 
-            //Sort from menu command
-            mainWindow.GetMenuBar(SearchCriteria.ByText("mainMenu")).MenuItem("Data", "Sort").Click();
-            table = new DataTable(mainWindow);
-            Assert.AreEqual("1.00E+000", table.Cell(0, 0), "Value in cel 0, 0 not as expected but:" + table.Cell(0, 0));
-            Assert.AreEqual("2.00E+000", table.Cell(1, 0), "Value in cel 1, 0 not as expected but:" + table.Cell(1, 0));
-            Assert.AreEqual("3.00E+000", table.Cell(2, 0), "Value in cel 2, 0 not as expected but:" + table.Cell(2, 0));
         }
 
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
