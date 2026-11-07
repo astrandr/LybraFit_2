@@ -1598,7 +1598,7 @@ namespace LybraFit
             this.MainMenuStrip = this.mainMenu;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(1097, 784);
-            this.Name = "MainForm";
+            //this.Name = "MainForm";
             this.Text = "LybraFit";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);

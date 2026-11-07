@@ -1,15 +1,9 @@
 ﻿//Designed and Implemented by Andrey Batchvarov 2018
 using LybraFit.Common;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LybraFit
@@ -157,6 +151,11 @@ namespace LybraFit
             for (int i = 0; i < lines.Length; i++)
             {
                 string[] tokens = lines[i].Split(Document.StandardDelimiters, StringSplitOptions.RemoveEmptyEntries);
+                if (i == 0)
+                {
+                    chkHasErrColumn.Enabled = tokens.Length > 2;
+                }
+
                 double r;
                 if (tokens.All(s => double.TryParse(s, out r)))
                 {
@@ -188,10 +187,11 @@ namespace LybraFit
                 if (tokens.Length > 1 && tokens.Length >= (int)num2ndColumnIndex.Value) txt2ndColumnName.Text = tokens[(int)num2ndColumnIndex.Value - 1];
                 if (tokens.Length > 2 && tokens.Length >= (int)num3rdColumnIndex.Value) txt3rdColumnName.Text = tokens[(int)num3rdColumnIndex.Value - 1];
 
-                if (tokens.Length < columnCount)
-                {
-                    columnCount = tokens.Length;
-                }
+                columnCount = tokens.Length;
+                num1stColumnIndex.Maximum = columnCount;
+                num2ndColumnIndex.Maximum = columnCount;
+                num3rdColumnIndex.Maximum = columnCount;
+
             }
             else
             {
