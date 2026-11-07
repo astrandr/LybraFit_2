@@ -1141,6 +1141,8 @@ namespace LybraFit
             doc.HasErrorY = settings.HasErrData;
             doc.YCalculated = settings.CalculateYData;
             doc.yCalculationFunction = settings.YFunction;
+            doc.XAutoIncrement = settings.DataXAutoIncrement;
+            doc.XAutoIncrementStep = settings.DataXIncrement;
 
             toolStripMenuItemInverseTransform.Enabled = doc.YCalculated && doc.yCalculationFunction != null;
 
@@ -2872,13 +2874,15 @@ namespace LybraFit
         private void dataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             if (!Program.IsFromUser) return;
-            double newValue;
+            double newValue = 0.0;
             if (e.RowIndex < 0 || e.ColumnIndex < 0)
             {
                 return;
             }
-            if (dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value == null ||
-                !double.TryParse(dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString(), out newValue))
+
+            if (dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value == null) return;
+
+            if (!double.TryParse(dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString(), out newValue))
             {
                 MessageBox.Show("Invalid value");
                 dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = doc.Data[e.RowIndex][e.ColumnIndex];
@@ -3047,6 +3051,22 @@ namespace LybraFit
                 graph.InternalMargins = graphMargins;
                 graph.ShowTitle = false;
                 graph.SubTitle = String.Empty;
+            }
+        }
+
+        private void dataGridView_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
+        {
+            if (doc.XAutoIncrement)
+            {
+                if (e.Row.Index == 0)
+                {
+                    e.Row.Cells[0].Value = doc.XAutoIncrementStep;
+                }
+                else
+                {
+                    var prevValue = (double)dataGridView.Rows[e.Row.Index - 1].Cells[0].Value;
+                    e.Row.Cells[0].Value = prevValue + doc.XAutoIncrementStep;
+                }
             }
         }
     }

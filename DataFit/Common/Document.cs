@@ -23,6 +23,8 @@ namespace LybraFit
         public string ErrMessage = "";
         public bool HasErrorY = false;
         public bool YCalculated = false;
+        public bool XAutoIncrement = false;
+        public double XAutoIncrementStep = 0;
         public UserFunction yCalculationFunction = null;
         public double[] Parameters;
 
