@@ -88,7 +88,7 @@ namespace LybraFit
             this.Text = Program.APPLICATION_NAME;
 #endif
 
-            onChangeGridCell = new System.Windows.Forms.DataGridViewCellEventHandler(dataGridView_CellValueChanged);
+            onChangeGridCell = new System.Windows.Forms.DataGridViewCellEventHandler(dataGridView_CellEndEdit);
             onGridAddedRow = new System.Windows.Forms.DataGridViewRowEventHandler(dataGridView_UserAddedRow);
             onGridRowDeleting = new System.Windows.Forms.DataGridViewRowCancelEventHandler(dataGridView_UserDeletingRow);
 
@@ -870,11 +870,6 @@ namespace LybraFit
             controller.UpdateAllUI(sender ?? this, UpdateMessages.DATA_CHANGED, doc);
             btnPlot_Click(this, null);
             Program.IsFromUser = true;
-        }
-
-        private void dataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void dataGridView_UserAddedRow(object sender, DataGridViewRowEventArgs e)
