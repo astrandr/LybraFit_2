@@ -94,8 +94,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapter.cs" />
-    <Compile Include="BaseFunction.cs" />
-    <Compile Include="BeatingWave.cs" />
+    <Compile Include="Models\BaseFunction.cs" />
+    <Compile Include="Models\BeatingWave.cs" />
     <Compile Include="Common\ColumnSettings.cs" />
     <Compile Include="Common\Command.cs" />
     <Compile Include="Common\Configuration.cs" />
@@ -114,17 +114,17 @@
     <Compile Include="Common\UndoInverseTransformCommand.cs" />
     <Compile Include="Common\UndoTransformCommand.cs" />
     <Compile Include="Common\ViewFilterMessage.cs" />
-    <Compile Include="Complex.cs" />
+    <Compile Include="Models\Complex.cs" />
     <Compile Include="Coordinates.cs" />
-    <Compile Include="Cos.cs" />
-    <Compile Include="Cubic.cs" />
-    <Compile Include="CubicFit.cs" />
-    <Compile Include="DampingOscillations.cs" />
-    <Compile Include="DataFitController.cs" />
+    <Compile Include="Models\Cos.cs" />
+    <Compile Include="Models\Cubic.cs" />
+    <Compile Include="Models\CubicFit.cs" />
+    <Compile Include="Models\DampingOscillations.cs" />
+    <Compile Include="Models\DataFitController.cs" />
     <Compile Include="DataSmooth.cs" />
     <Compile Include="DMatrix.cs" />
-    <Compile Include="Exponent.cs" />
-    <Compile Include="ExponentialDecline.cs" />
+    <Compile Include="Models\Exponent.cs" />
+    <Compile Include="Models\ExponentialDecline.cs" />
     <Compile Include="FitFunction.cs" />
     <Compile Include="Forms\AboutBox.cs">
       <SubType>Form</SubType>
@@ -264,7 +264,7 @@
       <DependentUpon>GraphControl.resx</DependentUpon>
     </Compile>
     <Compile Include="PseudoVoigt.cs" />
-    <Compile Include="Gaussian.cs" />
+    <Compile Include="Models\Gaussian.cs" />
     <Compile Include="Geometric.cs" />
     <Compile Include="GraphControl.cs">
       <SubType>UserControl</SubType>
@@ -273,20 +273,20 @@
     <Compile Include="GraphControl.Public.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="HarmonicDecline1.cs" />
-    <Compile Include="HarmonicDecline2.cs" />
+    <Compile Include="Models\HarmonicDecline1.cs" />
+    <Compile Include="Models\HarmonicDecline2.cs" />
     <Compile Include="Histogram.cs" />
-    <Compile Include="Hoerl.cs" />
-    <Compile Include="HyperbolicDecline.cs" />
+    <Compile Include="Models\Hoerl.cs" />
+    <Compile Include="Models\HyperbolicDecline.cs" />
     <Compile Include="InvalidDataForInitializationError.cs" />
     <Compile Include="InverseTransform.cs" />
     <Compile Include="LeastSquare.cs" />
     <Compile Include="LimitFormatter.cs" />
-    <Compile Include="Linear.cs" />
+    <Compile Include="Models\Linear.cs" />
     <Compile Include="LinearFit.cs" />
-    <Compile Include="LogarithmicFunction.cs" />
-    <Compile Include="Logistic.cs" />
-    <Compile Include="Lorentzian.cs" />
+    <Compile Include="Models\LogarithmicFunction.cs" />
+    <Compile Include="Models\Logistic.cs" />
+    <Compile Include="Models\Lorentzian.cs" />
     <Compile Include="MathControl.cs" />
     <Compile Include="MathParser.cs" />
     <Compile Include="Matrix.cs" />
