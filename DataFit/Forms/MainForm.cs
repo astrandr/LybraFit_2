@@ -848,11 +848,13 @@ namespace LybraFit
             int sigmaIndex = 0;
             for (int i = 0; i < doc.Parameters.Length; i++)
             {
-                dataGridParameters[2, i].Value = doc.CurrentModel != null && doc.CurrentModel.LastFitParameters != null ? doc.CurrentModel.LastFitParameters[i].ToString() : doc.Parameters[i].ToString();
+                var paramValue = doc.CurrentModel != null && doc.CurrentModel.LastFitParameters != null ? doc.CurrentModel.LastFitParameters[i] : doc.Parameters[i];
+
+                dataGridParameters[2, i].Value = NumberFormatter.FloatToString(paramValue, 6, 2);                
 
                 if (doc.CurrentModel.SigmaParameters != null && (bool)(dataGridParameters[1, i].Value) == true)
                 {
-                    dataGridParameters[3, i].Value = NumberFormatter.FloatToString(doc.CurrentModel.SigmaParameters[sigmaIndex++], 3, 4);
+                    dataGridParameters[3, i].Value = NumberFormatter.FloatToString(doc.CurrentModel.SigmaParameters[sigmaIndex++], 2, 2);
                 }
                 else
                 {
