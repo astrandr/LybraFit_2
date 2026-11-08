@@ -263,7 +263,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GraphControl.resx</DependentUpon>
     </Compile>
-    <Compile Include="PseudoVoigt.cs" />
+    <Compile Include="Models\PseudoVoigt.cs" />
     <Compile Include="Models\Gaussian.cs" />
     <Compile Include="Geometric.cs" />
     <Compile Include="GraphControl.cs">
@@ -290,9 +290,9 @@
     <Compile Include="MathControl.cs" />
     <Compile Include="MathParser.cs" />
     <Compile Include="Matrix.cs" />
-    <Compile Include="ModifiedExponential.cs" />
-    <Compile Include="ModifiedHoerl.cs" />
-    <Compile Include="ModifiedPower.cs" />
+    <Compile Include="Models\ModifiedExponential.cs" />
+    <Compile Include="Models\ModifiedHoerl.cs" />
+    <Compile Include="Models\ModifiedPower.cs" />
     <Compile Include="NumberFormatter.cs" />
     <Compile Include="Operations\AdditionNode.cs" />
     <Compile Include="Operations\BinaryOperation.cs" />
@@ -307,27 +307,27 @@
     <Compile Include="Operations\SquareRootNode.cs" />
     <Compile Include="Operations\SubtractionNode.cs" />
     <Compile Include="Operations\SymbolNode.cs" />
-    <Compile Include="Parabolic.cs" />
+    <Compile Include="Models\Parabolic.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="PlotData.cs" />
-    <Compile Include="Polynomial4.cs" />
-    <Compile Include="Polynomial5.cs" />
-    <Compile Include="Polynomial6.cs" />
+    <Compile Include="Models\Polynomial4.cs" />
+    <Compile Include="Models\Polynomial5.cs" />
+    <Compile Include="Models\Polynomial6.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Common\Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RangeLabelsInfo.cs" />
-    <Compile Include="RatkowskyModel.cs" />
-    <Compile Include="Reciprocal.cs" />
-    <Compile Include="ReciprocalLogarithm.cs" />
-    <Compile Include="ReciprocalParabolic.cs" />
-    <Compile Include="ReciprocalYield.cs" />
+    <Compile Include="Models\RatkowskyModel.cs" />
+    <Compile Include="Models\Reciprocal.cs" />
+    <Compile Include="Models\ReciprocalLogarithm.cs" />
+    <Compile Include="Models\ReciprocalParabolic.cs" />
+    <Compile Include="Models\ReciprocalYield.cs" />
     <Compile Include="Root.cs" />
     <Compile Include="SelectionEventArgs.cs" />
-    <Compile Include="ShiftedPower.cs" />
-    <Compile Include="Sin.cs" />
-    <Compile Include="SinFrequency.cs" />
-    <Compile Include="SinPeriod.cs" />
+    <Compile Include="Models\ShiftedPower.cs" />
+    <Compile Include="Models\Sin.cs" />
+    <Compile Include="Models\SinFrequency.cs" />
+    <Compile Include="Models\SinPeriod.cs" />
     <Compile Include="Stat.cs" />
     <Compile Include="UpdateMessage.cs" />
     <Compile Include="UserFunction.cs" />
