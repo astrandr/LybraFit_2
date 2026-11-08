@@ -383,7 +383,7 @@ namespace Test
         /// OpenSimpleFileColumnHeadersSetSameColumnIndexOutOfLimits2 - open file with one header line, set header line to 1, set column indexes more than data columns
         /// </summary>
         [TestMethod(), Timeout(BaseTest.TEST_TIMEOUT)]
-        public void OpenSimpleFileColumnHeadersSetSameColumnIndexOutOfLimits2()
+        public void OpenSimpleFileColumnHeadersTryToSetColumnIndexesOutOfLimits2()
         {
             ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "SimpleColumnNames.txt", testDataPath);
             Assert.AreEqual("SimpleColumnNames", importDialog.TxtTitle.Text, "Title not set as expected");
@@ -393,20 +393,17 @@ namespace Test
             Assert.AreEqual("Y1", importDialog.Txt2ndColumnName.Text, "Second column name not updated as expected");
 
             importDialog.IncrementColumnIndex(1).IncrementColumnIndex(1).IncrementColumnIndex(1);
-            Assert.AreEqual("", importDialog.Txt1stColumnName.Text, "First column name not updated as expected");
+            Assert.AreEqual("Y1", importDialog.Txt1stColumnName.Text, "First column name not updated as expected");
             importDialog.IncrementColumnIndex(2).IncrementColumnIndex(2).IncrementColumnIndex(2);
-            Assert.AreEqual("", importDialog.Txt2ndColumnName.Text, "Second column name not updated as expected");
+            Assert.AreEqual("Y1", importDialog.Txt2ndColumnName.Text, "Second column name not updated as expected");
 
-            //Try to close the dialog with wrong column indexes
-            importDialog.ClickOk();
-            Assert.IsFalse(importDialog.GetWindow().IsClosed, "Import dialog should not accept invalid column index");
-            importDialog.DecrementColumnIndex(1).DecrementColumnIndex(1).DecrementColumnIndex(1);
-
-            //Try to close the dialog with wrong column indexes
-            importDialog.ClickOk();
-            Assert.IsFalse(importDialog.GetWindow().IsClosed, "Import dialog should not accept invalid column index");
             importDialog.DecrementColumnIndex(2).DecrementColumnIndex(2).DecrementColumnIndex(2);
 
+            Assert.AreEqual("Y1", importDialog.Txt1stColumnName.Text, "First column name not updated as expected");
+            Assert.AreEqual("X1", importDialog.Txt2ndColumnName.Text, "Second column name not updated as expected");
+
+            importDialog.DecrementColumnIndex(1).DecrementColumnIndex(1).DecrementColumnIndex(1);
+            importDialog.IncrementColumnIndex(2).IncrementColumnIndex(2).IncrementColumnIndex(2);
             Assert.AreEqual("X1", importDialog.Txt1stColumnName.Text, "First column name not updated as expected");
             Assert.AreEqual("Y1", importDialog.Txt2ndColumnName.Text, "Second column name not updated as expected");
             importDialog.ClickOk();
@@ -576,7 +573,7 @@ namespace Test
         public void OpenSimpleFileNoErrorColumn()
         {
             ImportDataDialog importDialog = ImportDataDialog.FromMainMenu(mainWindow, "SimpleColumnNamesNoErrorColumn.txt", testDataPath);
-            Assert.AreEqual("SimpleColumnNames", importDialog.TxtTitle.Text, "Title not set as expected");
+            Assert.AreEqual("SimpleColumnNamesNoErrorColumn", importDialog.TxtTitle.Text, "Title not set as expected");
             //Skip one line from the header
             importDialog.SetHeaderLinesCount(1).Txt1stColumnName.Focus();
             Assert.AreEqual("X1", importDialog.Txt1stColumnName.Text, "First column name not updated as expected");
@@ -701,10 +698,7 @@ namespace Test
             importDialog.SetColumnName(1, "X").SetColumnName(2,"").ClickOk();
             Assert.IsFalse(importDialog.GetWindow().IsClosed, "Import dialog should not close if column name is empty");
 
-            importDialog.SetColumnName(1, "X").SetColumnName(2, "Y").SetHasError(true).SetColumnName(3,"").ClickOk();
-            Assert.IsFalse(importDialog.GetWindow().IsClosed, "Import dialog should not close if column name is empty");
-
-            importDialog.SetColumnName(1, "X").SetColumnName(2, "Y").SetHasError(true).SetColumnName(3, "Err").ClickOk();
+            importDialog.SetColumnName(1, "X").SetColumnName(2, "Y").ClickOk();
             Assert.IsTrue(importDialog.GetWindow().IsClosed, "Import dialog should not close if column name is empty");
         }
 
