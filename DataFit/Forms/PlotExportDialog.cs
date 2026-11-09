@@ -17,10 +17,10 @@ namespace LybraFit.Forms
 
         private int currentUnits;
         private int dpi;
-        private double width, height, margins;
-        private const double inchToCm = 2.54f;
+        private float width, height, margins;
+        private const float inchToCm = 2.54f;
 
-        private double aspectRatio = 1;
+        private float aspectRatio = 1;
         private Document doc;
 
         public PlotExportDialog()
@@ -40,14 +40,13 @@ namespace LybraFit.Forms
             Program.IsFromUser = true;
         }
 
-        public Size ShowDialog(Size size, ref string title, ref string subTitle, Document doc, out Single resolution, ref bool landScape, int pixelsMargins)
+        public Size ShowDialog(ref int currentUnits, ref SizeF size, ref string title, ref string subTitle, Document doc, ref int resolution, ref bool landScape, ref int pixelsMargins)
         {
             Program.IsFromUser = false;
             this.doc = doc;
-            aspectRatio = (double)size.Width / size.Height;
+            aspectRatio = size.Width / size.Height;
             cboPaper.SelectedIndex = 0;
-            cboUnits.SelectedIndex = 0;
-            currentUnits = 0;
+            cboUnits.SelectedIndex = currentUnits;
             this.txtHeight.Text = size.Height.ToString();
             this.txtWidth.Text = size.Width.ToString();
             this.txtTitle.Text = title;
@@ -58,12 +57,15 @@ namespace LybraFit.Forms
             btnApplyParametersValues.Enabled = chkSubTitle.Checked && fitInfo != null;
             btnApplyDerivedValues.Enabled = chkSubTitle.Checked && fitInfo != null && fitInfo.DerivedValues != null && fitInfo.DerivedValues.Count > 0;
             subTitle = String.Empty;
-            resolution = dpi;
+
             Program.IsFromUser = true;
 
             if (this.ShowDialog() == DialogResult.OK)
             {
+                resolution = dpi;
+                size = new SizeF(width, height);
                 title = txtTitle.Text;
+                currentUnits = cboUnits.SelectedIndex;
                 if (chkSubTitle.Checked)
                 {
                     subTitle = txtSubTitle.Text;
@@ -89,7 +91,7 @@ namespace LybraFit.Forms
             {
                 if (DialogResult == DialogResult.OK)
                 {
-                    if (!double.TryParse(txtWidth.Text, out width))
+                    if (!float.TryParse(txtWidth.Text, out width))
                     {
                         errorProvider.SetError((Control)txtWidth, "Invalid number");
                         e.Cancel = true;
@@ -97,7 +99,7 @@ namespace LybraFit.Forms
                     }
                     else errorProvider.SetError((Control)txtWidth, "");
 
-                    if (!double.TryParse(txtHeight.Text, out height))
+                    if (!float.TryParse(txtHeight.Text, out height))
                     {
                         errorProvider.SetError((Control)txtHeight, "Invalid number");
                         e.Cancel = true;
@@ -113,7 +115,7 @@ namespace LybraFit.Forms
                     }
                     else errorProvider.SetError((Control)cboDPI, "");
 
-                    if (!double.TryParse(txtMargins.Text, out margins))
+                    if (!float.TryParse(txtMargins.Text, out margins))
                     {
                         errorProvider.SetError((Control)cboDPI, "Invalid number");
                         e.Cancel = true;
@@ -155,19 +157,19 @@ namespace LybraFit.Forms
                 return;
             }
 
-            if (!double.TryParse(txtWidth.Text, out width))
+            if (!float.TryParse(txtWidth.Text, out width))
             {
                 errorProvider.SetError((Control)txtWidth, "Invalid value");
                 return;
             }
 
-            if (!double.TryParse(txtHeight.Text, out height))
+            if (!float.TryParse(txtHeight.Text, out height))
             {
                 errorProvider.SetError((Control)txtHeight, "Invalid value");
                 return;
             }
 
-            if (!double.TryParse(txtMargins.Text, out margins))
+            if (!float.TryParse(txtMargins.Text, out margins))
             {
                 errorProvider.SetError((Control)txtMargins, "Invalid value");
                 return;
@@ -183,37 +185,36 @@ namespace LybraFit.Forms
                             margins = margins / dpi;
                             break;
                         case 2: // convert from pixels to cm
-                            width = (double)width / dpi * inchToCm;
-                            height = (double)height / dpi * inchToCm;
-                            margins = (double)margins / dpi * inchToCm;
+                            width = width / dpi * inchToCm;
+                            height = height / dpi * inchToCm;
+                            margins = margins / dpi * inchToCm;
                             break;
                     }
                     break;
                 case 1: switch (cboUnits.SelectedIndex)
                     {
                         case 2: // Convert from inches to cm
-                            width = (double)width * inchToCm;
-                            height = (double)height * inchToCm;
-                            margins = (double)margins * inchToCm;
+                            width = width * inchToCm;
+                            height = height * inchToCm;
+                            margins = margins * inchToCm;
                             break;
                         case 0: // convert from inches to pixels
-                            width = (double)width * dpi;
-                            height = (double)height * dpi;
-                            margins = (double)margins * dpi;
+                            width = width * dpi;
+                            height = height * dpi;
+                            margins = margins * dpi;
                             break;
                     }
                     break;
                 case 2: switch (cboUnits.SelectedIndex)
                     {
                         case 1: // Convert from cm to inches
-                            width = (double)width / inchToCm;
-                            height = (double)height / inchToCm;
-                            margins = (double)margins / inchToCm;
+                            width = height / inchToCm;
+                            margins = margins / inchToCm;
                             break;
                         case 0: // convert from cm to pixels
-                            width = (double)width / inchToCm * dpi;
-                            height = (double)height / inchToCm * dpi;
-                            margins = (double)margins / inchToCm * dpi;
+                            width = width / inchToCm * dpi;
+                            height = height / inchToCm * dpi;
+                            margins = margins / inchToCm * dpi;
                             break;
                     }
                     break;
@@ -246,7 +247,7 @@ namespace LybraFit.Forms
 
             if (chkAspect.Checked)
             {
-                if (double.TryParse(txtWidth.Text, out width))
+                if (float.TryParse(txtWidth.Text, out width))
                 {
                     height = width / aspectRatio;
                     if (currentUnits == 0)
@@ -269,14 +270,14 @@ namespace LybraFit.Forms
 
             if (chkAspect.Checked)
             {
-                if (!double.TryParse(txtWidth.Text, out width))
+                if (!float.TryParse(txtWidth.Text, out width))
                 {
                     errorProvider.SetError((Control)txtWidth, "Invalid value");
                     chkAspect.Checked = false;
                     return;
                 }
 
-                if (!double.TryParse(txtHeight.Text, out height))
+                if (!float.TryParse(txtHeight.Text, out height))
                 {
                     errorProvider.SetError((Control)txtHeight, "Invalid value");
                     chkAspect.Checked = false;
@@ -304,8 +305,8 @@ namespace LybraFit.Forms
             if (cboPaper.SelectedIndex != 0)
             {
 
-                double[] paperWidth = new double[] { width, 8.3f, 5.8f, 4.1f };
-                double[] paperHeight = new double[] { height, 11.7f, 8.3f, 5.8f };
+                float[] paperWidth = new float[] { width, 8.3f, 5.8f, 4.1f };
+                float[] paperHeight = new float[] { height, 11.7f, 8.3f, 5.8f };
 
                 if (!int.TryParse(cboDPI.Text, out dpi))
                 {
@@ -317,7 +318,7 @@ namespace LybraFit.Forms
                     errorProvider.SetError((Control)cboDPI, "");
                 }
 
-                if (!double.TryParse(txtMargins.Text, out margins))
+                if (!float.TryParse(txtMargins.Text, out margins))
                 {
                     errorProvider.SetError((Control)txtMargins, "Invalid value");
                     return;
@@ -330,7 +331,7 @@ namespace LybraFit.Forms
                 switch (currentUnits)
                 {
                     case 0: margins = margins / dpi; break;
-                    case 2: margins = (double)margins / inchToCm; break;
+                    case 2: margins = margins / inchToCm; break;
                 }
 
 
@@ -395,6 +396,11 @@ namespace LybraFit.Forms
                 }
             }
             txtSubTitle.Text = line;
+        }
+
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void btnApplyParametersValues_Click(object sender, EventArgs e)
