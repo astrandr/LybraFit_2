@@ -172,5 +172,11 @@ namespace LybraFit.Forms
             }
 #endif
         }
+
+        private void dataGridLogs_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            var key = e.Row.Cells[0].Value.ToString();
+            this.modelFitInfo.Log.RemoveRecord(key);
+        }
     }
 }
