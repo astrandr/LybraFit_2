@@ -92,7 +92,6 @@
             // dataGridLogs
             // 
             this.dataGridLogs.AllowUserToAddRows = false;
-            this.dataGridLogs.AllowUserToDeleteRows = false;
             this.dataGridLogs.AllowUserToResizeRows = false;
             this.dataGridLogs.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(247)))), ((int)(((byte)(247)))));
             this.dataGridLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -116,6 +115,7 @@
             this.dataGridLogs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridLogs.Size = new System.Drawing.Size(384, 76);
             this.dataGridLogs.TabIndex = 0;
+            this.dataGridLogs.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridLogs_UserDeletedRow);
             // 
             // Column1
             // 

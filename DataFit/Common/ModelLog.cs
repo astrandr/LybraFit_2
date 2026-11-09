@@ -2,6 +2,7 @@
 //Copyright © Andrey Borissov Batchvarov. No copy and reproduction is allowed without provided license agreement
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 
 namespace LybraFit.Common
@@ -19,8 +20,8 @@ namespace LybraFit.Common
         /// </summary>
         public string Identifier { get { return identifier; } set { identifier = value; } }
         public string Name { get; set; }
-
-        public List<LogRecord> Records { get { return this.records; } set { records = value; } }
+        public List<LogRecord> Records { get { return this.records; } set { this.records = value; } }
+        public int RecordsCount => records.Count;
         public string[] ValueNames { get { return this.valueNames; } set { valueNames = value; } }
         public ModelLog() { }
         public ModelLog(string name, string[] parameterNames, string[] derivedValueNames)
@@ -66,7 +67,16 @@ namespace LybraFit.Common
                 values[i] = derivedValues[i - parametersValues.Length];
             }
 
-            this.Records.Add(new LogRecord(key, values, stdError));
+            this.records.Add(new LogRecord(key, values, stdError));
+        }
+
+        public bool RemoveRecord(string key)
+        {
+            var record = this.records.Where(r => r.Key == key).FirstOrDefault();
+
+            if (record == null) return false;
+
+            return records.Remove(record);
         }
 
         public ModelLog(SerializationInfo info, StreamingContext context)

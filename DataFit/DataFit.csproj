@@ -168,11 +168,11 @@
     <Compile Include="Forms\InverseTransformDialog.Designer.cs">
       <DependentUpon>InverseTransformDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\LogDialog.cs">
+    <Compile Include="Forms\FitLogDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\LogDialog.Designer.cs">
-      <DependentUpon>LogDialog.cs</DependentUpon>
+    <Compile Include="Forms\FitLogDialog.Designer.cs">
+      <DependentUpon>FitLogDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\LogNameDialog.cs">
       <SubType>Form</SubType>
@@ -361,8 +361,8 @@
     <EmbeddedResource Include="Forms\InverseTransformDialog.resx">
       <DependentUpon>InverseTransformDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\LogDialog.resx">
-      <DependentUpon>LogDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FitLogDialog.resx">
+      <DependentUpon>FitLogDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LogNameDialog.resx">
       <DependentUpon>LogNameDialog.cs</DependentUpon>

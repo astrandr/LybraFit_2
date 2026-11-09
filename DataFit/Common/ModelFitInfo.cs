@@ -53,7 +53,7 @@ namespace LybraFit.Common
 
         public bool CanModifyDerivedValues()
         {
-            return this.Log == null || this.Log.Records.Count == 0;
+            return this.Log == null || this.Log.RecordsCount == 0;
         }
 
         [OnSerializing()]
