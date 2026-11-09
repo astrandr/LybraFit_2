@@ -62,6 +62,10 @@ namespace LybraFit
         DataGridViewRowEventHandler onGridAddedRow;
         DataGridViewRowCancelEventHandler onGridRowDeleting;
         private ExportDialog exportDialog = new ExportDialog();
+        private SizeF graphReportSize = Size.Empty;
+        private int graphReportResolution = Constants.STANDARD_DPI;
+        private int graphReportMargins = 15;
+        private int graphReportUnits = 0;
 
         List<Component> controlsInStates = new List<Component>();
         List<string> stateFlags = new List<string>();
@@ -75,7 +79,6 @@ namespace LybraFit
         BackgroundWorker worker = null;
 
         double eps = 0;
-        int margins = 15;
 
         public MainForm()
         {
@@ -3023,16 +3026,20 @@ namespace LybraFit
         {
             string title = String.IsNullOrEmpty(graph.Title) ? Configuration.GraphSettings.Title : graph.Title;
             string subTitle = String.Empty;
-            Single resolution = 300;
+
             plotExportDialog.LeftTopPos = CenterDialog(plotExportDialog);
             bool landScape = false;
+            if (graphReportSize.IsEmpty)
+            {
+                graphReportSize = new Size(graph.Width, graph.Height);
+            }
 
-            Size size = plotExportDialog.ShowDialog(new Size(graph.Width, graph.Height), ref title, ref subTitle, doc, out resolution, ref landScape, margins);
+            Size size = plotExportDialog.ShowDialog(ref graphReportUnits, ref graphReportSize, ref title, ref subTitle, doc, ref graphReportResolution, ref landScape, ref graphReportMargins);
             if (size != Size.Empty)
             {
-                float resolutionScaling = (float)resolution / Constants.STANDARD_DPI; //96 dpi is the default resolution when the bitmap initialized
+                float resolutionScaling = (float)graphReportResolution / Constants.STANDARD_DPI; //96 dpi is the default resolution when the bitmap initialized
                 Bitmap bmp = new Bitmap((int)(size.Width), (int)(size.Height));
-                bmp.SetResolution(resolution, resolution);
+                bmp.SetResolution(graphReportResolution, graphReportResolution);
 
                 string oldTitle = graph.Title;
                 graph.ShowTitle = true;
@@ -3040,7 +3047,7 @@ namespace LybraFit
                 graph.SubTitle = subTitle;
                 graph.SubTitleFont = new Font(graph.TitleFont.FontFamily, graph.TitleFont.Size - 2, graph.TitleFont.Style);
                 int graphMargins = graph.InternalMargins;
-                graph.InternalMargins = (int)((float)margins / resolutionScaling);
+                graph.InternalMargins = (int)((float)graphReportMargins / resolutionScaling);
                 graph.DrawContent(ref bmp, resolutionScaling); //reslution scaling is need for all drawing. Setting bitmap resoultion takes care about the fonts
                 if (landScape)
                 {

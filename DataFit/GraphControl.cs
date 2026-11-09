@@ -248,7 +248,7 @@ namespace GraphControlLib
                 int n = (yAxisLabelsPow != 0) ? m : m + 1; //Leave space for labels power if it will drawn
                 int emptyLabelPos = plotArea.Bottom;
                 int y = plotArea.Bottom;
-                size = g.MeasureString(label, yAxisLabelsFont);
+                
                 for (int i = 0; i < n; i++)
                 {
 
@@ -256,7 +256,9 @@ namespace GraphControlLib
                     //Check if it will not overlapp with previous tick label
                     if ((i == 0 || emptyLabelPos >= y))
                     {
-                        g.DrawString(label, yAxisLabelsFont, brush, this.plotArea.Left - (int)(axisLinesLength * drawScale) - size.Width - 2, y - size.Height / 2);
+                        size = g.MeasureString(label, yAxisLabelsFont);
+                        var labelLeftX = this.plotArea.Left - (int)(axisLinesLength * drawScale) - size.Width - 2;
+                        g.DrawString(label, yAxisLabelsFont, brush, labelLeftX, y - size.Height / 2);
 
                         if (showAxisLines)
                         {
@@ -276,7 +278,8 @@ namespace GraphControlLib
                     y = (int)(-(v - yAxisLabelsMin) / (yAxisLabelsMax - yAxisLabelsMin) * plotArea.Height + plotArea.Bottom);
                     label = yAxisLabelsPow.ToString();
                     size = g.MeasureString("x10" + label, xAxisLabelsFont);
-                    g.DrawString("x10", yAxisLabelsFont, brush, this.plotArea.Left - (int)(axisLinesLength * drawScale) - size.Width, y);
+                    var labelLeftX = this.plotArea.Left - (int)(axisLinesLength * drawScale) - size.Width;
+                    g.DrawString("x10", yAxisLabelsFont, brush, labelLeftX, y);
 
                     Font supScrtiptFont = new Font(yAxisLabelsFont.FontFamily, yAxisLabelsFont.Size - 1, yAxisLabelsFont.Style);
                     size = g.MeasureString(label, yAxisLabelsFont);

@@ -57,6 +57,7 @@ namespace LybraFit.Forms
             this.btnApplyParametersLegend = new LybraFit.StylishButton();
             this.btnApplyParametersValues = new LybraFit.StylishButton();
             this.btnApplyDerivedValues = new LybraFit.StylishButton();
+            this.stylishButton1 = new LybraFit.StylishButton();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -103,7 +104,7 @@ namespace LybraFit.Forms
             // btnOk
             // 
             this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOk.Location = new System.Drawing.Point(256, 207);
+            this.btnOk.Location = new System.Drawing.Point(327, 207);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(68, 23);
             this.btnOk.TabIndex = 16;
@@ -203,6 +204,7 @@ namespace LybraFit.Forms
             this.cboDPI.FormattingEnabled = true;
             this.cboDPI.ItemHeight = 13;
             this.cboDPI.Items.AddRange(new object[] {
+            "96",
             "300",
             "600",
             "1200"});
@@ -344,12 +346,23 @@ namespace LybraFit.Forms
             this.btnApplyDerivedValues.UseVisualStyleBackColor = true;
             this.btnApplyDerivedValues.Click += new System.EventHandler(this.btnDerivedValues_Click);
             // 
+            // stylishButton1
+            // 
+            this.stylishButton1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.stylishButton1.Location = new System.Drawing.Point(203, 207);
+            this.stylishButton1.Name = "stylishButton1";
+            this.stylishButton1.Size = new System.Drawing.Size(68, 23);
+            this.stylishButton1.TabIndex = 30;
+            this.stylishButton1.Text = "Cancel";
+            this.stylishButton1.UseVisualStyleBackColor = true;
+            // 
             // PlotExportDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(247)))), ((int)(((byte)(247)))));
             this.ClientSize = new System.Drawing.Size(581, 242);
+            this.Controls.Add(this.stylishButton1);
             this.Controls.Add(this.btnApplyDerivedValues);
             this.Controls.Add(this.btnApplyParametersValues);
             this.Controls.Add(this.btnApplyParametersLegend);
@@ -419,5 +432,6 @@ namespace LybraFit.Forms
         private StylishButton btnApplyParametersValues;
         private StylishButton btnApplyParametersLegend;
         private StylishButton btnApplyDerivedValues;
+        private StylishButton stylishButton1;
     }
 }
