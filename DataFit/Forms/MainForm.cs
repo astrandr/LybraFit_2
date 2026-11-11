@@ -1494,8 +1494,8 @@ namespace LybraFit
                     dataGridParameters.Rows[index].Cells[1].Value = true;
                     if (doc.CurrentModel.LastFitParameters != null && i < doc.CurrentModel.LastFitParameters.Length)
                     {
-                        //dataGridParameters.Rows[index].Cells[2].Value = NumberFormatter.FloatToString(doc.CurrentModel.LastFitParameters[i], 3, 4); This may be affecting the accuracy
-                        dataGridParameters.Rows[index].Cells[2].Value = doc.CurrentModel.LastFitParameters[i];
+                        dataGridParameters.Rows[index].Cells[2].Value = NumberFormatter.FloatToString(doc.CurrentModel.LastFitParameters[i], 6, 2); 
+
                         if (doc.CurrentModel.SigmaParameters != null && (bool)(dataGridParameters[1, i].Value) == true)
                         {
                             dataGridParameters.Rows[index].Cells[3].Value = NumberFormatter.FloatToString(doc.CurrentModel.SigmaParameters[sigmaIndex++], 3, 4);

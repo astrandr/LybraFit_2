@@ -1569,11 +1569,11 @@ namespace LybraFit
             // 
             // saveProjectDialog
             // 
-            this.saveProjectDialog.Filter = "Project| *.prj";
+            this.saveProjectDialog.Filter = "Project| *.lfw";
             // 
             // openProjectDialog
             // 
-            this.openProjectDialog.Filter = "Project | *.prj";
+            this.openProjectDialog.Filter = "Project | *.lfw";
             // 
             // helpProvider
             // 

@@ -1,9 +1,9 @@
 ﻿//Designed and Implemented by Andrey Borissov Batchvarov 2018
 //Copyright © Andrey Borissov Batchvarov. No copy and reproduction is allowed without provided license agreement
-using System;
+using AutoFormatNumber;
+using LybraFit.Common;
 using System.Windows.Forms;
 using UIBase;
-using LybraFit.Common;
 
 namespace LybraFit
 {
@@ -29,7 +29,7 @@ namespace LybraFit
             DataGridView grid = (DataGridView)this.control;
             if (grid.CurrentRow != null && doc.Models.Count > 0)
             {
-                grid.CurrentRow.Cells["ModelFitStdError"].Value = doc.Models[grid.CurrentRow.Cells[0].Value.ToString()].FitResultStdError.ToString();
+                grid.CurrentRow.Cells["ModelFitStdError"].Value = NumberFormatter.FloatToString(doc.Models[grid.CurrentRow.Cells[0].Value.ToString()].FitResultStdError, 3, 4);
             }
 
             this.doc = doc;
@@ -38,19 +38,17 @@ namespace LybraFit
         private void UpdateModels(Document doc)
         {
             Program.IsFromUser = false;
-            string selectedModel = String.Empty;
+
             DataGridView grid = (DataGridView)this.control;
+
             grid.SuspendLayout();
-            if (grid.CurrentRow != null)
-            {
-                selectedModel = grid.CurrentRow.Cells["ModelName"].Value.ToString();
-            }
 
             grid.Rows.Clear();
 
             foreach(ModelFitInfo modelInfo in doc.Models.Values)
             {
-                grid.Rows.Add(modelInfo.ModelName, modelInfo.FitResultStdError, modelInfo.ModelFunction.Description);
+                var fitResultStdError = NumberFormatter.FloatToString(modelInfo.FitResultStdError, 3, 4);
+                grid.Rows.Add(modelInfo.ModelName, fitResultStdError, modelInfo.ModelFunction.Description);
             }
             grid.Sort(new FloatNumbersRowComparer());
             grid.ClearSelection();
